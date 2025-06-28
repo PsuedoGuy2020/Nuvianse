@@ -14,6 +14,7 @@ import {
 import { Footer } from "@/components/ui/footer"
 import { Header } from "@/components/ui/header"
 import { InfiniteGrid } from "@/components/ui/infinite-grid"
+import { ProductFeatures } from "@/components/ui/product-features"
 
 export default function Home() {
   return (
@@ -59,6 +60,9 @@ export default function Home() {
       </section>
 
       {/* Product Features Section */}
+      <ProductFeatures />
+
+      {/* Original Product Features Section (keeping for reference) */}
       <section className="relative py-24 overflow-hidden">
         <div
           className="absolute inset-0 z-0"
