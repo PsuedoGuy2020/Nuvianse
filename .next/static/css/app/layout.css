@@ -1092,6 +1092,9 @@ video {
 .w-px {
   width: 1px;
 }
+.w-16 {
+  width: 4rem;
+}
 .min-w-0 {
   min-width: 0px;
 }
@@ -1139,6 +1142,9 @@ video {
 }
 .flex-1 {
   flex: 1 1 0%;
+}
+.flex-shrink-0 {
+  flex-shrink: 0;
 }
 .shrink-0 {
   flex-shrink: 0;
@@ -1628,6 +1634,9 @@ video {
 .fill-current {
   fill: currentColor;
 }
+.object-contain {
+  object-fit: contain;
+}
 .object-cover {
   object-fit: cover;
 }
@@ -2053,6 +2062,10 @@ video {
 }
 .blur {
   --tw-blur: blur(8px);
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+.brightness-110 {
+  --tw-brightness: brightness(1.1);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 .filter {
@@ -3413,12 +3426,20 @@ body {
     display: flex;
   }
 
+  .md\:h-20 {
+    height: 5rem;
+  }
+
   .md\:w-\[var\(--radix-navigation-menu-viewport-width\)\] {
     width: var(--radix-navigation-menu-viewport-width);
   }
 
   .md\:w-auto {
     width: auto;
+  }
+
+  .md\:w-20 {
+    width: 5rem;
   }
 
   .md\:max-w-\[420px\] {
@@ -3490,6 +3511,10 @@ body {
     display: block;
   }
 
+  .lg\:h-24 {
+    height: 6rem;
+  }
+
   .lg\:min-h-\[100vh\] {
     min-height: 100vh;
   }
@@ -3500,6 +3525,10 @@ body {
 
   .lg\:w-16 {
     width: 4rem;
+  }
+
+  .lg\:w-24 {
+    width: 6rem;
   }
 
   .lg\:grid-cols-3 {

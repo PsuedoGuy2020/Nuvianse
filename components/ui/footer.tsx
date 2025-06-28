@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Github, Twitter, Linkedin, Instagram } from 'lucide-react'
 import { useParallaxEffect } from '@/hooks/use-parallax'
 import '@/styles/footer-parallax.css'
@@ -138,9 +139,23 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Company Name */}
+        {/* Company Name with Logo */}
         <div className="mt-20 mb-8">
-          <h2 className="company-name">NUVIANCE</h2>
+          <div className="flex items-center justify-center gap-6">
+            {/* Logo */}
+            <div className="relative w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 flex-shrink-0">
+              <Image
+                src="/Screenshot_2025-06-26_at_1.15.07_AM-removebg-preview.png"
+                alt="Nuviance Logo"
+                fill
+                className="object-contain filter brightness-110"
+                priority
+              />
+            </div>
+            
+            {/* Company Name */}
+            <h2 className="company-name">NUVIANCE</h2>
+          </div>
         </div>
 
         {/* Copyright */}
