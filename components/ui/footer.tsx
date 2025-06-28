@@ -142,6 +142,17 @@ export function Footer() {
                 </button>
               </form>
 
+              {/* Privacy Disclaimer */}
+              <div className="privacy-disclaimer">
+                <p className="disclaimer-text">
+                  Clicking "See Nuviance" means you agree to how we handle your data, as outlined in our{' '}
+                  <Link href="/privacy" className="privacy-link">
+                    Privacy Notice
+                  </Link>
+                  , including using it to share helpful updates and marketing content.
+                </p>
+              </div>
+
               {/* Social Icons - Linear horizontal layout */}
               <div className="social-icons-linear">
                 <a
