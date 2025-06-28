@@ -218,26 +218,42 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Footer Bottom - Copyright and Legal */}
+        {/* Footer Bottom - Copyright, Legal Links, and Contact Email */}
         <div className="footer-bottom">
-          <div className="copyright-section">
-            <p className="copyright-text">
-              © {new Date().getFullYear()} Nuviance. All rights reserved.
-            </p>
-          </div>
-          
-          <div className="legal-links">
-            <Link href="/privacy" className="legal-link">
-              Privacy Policy
-            </Link>
-            <span className="legal-separator">•</span>
-            <Link href="/terms" className="legal-link">
-              Terms of Service
-            </Link>
-            <span className="legal-separator">•</span>
-            <Link href="/cookies" className="legal-link">
-              Cookie Policy
-            </Link>
+          <div className="footer-bottom-content">
+            {/* Left side - Copyright */}
+            <div className="copyright-section">
+              <p className="copyright-text">
+                © {new Date().getFullYear()} Nuviance. All rights reserved.
+              </p>
+            </div>
+            
+            {/* Center - Legal Links */}
+            <div className="legal-links">
+              <Link href="/privacy" className="legal-link">
+                Privacy Policy
+              </Link>
+              <span className="legal-separator">•</span>
+              <Link href="/terms" className="legal-link">
+                Terms of Service
+              </Link>
+              <span className="legal-separator">•</span>
+              <Link href="/cookies" className="legal-link">
+                Cookie Policy
+              </Link>
+            </div>
+
+            {/* Right side - Contact Email */}
+            <div className="contact-email-section">
+              <a 
+                href="mailto:hello@nuviance.com" 
+                className="contact-email-link"
+                title="Send us an email"
+              >
+                <Mail className="contact-email-icon" />
+                <span className="contact-email-text">hello@nuviance.com</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>
