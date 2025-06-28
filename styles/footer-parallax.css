@@ -322,15 +322,15 @@
   background: rgba(255, 255, 255, 0.03);
 }
 
-/* Social Icons Linear - Enhanced with perfect spacing and alignment */
+/* Social Icons Linear - Significantly increased spacing for better visual separation */
 .social-icons-linear {
   display: flex;
-  gap: 1rem;
-  margin-top: 1.25rem;
+  gap: 2rem; /* Increased from 1rem to 2rem for much better spacing */
+  margin-top: 1.5rem; /* Increased from 1.25rem to 1.5rem */
   justify-content: flex-start;
   align-items: center;
   position: relative;
-  padding: 0.5rem 0;
+  padding: 0.75rem 0; /* Increased from 0.5rem to 0.75rem */
 }
 
 /* Add subtle connecting line between icons */
@@ -354,11 +354,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.5rem;
-  height: 2.5rem;
+  width: 2.75rem; /* Increased from 2.5rem to 2.75rem for better presence */
+  height: 2.75rem; /* Increased from 2.5rem to 2.75rem */
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.625rem;
+  border-radius: 0.75rem; /* Increased from 0.625rem to 0.75rem */
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -386,10 +386,10 @@
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.25);
   color: rgba(255, 255, 255, 0.95);
-  transform: translateY(-3px) scale(1.08);
+  transform: translateY(-4px) scale(1.1); /* Increased lift and scale for better effect */
   box-shadow: 
-    0 6px 20px rgba(255, 255, 255, 0.12),
-    0 0 15px rgba(255, 255, 255, 0.08);
+    0 8px 24px rgba(255, 255, 255, 0.15), /* Enhanced shadow */
+    0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 .social-icon-compact:hover::before {
@@ -397,15 +397,15 @@
 }
 
 .social-icon-svg {
-  width: 1.125rem;
-  height: 1.125rem;
+  width: 1.25rem; /* Increased from 1.125rem to 1.25rem */
+  height: 1.25rem; /* Increased from 1.125rem to 1.25rem */
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
   position: relative;
 }
 
 .social-icon-compact:hover .social-icon-svg {
-  transform: scale(1.15);
+  transform: scale(1.2); /* Increased from 1.15 to 1.2 */
 }
 
 /* Enhanced platform-specific hover effects with better spacing */
@@ -415,8 +415,8 @@
   border-color: rgba(29, 161, 242, 0.3);
   color: #1da1f2;
   box-shadow: 
-    0 6px 20px rgba(29, 161, 242, 0.25),
-    0 0 15px rgba(29, 161, 242, 0.15);
+    0 8px 24px rgba(29, 161, 242, 0.3),
+    0 0 20px rgba(29, 161, 242, 0.2);
 }
 
 .social-icon-compact:nth-child(2):hover {
@@ -425,8 +425,8 @@
   border-color: rgba(255, 255, 255, 0.3);
   color: #ffffff;
   box-shadow: 
-    0 6px 20px rgba(255, 255, 255, 0.25),
-    0 0 15px rgba(255, 255, 255, 0.15);
+    0 8px 24px rgba(255, 255, 255, 0.3),
+    0 0 20px rgba(255, 255, 255, 0.2);
 }
 
 .social-icon-compact:nth-child(3):hover {
@@ -435,8 +435,8 @@
   border-color: rgba(0, 119, 181, 0.3);
   color: #0077b5;
   box-shadow: 
-    0 6px 20px rgba(0, 119, 181, 0.25),
-    0 0 15px rgba(0, 119, 181, 0.15);
+    0 8px 24px rgba(0, 119, 181, 0.3),
+    0 0 20px rgba(0, 119, 181, 0.2);
 }
 
 .social-icon-compact:nth-child(4):hover {
@@ -448,8 +448,8 @@
   border-color: rgba(225, 48, 108, 0.3);
   color: #e1306c;
   box-shadow: 
-    0 6px 20px rgba(225, 48, 108, 0.25),
-    0 0 15px rgba(225, 48, 108, 0.15);
+    0 8px 24px rgba(225, 48, 108, 0.3),
+    0 0 20px rgba(225, 48, 108, 0.2);
 }
 
 /* Smart Brand Container - Intelligent layout system */
@@ -683,18 +683,18 @@
   }
   
   .social-icons-linear {
-    gap: 0.875rem;
-    margin-top: 1rem;
+    gap: 1.75rem; /* Reduced from 2rem to 1.75rem for tablet */
+    margin-top: 1.25rem;
   }
   
   .social-icon-compact {
-    width: 2.25rem;
-    height: 2.25rem;
+    width: 2.5rem; /* Slightly reduced for tablet */
+    height: 2.5rem;
   }
   
   .social-icon-svg {
-    width: 1rem;
-    height: 1rem;
+    width: 1.125rem;
+    height: 1.125rem;
   }
   
   .disclaimer-text {
@@ -748,10 +748,10 @@
   }
   
   .social-icons-linear {
-    max-width: 240px;
+    max-width: 280px; /* Increased from 240px to accommodate larger spacing */
     margin: 1rem auto 0;
     justify-content: center;
-    gap: 0.75rem;
+    gap: 1.5rem; /* Maintained good spacing for mobile */
   }
   
   .privacy-disclaimer {
@@ -801,18 +801,18 @@
   
   .social-icons-linear {
     justify-content: center;
-    gap: 0.625rem;
-    max-width: 200px;
+    gap: 1.25rem; /* Good spacing for small screens */
+    max-width: 240px;
   }
   
   .social-icon-compact {
-    width: 2rem;
-    height: 2rem;
+    width: 2.25rem;
+    height: 2.25rem;
   }
   
   .social-icon-svg {
-    width: 0.875rem;
-    height: 0.875rem;
+    width: 1rem;
+    height: 1rem;
   }
   
   .disclaimer-text {
@@ -849,20 +849,20 @@
   }
   
   .social-icons-linear {
-    gap: 0.5rem;
-    max-width: 180px;
+    gap: 1rem; /* Balanced spacing for very small screens */
+    max-width: 200px;
     margin-top: 0.875rem;
   }
   
   .social-icon-compact {
-    width: 1.875rem;
-    height: 1.875rem;
+    width: 2rem;
+    height: 2rem;
     border-radius: 0.5rem;
   }
   
   .social-icon-svg {
-    width: 0.8rem;
-    height: 0.8rem;
+    width: 0.875rem;
+    height: 0.875rem;
   }
   
   .privacy-disclaimer {
