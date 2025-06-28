@@ -1790,6 +1790,9 @@ video {
 .bg-white\/30 {
   background-color: rgb(255 255 255 / 0.3);
 }
+.bg-black\/50 {
+  background-color: rgb(0 0 0 / 0.5);
+}
 .bg-gradient-to-br {
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
 }
@@ -2069,6 +2072,9 @@ video {
 }
 .pt-12 {
   padding-top: 3rem;
+}
+.pl-11 {
+  padding-left: 2.75rem;
 }
 .text-left {
   text-align: left;
@@ -2389,6 +2395,9 @@ video {
 }
 .ring-white\/20 {
   --tw-ring-color: rgb(255 255 255 / 0.2);
+}
+.ring-gray-600\/20 {
+  --tw-ring-color: rgb(75 85 99 / 0.2);
 }
 .ring-opacity-30 {
   --tw-ring-opacity: 0.3;

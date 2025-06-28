@@ -43,26 +43,26 @@ const features = [
 
 export function ProductFeatures() {
   const [activeIndex, setActiveIndex] = useState(0)
+  const [isSticky, setIsSticky] = useState(false)
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([])
   const containerRef = useRef<HTMLDivElement>(null)
-  const [isInView, setIsInView] = useState(false)
+  const imageContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!containerRef.current) return
+      if (!containerRef.current || !imageContainerRef.current) return
 
       const containerRect = containerRef.current.getBoundingClientRect()
-      const containerTop = containerRect.top
-      const containerBottom = containerRect.bottom
+      const imageContainerRect = imageContainerRef.current.getBoundingClientRect()
       const viewportHeight = window.innerHeight
+      const headerHeight = 80 // Approximate header height
 
-      // Check if container is in view
-      const inView = containerTop < viewportHeight && containerBottom > 0
-      setIsInView(inView)
+      // Check if image container should be sticky
+      const shouldBeSticky = containerRect.top <= headerHeight && containerRect.bottom > viewportHeight
+      setIsSticky(shouldBeSticky)
 
-      // Only process scroll events when the container is in view
-      if (inView) {
-        // Find which section is currently most visible
+      // Only process feature detection when container is in view
+      if (containerRect.top < viewportHeight && containerRect.bottom > 0) {
         let maxVisibleSection = 0
         let maxVisibleHeight = 0
 
@@ -70,12 +70,16 @@ export function ProductFeatures() {
           if (!sectionRef) return
 
           const rect = sectionRef.getBoundingClientRect()
-          const sectionTop = Math.max(rect.top, 0)
+          const sectionTop = Math.max(rect.top, headerHeight)
           const sectionBottom = Math.min(rect.bottom, viewportHeight)
           const visibleHeight = Math.max(0, sectionBottom - sectionTop)
 
-          if (visibleHeight > maxVisibleHeight) {
-            maxVisibleHeight = visibleHeight
+          // Give preference to sections that are more centered in viewport
+          const centerDistance = Math.abs((rect.top + rect.bottom) / 2 - viewportHeight / 2)
+          const adjustedHeight = visibleHeight - (centerDistance * 0.1)
+
+          if (adjustedHeight > maxVisibleHeight) {
+            maxVisibleHeight = adjustedHeight
             maxVisibleSection = index
           }
         })
@@ -93,7 +97,8 @@ export function ProductFeatures() {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full min-h-screen bg-black text-white py-12 overflow-hidden"
+      className="relative w-full bg-black text-white py-12 overflow-hidden"
+      style={{ minHeight: `${features.length * 100}vh` }} // Ensure enough scroll space
     >
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
@@ -125,41 +130,41 @@ export function ProductFeatures() {
 
       {/* Main Content Container */}
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col lg:flex-row min-h-[75vh] gap-4">
+        <div className="flex flex-col lg:flex-row gap-8">
           
           {/* Left Side - Features List */}
-          <div className="w-full lg:w-1/2 flex flex-col justify-center">
+          <div className="w-full lg:w-1/2 flex flex-col">
             {features.map((feature, index) => (
               <div
                 key={feature.id}
                 ref={(el) => {
                   sectionRefs.current[index] = el
                 }}
-                className="min-h-[30vh] flex items-center py-2"
+                className="min-h-[25vh] flex items-center py-4"
               >
                 <div
                   className={cn(
-                    "transition-all duration-700 transform w-full",
+                    "transition-all duration-500 transform w-full",
                     index === activeIndex
-                      ? "opacity-100 translate-x-0 scale-100"
-                      : "opacity-30 translate-x-8 scale-95"
+                      ? "opacity-100 translate-x-0"
+                      : "opacity-40 translate-x-4"
                   )}
                 >
                   {/* Feature Number */}
                   <div className="flex items-center mb-3">
                     <div 
                       className={cn(
-                        "w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-xs mr-2 transition-all duration-500",
+                        "w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-xs mr-3 transition-all duration-300",
                         index === activeIndex 
-                          ? `bg-gradient-to-r ${feature.gradient} shadow-lg scale-110` 
-                          : "bg-gray-700 scale-100"
+                          ? `bg-gradient-to-r ${feature.gradient} shadow-lg` 
+                          : "bg-gray-700"
                       )}
                     >
                       {String(index + 1).padStart(2, '0')}
                     </div>
                     <div 
                       className={cn(
-                        "h-px flex-1 transition-all duration-500",
+                        "h-px flex-1 transition-all duration-300",
                         index === activeIndex 
                           ? `bg-gradient-to-r ${feature.gradient} opacity-60` 
                           : "bg-gray-600 opacity-30"
@@ -168,7 +173,7 @@ export function ProductFeatures() {
                   </div>
 
                   {/* Feature Content */}
-                  <div className="pl-10">
+                  <div className="pl-11">
                     <h3 className="text-xl md:text-2xl font-bold mb-3 leading-tight">
                       {feature.title}
                     </h3>
@@ -179,7 +184,7 @@ export function ProductFeatures() {
                     {/* Feature Highlight Bar */}
                     <div 
                       className={cn(
-                        "mt-3 h-1 rounded-full transition-all duration-700",
+                        "mt-4 h-1 rounded-full transition-all duration-500",
                         index === activeIndex 
                           ? `bg-gradient-to-r ${feature.gradient} w-16 opacity-100` 
                           : "bg-gray-600 w-8 opacity-50"
@@ -191,81 +196,84 @@ export function ProductFeatures() {
             ))}
           </div>
 
-          {/* Right Side - Stacked Images */}
+          {/* Right Side - Sticky Image Container */}
           <div className="w-full lg:w-1/2 relative">
-            <div className="sticky top-16 h-[60vh] relative">
+            <div 
+              ref={imageContainerRef}
+              className={cn(
+                "w-full h-[65vh] transition-all duration-300 ease-out",
+                isSticky 
+                  ? "fixed top-20 right-0 z-30" 
+                  : "relative"
+              )}
+              style={{
+                width: isSticky ? '42%' : '100%',
+                maxWidth: isSticky ? '600px' : 'none',
+                right: isSticky ? '4%' : 'auto',
+              }}
+            >
               
-              {/* Image Container with Perspective */}
-              <div className="relative w-full h-full perspective-1000">
+              {/* Image Stack Container */}
+              <div className="relative w-full h-full">
                 
                 {/* Background Glow Effect */}
                 <div 
                   className={cn(
-                    "absolute inset-0 rounded-2xl transition-all duration-700 blur-3xl",
-                    `bg-gradient-to-br ${features[activeIndex]?.gradient} opacity-20`
+                    "absolute inset-0 rounded-2xl transition-all duration-700 blur-2xl",
+                    `bg-gradient-to-br ${features[activeIndex]?.gradient} opacity-15`
                   )}
                   style={{
-                    transform: 'scale(1.1)',
+                    transform: 'scale(1.05)',
                   }}
                 />
 
-                {/* Stacked Images */}
+                {/* Stacked Images - All positioned absolutely for smooth transitions */}
                 {features.map((feature, index) => (
                   <div
                     key={feature.id}
                     className={cn(
-                      "absolute inset-0 transition-all duration-700 rounded-2xl overflow-hidden",
+                      "absolute inset-0 transition-opacity duration-700 ease-in-out rounded-2xl overflow-hidden",
                       index === activeIndex 
-                        ? "opacity-100 z-20 transform-none" 
-                        : "opacity-0 z-10",
-                      index < activeIndex && "transform translate-y-4 scale-95",
-                      index > activeIndex && "transform -translate-y-4 scale-95"
+                        ? "opacity-100 z-20" 
+                        : "opacity-0 z-10"
                     )}
-                    style={{
-                      transformStyle: 'preserve-3d',
-                    }}
                   >
                     {/* Image */}
                     <img
                       src={feature.image}
                       alt={feature.title}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover transition-all duration-700 ease-in-out"
                       loading="lazy"
                     />
                     
-                    {/* Gradient Overlay */}
+                    {/* Subtle Gradient Overlay */}
                     <div 
                       className={cn(
                         "absolute inset-0 transition-opacity duration-700",
-                        `bg-gradient-to-br ${feature.gradient} opacity-20`
+                        `bg-gradient-to-br ${feature.gradient} opacity-10`
                       )}
                     />
                     
-                    {/* Border Glow */}
+                    {/* Border Highlight */}
                     <div 
                       className={cn(
                         "absolute inset-0 rounded-2xl transition-all duration-700",
                         index === activeIndex 
-                          ? `ring-2 ring-opacity-50 bg-gradient-to-r ${feature.gradient}` 
-                          : "ring-1 ring-gray-600 ring-opacity-30"
+                          ? "ring-1 ring-white/20" 
+                          : "ring-1 ring-gray-600/20"
                       )}
-                      style={{
-                        background: index === activeIndex 
-                          ? `linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%)` 
-                          : 'transparent'
-                      }}
                     />
                   </div>
                 ))}
 
-                {/* Floating Elements */}
-                <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-500 rounded-full opacity-60 animate-pulse" />
-                <div className="absolute -bottom-6 -left-6 w-6 h-6 bg-purple-500 rounded-full opacity-40 animate-pulse" style={{ animationDelay: '1s' }} />
-                <div className="absolute top-1/3 -right-8 w-4 h-4 bg-emerald-500 rounded-full opacity-50 animate-pulse" style={{ animationDelay: '2s' }} />
+                {/* Floating Accent Elements */}
+                <div className="absolute -top-3 -right-3 w-6 h-6 bg-blue-500/60 rounded-full animate-pulse" />
+                <div className="absolute -bottom-4 -left-4 w-4 h-4 bg-purple-500/40 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
+                <div className="absolute top-1/4 -right-6 w-3 h-3 bg-emerald-500/50 rounded-full animate-pulse" style={{ animationDelay: '2s' }} />
               </div>
 
               {/* Progress Indicator */}
-              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
                 {features.map((_, index) => (
                   <div
                     key={index}
@@ -278,6 +286,13 @@ export function ProductFeatures() {
                   />
                 ))}
               </div>
+
+              {/* Sticky State Indicator */}
+              {isSticky && (
+                <div className="absolute top-4 left-4 px-3 py-1 bg-black/50 backdrop-blur-sm rounded-full text-xs text-white/70 border border-white/10">
+                  Feature Preview
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -294,10 +309,6 @@ export function ProductFeatures() {
           100% {
             background-position: 40px 40px, 40px 40px;
           }
-        }
-        
-        .perspective-1000 {
-          perspective: 1000px;
         }
       `}</style>
     </section>
