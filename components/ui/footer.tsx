@@ -218,7 +218,7 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Footer Bottom - Four-column layout with status indicator */}
+        {/* Footer Bottom - Copyright, Legal Links, and Contact Email */}
         <div className="footer-bottom">
           <div className="footer-bottom-content">
             {/* Left side - Copyright */}
@@ -228,7 +228,7 @@ export function Footer() {
               </p>
             </div>
             
-            {/* Center Left - Legal Links */}
+            {/* Center - Legal Links */}
             <div className="legal-links">
               <Link href="/privacy" className="legal-link">
                 Privacy Policy
@@ -241,14 +241,6 @@ export function Footer() {
               <Link href="/cookies" className="legal-link">
                 Cookie Policy
               </Link>
-            </div>
-
-            {/* Center Right - System Status */}
-            <div className="system-status-section">
-              <div className="system-status-indicator">
-                <div className="status-dot"></div>
-                <span className="status-text">All Systems Running</span>
-              </div>
             </div>
 
             {/* Right side - Contact Email */}
