@@ -107,79 +107,90 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* See It Live Column - More compelling and action-oriented */}
-          <div className="see-it-live-column">
-            <h3 className="text-xl font-semibold text-white/90 mb-6">See It Live</h3>
+          {/* See It Live Column - Restructured for better attention */}
+          <div className="see-it-live-column-enhanced">
+            {/* Title positioned prominently at top */}
+            <div className="title-section">
+              <h3 className="text-xl font-semibold text-white/90 mb-4">See It Live</h3>
+            </div>
             
-            {/* Demo Request Form - Updated content */}
-            <div className="demo-request-compact">
-              <p className="demo-description-compact">
-                Experience NUVIANCE in action — request your live demo.
-              </p>
+            {/* Main content area with better visual hierarchy */}
+            <div className="content-section">
+              {/* Description positioned for immediate visibility */}
+              <div className="description-wrapper">
+                <p className="demo-description-enhanced">
+                  Experience NUVIANCE in action — request your live demo.
+                </p>
+              </div>
               
-              <form onSubmit={handleSubscribe} className="demo-form-compact">
-                <div className="email-input-wrapper-compact">
-                  <Mail className="email-icon-compact" />
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter email"
-                    className="email-input-compact"
-                    required
-                  />
-                </div>
-                <button 
-                  type="submit" 
-                  className="demo-button-compact"
-                  disabled={isSubscribed}
-                >
-                  {isSubscribed ? (
-                    <div className="success-checkmark-compact">✓</div>
-                  ) : (
-                    <ArrowRight className="arrow-icon-compact" />
-                  )}
-                </button>
-              </form>
+              {/* Form positioned as primary action */}
+              <div className="form-wrapper">
+                <form onSubmit={handleSubscribe} className="demo-form-enhanced">
+                  <div className="email-input-wrapper-enhanced">
+                    <Mail className="email-icon-enhanced" />
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="Enter your email"
+                      className="email-input-enhanced"
+                      required
+                    />
+                  </div>
+                  <button 
+                    type="submit" 
+                    className="demo-button-enhanced"
+                    disabled={isSubscribed}
+                  >
+                    {isSubscribed ? (
+                      <div className="success-checkmark-enhanced">✓</div>
+                    ) : (
+                      <ArrowRight className="arrow-icon-enhanced" />
+                    )}
+                  </button>
+                </form>
+              </div>
 
-              {/* Social Icons - Linear horizontal layout */}
-              <div className="social-icons-linear">
-                <a
-                  href="https://twitter.com/nuviance"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-icon-compact"
-                  title="Follow us on Twitter"
-                >
-                  <Twitter className="social-icon-svg" />
-                </a>
-                <a
-                  href="https://github.com/nuviance"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-icon-compact"
-                  title="Star us on GitHub"
-                >
-                  <Github className="social-icon-svg" />
-                </a>
-                <a
-                  href="https://linkedin.com/company/nuviance"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-icon-compact"
-                  title="Connect on LinkedIn"
-                >
-                  <Linkedin className="social-icon-svg" />
-                </a>
-                <a
-                  href="https://instagram.com/nuviance"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-icon-compact"
-                  title="Follow on Instagram"
-                >
-                  <Instagram className="social-icon-svg" />
-                </a>
+              {/* Social icons positioned as secondary action */}
+              <div className="social-wrapper">
+                <div className="social-icons-enhanced">
+                  <a
+                    href="https://twitter.com/nuviance"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-icon-enhanced"
+                    title="Follow us on Twitter"
+                  >
+                    <Twitter className="social-icon-svg-enhanced" />
+                  </a>
+                  <a
+                    href="https://github.com/nuviance"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-icon-enhanced"
+                    title="Star us on GitHub"
+                  >
+                    <Github className="social-icon-svg-enhanced" />
+                  </a>
+                  <a
+                    href="https://linkedin.com/company/nuviance"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-icon-enhanced"
+                    title="Connect on LinkedIn"
+                  >
+                    <Linkedin className="social-icon-svg-enhanced" />
+                  </a>
+                  <a
+                    href="https://instagram.com/nuviance"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="social-icon-enhanced"
+                    title="Follow on Instagram"
+                  >
+                    <Instagram className="social-icon-svg-enhanced" />
+                  </a>
+                </div>
               </div>
             </div>
           </div>
