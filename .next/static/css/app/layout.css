@@ -851,6 +851,9 @@ video {
 .z-30 {
   z-index: 30;
 }
+.-z-10 {
+  z-index: -10;
+}
 .-mx-1 {
   margin-left: -0.25rem;
   margin-right: -0.25rem;
@@ -2362,6 +2365,9 @@ video {
 .ring-white {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(255 255 255 / var(--tw-ring-opacity, 1));
+}
+.ring-white\/20 {
+  --tw-ring-color: rgb(255 255 255 / 0.2);
 }
 .ring-opacity-30 {
   --tw-ring-opacity: 0.3;
