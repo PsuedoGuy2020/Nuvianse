@@ -40,167 +40,137 @@
   pointer-events: none;
 }
 
-/* Newsletter Section - Premium design */
-.newsletter-section {
-  margin-bottom: 4rem;
+/* Stay Connected Column - Compact design for grid placement */
+.stay-connected-column {
   display: flex;
-  justify-content: center;
-  width: 100%;
+  flex-direction: column;
+  gap: 0;
 }
 
-.newsletter-container {
-  max-width: 600px;
-  width: 100%;
-  padding: 0 1rem;
+.newsletter-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.newsletter-content {
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(255, 255, 255, 0.02) 50%,
-    rgba(255, 255, 255, 0.05) 100%
-  );
-  border-radius: 1.5rem;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(20px);
-  padding: 2.5rem;
-  text-align: center;
-  box-shadow: 
-    0 0 40px rgba(255, 255, 255, 0.03),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-.newsletter-title {
-  font-size: 1.75rem;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.95);
-  margin-bottom: 0.75rem;
-  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.newsletter-description {
+.newsletter-description-compact {
   color: rgba(255, 255, 255, 0.7);
-  font-size: 1rem;
-  margin-bottom: 2rem;
-  line-height: 1.6;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
 }
 
-.newsletter-form {
+.newsletter-form-compact {
   display: flex;
-  gap: 0.75rem;
-  max-width: 400px;
-  margin: 0 auto 2rem;
+  gap: 0.5rem;
+  align-items: stretch;
 }
 
-.email-input-wrapper {
+.email-input-wrapper-compact {
   position: relative;
   flex: 1;
+  min-width: 0;
 }
 
-.email-icon {
+.email-icon-compact {
   position: absolute;
-  left: 1rem;
+  left: 0.75rem;
   top: 50%;
   transform: translateY(-50%);
-  width: 1.25rem;
-  height: 1.25rem;
+  width: 1rem;
+  height: 1rem;
   color: rgba(255, 255, 255, 0.4);
   z-index: 2;
 }
 
-.email-input {
+.email-input-compact {
   width: 100%;
-  padding: 0.875rem 1rem 0.875rem 3rem;
+  padding: 0.625rem 0.75rem 0.625rem 2.25rem;
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
   color: white;
-  font-size: 0.95rem;
+  font-size: 0.8rem;
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
 }
 
-.email-input::placeholder {
+.email-input-compact::placeholder {
   color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
 }
 
-.email-input:focus {
+.email-input-compact:focus {
   outline: none;
   border-color: rgba(99, 102, 241, 0.5);
   background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
 }
 
-.subscribe-button {
+.subscribe-button-compact {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.875rem 1.5rem;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
   background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
   border: none;
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
   color: white;
-  font-weight: 600;
-  font-size: 0.95rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  white-space: nowrap;
-  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
 }
 
-.subscribe-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+.subscribe-button-compact:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
   background: linear-gradient(135deg, #5855eb 0%, #7c3aed 100%);
 }
 
-.subscribe-button:disabled {
+.subscribe-button-compact:disabled {
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   cursor: not-allowed;
 }
 
-.arrow-icon {
-  width: 1rem;
-  height: 1rem;
+.arrow-icon-compact {
+  width: 0.875rem;
+  height: 0.875rem;
   transition: transform 0.3s ease;
 }
 
-.subscribe-button:hover:not(:disabled) .arrow-icon {
-  transform: translateX(2px);
+.subscribe-button-compact:hover:not(:disabled) .arrow-icon-compact {
+  transform: translateX(1px);
 }
 
-.success-checkmark {
-  width: 1rem;
-  height: 1rem;
+.success-checkmark-compact {
+  width: 0.875rem;
+  height: 0.875rem;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: bold;
+  font-size: 0.75rem;
 }
 
-/* Social Icons Container - Clean icon-only design */
-.social-icons-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 1.5rem;
-  margin-top: 1.5rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+/* Social Icons Grid - 2x2 compact layout */
+.social-icons-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+  margin-top: 1rem;
 }
 
-.social-icon-link {
+.social-icon-compact {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 3rem;
-  height: 3rem;
+  width: 2.25rem;
+  height: 2.25rem;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 50%;
+  border-radius: 0.5rem;
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   transition: all 0.3s ease;
@@ -209,7 +179,7 @@
   overflow: hidden;
 }
 
-.social-icon-link::before {
+.social-icon-compact::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -222,64 +192,64 @@
   transition: opacity 0.3s ease;
 }
 
-.social-icon-link:hover {
+.social-icon-compact:hover {
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.25);
   color: rgba(255, 255, 255, 0.95);
-  transform: translateY(-3px) scale(1.05);
+  transform: translateY(-2px) scale(1.05);
   box-shadow: 
-    0 8px 25px rgba(255, 255, 255, 0.1),
-    0 0 20px rgba(255, 255, 255, 0.05);
+    0 4px 15px rgba(255, 255, 255, 0.1),
+    0 0 12px rgba(255, 255, 255, 0.05);
 }
 
-.social-icon-link:hover::before {
+.social-icon-compact:hover::before {
   opacity: 1;
 }
 
-.social-icon-link .social-icon {
-  width: 1.5rem;
-  height: 1.5rem;
+.social-icon-svg {
+  width: 1rem;
+  height: 1rem;
   transition: all 0.3s ease;
   z-index: 1;
   position: relative;
 }
 
-.social-icon-link:hover .social-icon {
+.social-icon-compact:hover .social-icon-svg {
   transform: scale(1.1);
 }
 
 /* Specific hover colors for each social platform */
-.social-icon-link:nth-child(1):hover {
+.social-icon-compact:nth-child(1):hover {
   /* Twitter */
   background: rgba(29, 161, 242, 0.15);
   border-color: rgba(29, 161, 242, 0.3);
   color: #1da1f2;
   box-shadow: 
-    0 8px 25px rgba(29, 161, 242, 0.2),
-    0 0 20px rgba(29, 161, 242, 0.1);
+    0 4px 15px rgba(29, 161, 242, 0.2),
+    0 0 12px rgba(29, 161, 242, 0.1);
 }
 
-.social-icon-link:nth-child(2):hover {
+.social-icon-compact:nth-child(2):hover {
   /* GitHub */
   background: rgba(255, 255, 255, 0.15);
   border-color: rgba(255, 255, 255, 0.3);
   color: #ffffff;
   box-shadow: 
-    0 8px 25px rgba(255, 255, 255, 0.2),
-    0 0 20px rgba(255, 255, 255, 0.1);
+    0 4px 15px rgba(255, 255, 255, 0.2),
+    0 0 12px rgba(255, 255, 255, 0.1);
 }
 
-.social-icon-link:nth-child(3):hover {
+.social-icon-compact:nth-child(3):hover {
   /* LinkedIn */
   background: rgba(0, 119, 181, 0.15);
   border-color: rgba(0, 119, 181, 0.3);
   color: #0077b5;
   box-shadow: 
-    0 8px 25px rgba(0, 119, 181, 0.2),
-    0 0 20px rgba(0, 119, 181, 0.1);
+    0 4px 15px rgba(0, 119, 181, 0.2),
+    0 0 12px rgba(0, 119, 181, 0.1);
 }
 
-.social-icon-link:nth-child(4):hover {
+.social-icon-compact:nth-child(4):hover {
   /* Instagram */
   background: linear-gradient(135deg, 
     rgba(225, 48, 108, 0.15) 0%, 
@@ -288,8 +258,8 @@
   border-color: rgba(225, 48, 108, 0.3);
   color: #e1306c;
   box-shadow: 
-    0 8px 25px rgba(225, 48, 108, 0.2),
-    0 0 20px rgba(225, 48, 108, 0.1);
+    0 4px 15px rgba(225, 48, 108, 0.2),
+    0 0 12px rgba(225, 48, 108, 0.1);
 }
 
 /* Smart Brand Container - Intelligent layout system */
@@ -522,27 +492,18 @@
     letter-spacing: clamp(0.4rem, 1.5vw, 1.2rem);
   }
   
-  .newsletter-form {
-    flex-direction: column;
-    gap: 1rem;
+  .social-icons-grid {
+    gap: 0.625rem;
   }
   
-  .subscribe-button {
-    justify-content: center;
+  .social-icon-compact {
+    width: 2rem;
+    height: 2rem;
   }
   
-  .social-icons-container {
-    gap: 1.25rem;
-  }
-  
-  .social-icon-link {
-    width: 2.75rem;
-    height: 2.75rem;
-  }
-  
-  .social-icon-link .social-icon {
-    width: 1.375rem;
-    height: 1.375rem;
+  .social-icon-svg {
+    width: 0.875rem;
+    height: 0.875rem;
   }
 }
 
@@ -567,14 +528,6 @@
     letter-spacing: clamp(0.3rem, 1.2vw, 0.8rem);
   }
   
-  .newsletter-content {
-    padding: 2rem 1.5rem;
-  }
-  
-  .newsletter-title {
-    font-size: 1.5rem;
-  }
-  
   .footer-bottom {
     text-align: center;
   }
@@ -588,18 +541,20 @@
     display: none;
   }
   
-  .social-icons-container {
-    gap: 1rem;
+  .stay-connected-column {
+    grid-column: 1 / -1;
+    max-width: 300px;
+    margin: 0 auto;
   }
   
-  .social-icon-link {
-    width: 2.5rem;
-    height: 2.5rem;
+  .newsletter-form-compact {
+    max-width: 250px;
+    margin: 0 auto;
   }
   
-  .social-icon-link .social-icon {
-    width: 1.25rem;
-    height: 1.25rem;
+  .social-icons-grid {
+    max-width: 200px;
+    margin: 1rem auto 0;
   }
 }
 
@@ -629,16 +584,12 @@
     letter-spacing: clamp(0.2rem, 1vw, 0.6rem);
   }
   
-  .newsletter-content {
-    padding: 1.5rem 1rem;
+  .stay-connected-column {
+    max-width: 280px;
   }
   
-  .newsletter-title {
-    font-size: 1.25rem;
-  }
-  
-  .newsletter-description {
-    font-size: 0.9rem;
+  .newsletter-description-compact {
+    font-size: 0.8rem;
   }
 }
 
@@ -654,31 +605,33 @@
     height: clamp(4rem, 18vw, 8rem);
   }
   
-  .newsletter-section {
-    margin-bottom: 3rem;
+  .email-input-compact {
+    padding: 0.5rem 0.625rem 0.5rem 2rem;
+    font-size: 0.75rem;
   }
   
-  .email-input {
-    padding: 0.75rem 0.875rem 0.75rem 2.75rem;
-    font-size: 0.875rem;
-  }
-  
-  .subscribe-button {
-    padding: 0.75rem 1.25rem;
-    font-size: 0.875rem;
-  }
-  
-  .social-icons-container {
-    gap: 0.875rem;
-  }
-  
-  .social-icon-link {
+  .subscribe-button-compact {
     width: 2.25rem;
     height: 2.25rem;
   }
   
-  .social-icon-link .social-icon {
-    width: 1.125rem;
-    height: 1.125rem;
+  .arrow-icon-compact {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+  
+  .social-icons-grid {
+    gap: 0.5rem;
+    max-width: 180px;
+  }
+  
+  .social-icon-compact {
+    width: 1.875rem;
+    height: 1.875rem;
+  }
+  
+  .social-icon-svg {
+    width: 0.8rem;
+    height: 0.8rem;
   }
 }

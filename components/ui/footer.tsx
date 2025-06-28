@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Github, Twitter, Linkedin, Instagram, Mail, ArrowRight, Star } from 'lucide-react'
+import { Github, Twitter, Linkedin, Instagram, Mail, ArrowRight } from 'lucide-react'
 import { useParallaxEffect } from '@/hooks/use-parallax'
 import '@/styles/footer-parallax.css'
 
@@ -24,90 +24,7 @@ export function Footer() {
   return (
     <footer className="footer-parallax w-full min-h-[600px] py-16 mt-20">
       <div className="footer-content container mx-auto px-4">
-        {/* Newsletter Section */}
-        <div className="newsletter-section">
-          <div className="newsletter-container">
-            <div className="newsletter-content">
-              <h3 className="newsletter-title">Stay Connected</h3>
-              <p className="newsletter-description">
-                Subscribe to our newsletter for the latest updates and insights.
-              </p>
-              
-              <form onSubmit={handleSubscribe} className="newsletter-form">
-                <div className="email-input-wrapper">
-                  <Mail className="email-icon" />
-                  <input
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    placeholder="Enter your email"
-                    className="email-input"
-                    required
-                  />
-                </div>
-                <button 
-                  type="submit" 
-                  className="subscribe-button"
-                  disabled={isSubscribed}
-                >
-                  {isSubscribed ? (
-                    <>
-                      <span>Subscribed!</span>
-                      <div className="success-checkmark">✓</div>
-                    </>
-                  ) : (
-                    <>
-                      <span>Subscribe</span>
-                      <ArrowRight className="arrow-icon" />
-                    </>
-                  )}
-                </button>
-              </form>
-
-              {/* Social Icons - Icons Only */}
-              <div className="social-icons-container">
-                <a
-                  href="https://twitter.com/nuviance"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-icon-link"
-                  title="Follow us on Twitter"
-                >
-                  <Twitter className="social-icon" />
-                </a>
-                <a
-                  href="https://github.com/nuviance"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-icon-link"
-                  title="Star us on GitHub"
-                >
-                  <Github className="social-icon" />
-                </a>
-                <a
-                  href="https://linkedin.com/company/nuviance"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-icon-link"
-                  title="Connect on LinkedIn"
-                >
-                  <Linkedin className="social-icon" />
-                </a>
-                <a
-                  href="https://instagram.com/nuviance"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="social-icon-link"
-                  title="Follow on Instagram"
-                >
-                  <Instagram className="social-icon" />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Main Footer Grid */}
+        {/* Main Footer Grid with Stay Connected replacing Contact */}
         <div className="footer-grid mb-16">
           {/* About Column */}
           <div className="space-y-4">
@@ -190,31 +107,81 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Contact Column */}
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-white/90">Contact</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/support" className="text-gray-400 hover:text-white transition-colors">
-                  Support
-                </Link>
-              </li>
-              <li>
-                <Link href="/sales" className="text-gray-400 hover:text-white transition-colors">
-                  Sales
-                </Link>
-              </li>
-              <li>
-                <Link href="/partnerships" className="text-gray-400 hover:text-white transition-colors">
-                  Partnerships
-                </Link>
-              </li>
-              <li>
-                <Link href="/press" className="text-gray-400 hover:text-white transition-colors">
-                  Press
-                </Link>
-              </li>
-            </ul>
+          {/* Stay Connected Column - Replacing Contact */}
+          <div className="stay-connected-column">
+            <h3 className="text-xl font-semibold text-white/90 mb-6">Stay Connected</h3>
+            
+            {/* Newsletter Form - Compact version */}
+            <div className="newsletter-compact">
+              <p className="newsletter-description-compact">
+                Subscribe for updates and insights.
+              </p>
+              
+              <form onSubmit={handleSubscribe} className="newsletter-form-compact">
+                <div className="email-input-wrapper-compact">
+                  <Mail className="email-icon-compact" />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter email"
+                    className="email-input-compact"
+                    required
+                  />
+                </div>
+                <button 
+                  type="submit" 
+                  className="subscribe-button-compact"
+                  disabled={isSubscribed}
+                >
+                  {isSubscribed ? (
+                    <div className="success-checkmark-compact">✓</div>
+                  ) : (
+                    <ArrowRight className="arrow-icon-compact" />
+                  )}
+                </button>
+              </form>
+
+              {/* Social Icons - Compact grid layout */}
+              <div className="social-icons-grid">
+                <a
+                  href="https://twitter.com/nuviance"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon-compact"
+                  title="Follow us on Twitter"
+                >
+                  <Twitter className="social-icon-svg" />
+                </a>
+                <a
+                  href="https://github.com/nuviance"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon-compact"
+                  title="Star us on GitHub"
+                >
+                  <Github className="social-icon-svg" />
+                </a>
+                <a
+                  href="https://linkedin.com/company/nuviance"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon-compact"
+                  title="Connect on LinkedIn"
+                >
+                  <Linkedin className="social-icon-svg" />
+                </a>
+                <a
+                  href="https://instagram.com/nuviance"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon-compact"
+                  title="Follow on Instagram"
+                >
+                  <Instagram className="social-icon-svg" />
+                </a>
+              </div>
+            </div>
           </div>
         </div>
 
