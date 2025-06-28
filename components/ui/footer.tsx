@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Github, Twitter, Linkedin, Instagram, Mail } from 'lucide-react'
+import { Github, Twitter, Linkedin, Instagram, Mail, ArrowRight } from 'lucide-react'
 import { useParallaxEffect } from '@/hooks/use-parallax'
 import '@/styles/footer-parallax.css'
 
@@ -137,7 +137,7 @@ export function Footer() {
                   {isSubscribed ? (
                     <div className="success-checkmark-compact">✓</div>
                   ) : (
-                    <span className="button-text-compact">See Nuviance</span>
+                    <ArrowRight className="arrow-icon-compact" />
                   )}
                 </button>
               </form>

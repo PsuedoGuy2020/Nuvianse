@@ -198,7 +198,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  min-width: 7rem;
+  width: 2.5rem;
   height: 2.5rem;
   background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
   border: none;
@@ -212,7 +212,6 @@
     0 0 0 1px rgba(255, 255, 255, 0.1);
   position: relative;
   overflow: hidden;
-  padding: 0 1rem;
 }
 
 /* Add shimmer effect to button */
@@ -254,20 +253,16 @@
     0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
-.button-text-compact {
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
-  transition: all 0.3s ease;
+.arrow-icon-compact {
+  width: 0.875rem;
+  height: 0.875rem;
+  transition: transform 0.3s ease;
   z-index: 1;
   position: relative;
-  white-space: nowrap;
 }
 
-.demo-button-compact:hover:not(:disabled) .button-text-compact {
-  transform: scale(1.05);
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+.demo-button-compact:hover:not(:disabled) .arrow-icon-compact {
+  transform: translateX(2px) scale(1.1);
 }
 
 .success-checkmark-compact {
@@ -708,15 +703,6 @@
   .disclaimer-text {
     font-size: 0.7rem;
   }
-  
-  .demo-button-compact {
-    min-width: 6rem;
-    height: 2.25rem;
-  }
-  
-  .button-text-compact {
-    font-size: 0.7rem;
-  }
 }
 
 @media (max-width: 768px) {
@@ -780,15 +766,6 @@
     font-size: 0.65rem;
     text-align: center;
   }
-  
-  .demo-button-compact {
-    min-width: 5.5rem;
-    height: 2.25rem;
-  }
-  
-  .button-text-compact {
-    font-size: 0.65rem;
-  }
 }
 
 @media (max-width: 640px) {
@@ -845,15 +822,6 @@
     font-size: 0.6rem;
     line-height: 1.3;
   }
-  
-  .demo-button-compact {
-    min-width: 5rem;
-    height: 2rem;
-  }
-  
-  .button-text-compact {
-    font-size: 0.6rem;
-  }
 }
 
 /* Ultra-small screens */
@@ -874,12 +842,13 @@
   }
   
   .demo-button-compact {
-    min-width: 4.5rem;
-    height: 2rem;
+    width: 2.25rem;
+    height: 2.25rem;
   }
   
-  .button-text-compact {
-    font-size: 0.55rem;
+  .arrow-icon-compact {
+    width: 0.75rem;
+    height: 0.75rem;
   }
   
   .social-icons-linear {
