@@ -455,7 +455,7 @@
     0 0 20px rgba(225, 48, 108, 0.2);
 }
 
-/* Smart Brand Container - Enhanced for logo prominence */
+/* Smart Brand Container - Reduced spacing between logo and text */
 .brand-container {
   margin: 3rem 0 2rem;
   padding: 2rem;
@@ -472,10 +472,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(3rem, 6vw, 8rem); /* Increased gap for better logo prominence */
+  gap: clamp(1.5rem, 3vw, 3rem); /* Reduced from 3-8rem to 1.5-3rem for tighter spacing */
   width: 100%;
   max-width: 1200px;
-  padding: 2rem; /* Increased padding for more breathing room */
+  padding: 2rem;
   background: linear-gradient(135deg, 
     rgba(255, 255, 255, 0.03) 0%,
     rgba(255, 255, 255, 0.01) 50%,
@@ -531,15 +531,15 @@
   animation-play-state: paused; /* Pause breathing animation on hover */
 }
 
-/* Text Wrapper - Adjusted to complement larger logo */
+/* Text Wrapper - Adjusted to complement larger logo with reduced margin */
 .text-wrapper {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: flex-start;
   min-width: 0;
-  /* Add subtle offset to balance with larger logo */
-  margin-left: clamp(1rem, 3vw, 2rem);
+  /* Reduced margin for tighter spacing */
+  margin-left: clamp(0.5rem, 1.5vw, 1rem); /* Reduced from 1-2rem to 0.5-1rem */
 }
 
 .brand-text {
@@ -996,7 +996,7 @@
   transform: translateY(-2px);
 }
 
-/* Responsive Design - Enhanced for larger logo */
+/* Responsive Design - Enhanced for larger logo with tighter spacing */
 @media (max-width: 1024px) {
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -1004,7 +1004,7 @@
   }
   
   .brand-content {
-    gap: clamp(2rem, 5vw, 6rem); /* Adjusted for tablet */
+    gap: clamp(1.25rem, 3vw, 2.5rem); /* Reduced for tablet */
     padding: 1.75rem;
   }
   
@@ -1020,7 +1020,7 @@
   }
   
   .text-wrapper {
-    margin-left: clamp(0.75rem, 2.5vw, 1.5rem);
+    margin-left: clamp(0.4rem, 1.2vw, 0.8rem); /* Reduced margin */
   }
   
   .social-icons-linear {
@@ -1066,7 +1066,7 @@
 @media (max-width: 768px) {
   .brand-content {
     flex-direction: column;
-    gap: 2.5rem; /* Increased gap for mobile stacking */
+    gap: 1.5rem; /* Reduced gap for mobile stacking */
     text-align: center;
     padding: 1.5rem;
   }
@@ -1172,7 +1172,7 @@
   
   .brand-content {
     padding: 1.25rem;
-    gap: 2rem;
+    gap: 1.25rem; /* Further reduced for small screens */
   }
   
   .logo-wrapper {
@@ -1256,7 +1256,7 @@
   }
 }
 
-/* Ultra-small screens - Logo still prominent */
+/* Ultra-small screens - Logo still prominent with minimal spacing */
 @media (max-width: 480px) {
   .brand-text {
     font-size: clamp(1.2rem, 5vw, 2.2rem);
@@ -1270,7 +1270,7 @@
   }
   
   .brand-content {
-    gap: 1.75rem;
+    gap: 1rem; /* Minimal gap for ultra-small screens */
     padding: 1rem;
   }
   
