@@ -40,11 +40,48 @@
   pointer-events: none;
 }
 
-/* Experience Demo Column - Compact design for grid placement */
-.experience-demo-column {
+/* See It Live Column - Compelling and action-oriented design */
+.see-it-live-column {
   display: flex;
   flex-direction: column;
   gap: 0;
+  position: relative;
+}
+
+/* Add subtle glow effect to the title */
+.see-it-live-column h3 {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.95) 0%, 
+    rgba(99, 102, 241, 0.8) 50%, 
+    rgba(255, 255, 255, 0.95) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  position: relative;
+}
+
+/* Add animated underline to "See It Live" */
+.see-it-live-column h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    #6366f1 0%, 
+    #8b5cf6 50%, 
+    #06b6d4 100%
+  );
+  animation: expandLine 2s ease-in-out infinite alternate;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.5);
+}
+
+@keyframes expandLine {
+  0% { width: 0; }
+  100% { width: 60%; }
 }
 
 .demo-request-compact {
@@ -59,12 +96,52 @@
   line-height: 1.5;
   margin: 0;
   font-weight: 500;
+  position: relative;
+}
+
+/* Add subtle pulse effect to description */
+.demo-description-compact::before {
+  content: '🚀';
+  position: absolute;
+  left: -1.5rem;
+  top: 0;
+  animation: pulse 2s ease-in-out infinite;
+  font-size: 0.75rem;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
 }
 
 .demo-form-compact {
   display: flex;
   gap: 0.5rem;
   align-items: stretch;
+  position: relative;
+}
+
+/* Add subtle glow animation to form */
+.demo-form-compact::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    rgba(99, 102, 241, 0.1) 25%, 
+    transparent 50%, 
+    rgba(139, 92, 246, 0.1) 75%, 
+    transparent 100%
+  );
+  border-radius: 0.75rem;
+  z-index: -1;
+  opacity: 0;
+  animation: formGlow 3s ease-in-out infinite;
+}
+
+@keyframes formGlow {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
 }
 
 .email-input-wrapper-compact {
@@ -82,6 +159,7 @@
   height: 1rem;
   color: rgba(255, 255, 255, 0.4);
   z-index: 2;
+  transition: all 0.3s ease;
 }
 
 .email-input-compact {
@@ -94,6 +172,7 @@
   font-size: 0.8rem;
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
+  position: relative;
 }
 
 .email-input-compact::placeholder {
@@ -105,7 +184,14 @@
   outline: none;
   border-color: rgba(99, 102, 241, 0.5);
   background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
+  box-shadow: 
+    0 0 0 2px rgba(99, 102, 241, 0.1),
+    0 0 20px rgba(99, 102, 241, 0.2);
+}
+
+.email-input-compact:focus + .email-icon-compact {
+  color: rgba(99, 102, 241, 0.8);
+  transform: translateY(-50%) scale(1.1);
 }
 
 .demo-button-compact {
@@ -121,28 +207,62 @@
   cursor: pointer;
   transition: all 0.3s ease;
   flex-shrink: 0;
-  box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
+  box-shadow: 
+    0 2px 8px rgba(99, 102, 241, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add shimmer effect to button */
+.demo-button-compact::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, 
+    transparent 30%, 
+    rgba(255, 255, 255, 0.3) 50%, 
+    transparent 70%
+  );
+  transform: rotate(45deg);
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
 }
 
 .demo-button-compact:hover:not(:disabled) {
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 
+    0 4px 12px rgba(99, 102, 241, 0.4),
+    0 0 20px rgba(99, 102, 241, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
   background: linear-gradient(135deg, #5855eb 0%, #7c3aed 100%);
 }
 
 .demo-button-compact:disabled {
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   cursor: not-allowed;
+  box-shadow: 
+    0 2px 8px rgba(16, 185, 129, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
 .arrow-icon-compact {
   width: 0.875rem;
   height: 0.875rem;
   transition: transform 0.3s ease;
+  z-index: 1;
+  position: relative;
 }
 
 .demo-button-compact:hover:not(:disabled) .arrow-icon-compact {
-  transform: translateX(1px);
+  transform: translateX(2px) scale(1.1);
 }
 
 .success-checkmark-compact {
@@ -153,15 +273,42 @@
   justify-content: center;
   font-weight: bold;
   font-size: 0.75rem;
+  z-index: 1;
+  position: relative;
+  animation: checkmarkBounce 0.5s ease-out;
 }
 
-/* Social Icons Linear - Horizontal row layout */
+@keyframes checkmarkBounce {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Social Icons Linear - Enhanced with better visual hierarchy */
 .social-icons-linear {
   display: flex;
   gap: 0.75rem;
   margin-top: 1rem;
   justify-content: flex-start;
   align-items: center;
+  position: relative;
+}
+
+/* Add subtle connecting line between icons */
+.social-icons-linear::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.1) 20%, 
+    rgba(255, 255, 255, 0.1) 80%, 
+    transparent 100%
+  );
+  z-index: 0;
 }
 
 .social-icon-compact {
@@ -180,6 +327,7 @@
   position: relative;
   overflow: hidden;
   flex-shrink: 0;
+  z-index: 1;
 }
 
 .social-icon-compact::before {
@@ -221,7 +369,7 @@
   transform: scale(1.1);
 }
 
-/* Specific hover colors for each social platform */
+/* Enhanced platform-specific hover effects */
 .social-icon-compact:nth-child(1):hover {
   /* Twitter */
   background: rgba(29, 161, 242, 0.15);
@@ -544,7 +692,7 @@
     display: none;
   }
   
-  .experience-demo-column {
+  .see-it-live-column {
     grid-column: 1 / -1;
     max-width: 300px;
     margin: 0 auto;
@@ -588,7 +736,7 @@
     letter-spacing: clamp(0.2rem, 1vw, 0.6rem);
   }
   
-  .experience-demo-column {
+  .see-it-live-column {
     max-width: 280px;
   }
   

@@ -24,7 +24,7 @@ export function Footer() {
   return (
     <footer className="footer-parallax w-full min-h-[600px] py-16 mt-20">
       <div className="footer-content container mx-auto px-4">
-        {/* Main Footer Grid with Experience Demo replacing Stay Connected */}
+        {/* Main Footer Grid with See It Live replacing Experience Demo */}
         <div className="footer-grid mb-16">
           {/* About Column */}
           <div className="space-y-4">
@@ -107,9 +107,9 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Experience Demo Column - Replacing Stay Connected */}
-          <div className="experience-demo-column">
-            <h3 className="text-xl font-semibold text-white/90 mb-6">Experience Demo</h3>
+          {/* See It Live Column - More compelling and action-oriented */}
+          <div className="see-it-live-column">
+            <h3 className="text-xl font-semibold text-white/90 mb-6">See It Live</h3>
             
             {/* Demo Request Form - Updated content */}
             <div className="demo-request-compact">
