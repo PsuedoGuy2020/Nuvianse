@@ -830,6 +830,12 @@ video {
 .-top-3 {
   top: -0.75rem;
 }
+.bottom-4 {
+  bottom: 1rem;
+}
+.left-4 {
+  left: 1rem;
+}
 .z-0 {
   z-index: 0;
 }
@@ -1076,6 +1082,9 @@ video {
 }
 .h-\[60vh\] {
   height: 60vh;
+}
+.h-0\.5 {
+  height: 0.125rem;
 }
 .max-h-96 {
   max-height: 24rem;
@@ -2286,6 +2295,9 @@ video {
 }
 .opacity-10 {
   opacity: 0.1;
+}
+.opacity-80 {
+  opacity: 0.8;
 }
 .mix-blend-overlay {
   mix-blend-mode: overlay;

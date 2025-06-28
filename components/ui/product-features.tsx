@@ -43,26 +43,35 @@ const features = [
 
 export function ProductFeatures() {
   const [activeIndex, setActiveIndex] = useState(0)
+  const [isSticky, setIsSticky] = useState(false)
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([])
   const containerRef = useRef<HTMLDivElement>(null)
-  const [isInView, setIsInView] = useState(false)
+  const imageContainerRef = useRef<HTMLDivElement>(null)
+  const [scrollProgress, setScrollProgress] = useState(0)
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!containerRef.current) return
+      if (!containerRef.current || !imageContainerRef.current) return
 
       const containerRect = containerRef.current.getBoundingClientRect()
-      const containerTop = containerRect.top
-      const containerBottom = containerRect.bottom
+      const imageRect = imageContainerRef.current.getBoundingClientRect()
       const viewportHeight = window.innerHeight
+      const headerHeight = 80 // Approximate header height
 
-      // Check if container is in view
-      const inView = containerTop < viewportHeight && containerBottom > 0
-      setIsInView(inView)
+      // Check if image should be sticky (when it reaches just below header)
+      const shouldBeSticky = containerRect.top <= headerHeight && containerRect.bottom > viewportHeight
 
-      // Only process scroll events when the container is in view
-      if (inView) {
-        // Find which section is currently most visible
+      setIsSticky(shouldBeSticky)
+
+      // Calculate scroll progress through the container
+      const containerHeight = containerRect.height
+      const scrolledDistance = Math.max(0, headerHeight - containerRect.top)
+      const progress = Math.min(scrolledDistance / (containerHeight - viewportHeight), 1)
+      setScrollProgress(progress)
+
+      // Only process feature detection when container is in view
+      if (containerRect.top < viewportHeight && containerRect.bottom > 0) {
+        // Find which section is currently most visible with improved detection
         let maxVisibleSection = 0
         let maxVisibleHeight = 0
 
@@ -70,12 +79,24 @@ export function ProductFeatures() {
           if (!sectionRef) return
 
           const rect = sectionRef.getBoundingClientRect()
-          const sectionTop = Math.max(rect.top, 0)
-          const sectionBottom = Math.min(rect.bottom, viewportHeight)
-          const visibleHeight = Math.max(0, sectionBottom - sectionTop)
+          const sectionCenter = rect.top + rect.height / 2
+          const viewportCenter = viewportHeight / 2
 
-          if (visibleHeight > maxVisibleHeight) {
-            maxVisibleHeight = visibleHeight
+          // Calculate how close the section center is to viewport center
+          const distanceFromCenter = Math.abs(sectionCenter - viewportCenter)
+          const maxDistance = viewportHeight / 2
+          const visibility = Math.max(0, 1 - (distanceFromCenter / maxDistance))
+
+          // Also consider actual visible area
+          const visibleTop = Math.max(rect.top, 0)
+          const visibleBottom = Math.min(rect.bottom, viewportHeight)
+          const visibleHeight = Math.max(0, visibleBottom - visibleTop)
+          
+          // Combine center proximity with visible area
+          const score = visibility * 0.7 + (visibleHeight / rect.height) * 0.3
+
+          if (score > maxVisibleHeight) {
+            maxVisibleHeight = score
             maxVisibleSection = index
           }
         })
@@ -93,7 +114,8 @@ export function ProductFeatures() {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full min-h-screen bg-black text-white py-12 overflow-hidden"
+      className="relative w-full bg-black text-white py-12 overflow-hidden"
+      style={{ minHeight: `${features.length * 100}vh` }} // Ensure enough scroll space
     >
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
@@ -125,33 +147,33 @@ export function ProductFeatures() {
 
       {/* Main Content Container */}
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col lg:flex-row min-h-[75vh] gap-4">
+        <div className="flex flex-col lg:flex-row gap-8">
           
           {/* Left Side - Features List */}
-          <div className="w-full lg:w-1/2 flex flex-col justify-center">
+          <div className="w-full lg:w-1/2 flex flex-col">
             {features.map((feature, index) => (
               <div
                 key={feature.id}
                 ref={(el) => {
                   sectionRefs.current[index] = el
                 }}
-                className="min-h-[30vh] flex items-center py-2"
+                className="min-h-[80vh] flex items-center py-8"
               >
                 <div
                   className={cn(
-                    "transition-all duration-700 transform w-full",
+                    "transition-all duration-700 ease-out transform w-full",
                     index === activeIndex
                       ? "opacity-100 translate-x-0 scale-100"
-                      : "opacity-30 translate-x-8 scale-95"
+                      : "opacity-40 translate-x-4 scale-98"
                   )}
                 >
                   {/* Feature Number */}
-                  <div className="flex items-center mb-3">
+                  <div className="flex items-center mb-4">
                     <div 
                       className={cn(
-                        "w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-xs mr-2 transition-all duration-500",
+                        "w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3 transition-all duration-500",
                         index === activeIndex 
-                          ? `bg-gradient-to-r ${feature.gradient} shadow-lg scale-110` 
+                          ? `bg-gradient-to-r ${feature.gradient} shadow-lg scale-110 ring-2 ring-white/20` 
                           : "bg-gray-700 scale-100"
                       )}
                     >
@@ -159,30 +181,30 @@ export function ProductFeatures() {
                     </div>
                     <div 
                       className={cn(
-                        "h-px flex-1 transition-all duration-500",
+                        "h-px flex-1 transition-all duration-700",
                         index === activeIndex 
-                          ? `bg-gradient-to-r ${feature.gradient} opacity-60` 
+                          ? `bg-gradient-to-r ${feature.gradient} opacity-80` 
                           : "bg-gray-600 opacity-30"
                       )}
                     />
                   </div>
 
                   {/* Feature Content */}
-                  <div className="pl-10">
-                    <h3 className="text-xl md:text-2xl font-bold mb-3 leading-tight">
+                  <div className="pl-13">
+                    <h3 className="text-2xl md:text-3xl font-bold mb-4 leading-tight">
                       {feature.title}
                     </h3>
-                    <p className="text-sm text-gray-300 leading-relaxed max-w-xl">
+                    <p className="text-base text-gray-300 leading-relaxed max-w-xl mb-4">
                       {feature.description}
                     </p>
                     
                     {/* Feature Highlight Bar */}
                     <div 
                       className={cn(
-                        "mt-3 h-1 rounded-full transition-all duration-700",
+                        "h-1 rounded-full transition-all duration-700",
                         index === activeIndex 
-                          ? `bg-gradient-to-r ${feature.gradient} w-16 opacity-100` 
-                          : "bg-gray-600 w-8 opacity-50"
+                          ? `bg-gradient-to-r ${feature.gradient} w-20 opacity-100 shadow-lg` 
+                          : "bg-gray-600 w-10 opacity-50"
                       )}
                     />
                   </div>
@@ -191,17 +213,30 @@ export function ProductFeatures() {
             ))}
           </div>
 
-          {/* Right Side - Stacked Images */}
+          {/* Right Side - Sticky Image Container */}
           <div className="w-full lg:w-1/2 relative">
-            <div className="sticky top-16 h-[60vh] relative">
+            <div 
+              ref={imageContainerRef}
+              className={cn(
+                "transition-all duration-300 ease-out",
+                isSticky 
+                  ? "fixed top-20 right-0 w-1/2 z-30" 
+                  : "relative w-full"
+              )}
+              style={{
+                height: isSticky ? '70vh' : '70vh',
+                maxWidth: isSticky ? 'calc(50vw - 2rem)' : '100%',
+                marginRight: isSticky ? '2rem' : '0',
+              }}
+            >
               
-              {/* Image Container with Perspective */}
-              <div className="relative w-full h-full perspective-1000">
+              {/* Image Container */}
+              <div className="relative w-full h-full">
                 
                 {/* Background Glow Effect */}
                 <div 
                   className={cn(
-                    "absolute inset-0 rounded-2xl transition-all duration-700 blur-3xl",
+                    "absolute inset-0 rounded-2xl transition-all duration-1000 blur-3xl",
                     `bg-gradient-to-br ${features[activeIndex]?.gradient} opacity-20`
                   )}
                   style={{
@@ -209,20 +244,20 @@ export function ProductFeatures() {
                   }}
                 />
 
-                {/* Stacked Images */}
+                {/* Stacked Images - Smooth transitions without zoom */}
                 {features.map((feature, index) => (
                   <div
                     key={feature.id}
                     className={cn(
-                      "absolute inset-0 transition-all duration-700 rounded-2xl overflow-hidden",
+                      "absolute inset-0 transition-all duration-1000 ease-out rounded-2xl overflow-hidden",
                       index === activeIndex 
-                        ? "opacity-100 z-20 transform-none" 
-                        : "opacity-0 z-10",
-                      index < activeIndex && "transform translate-y-4 scale-95",
-                      index > activeIndex && "transform -translate-y-4 scale-95"
+                        ? "opacity-100 z-20" 
+                        : "opacity-0 z-10"
                     )}
                     style={{
-                      transformStyle: 'preserve-3d',
+                      // Smooth fade transition without any scaling or movement
+                      transitionProperty: 'opacity',
+                      transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)',
                     }}
                   >
                     {/* Image */}
@@ -231,53 +266,67 @@ export function ProductFeatures() {
                       alt={feature.title}
                       className="w-full h-full object-cover"
                       loading="lazy"
-                    />
-                    
-                    {/* Gradient Overlay */}
-                    <div 
-                      className={cn(
-                        "absolute inset-0 transition-opacity duration-700",
-                        `bg-gradient-to-br ${feature.gradient} opacity-20`
-                      )}
-                    />
-                    
-                    {/* Border Glow */}
-                    <div 
-                      className={cn(
-                        "absolute inset-0 rounded-2xl transition-all duration-700",
-                        index === activeIndex 
-                          ? `ring-2 ring-opacity-50 bg-gradient-to-r ${feature.gradient}` 
-                          : "ring-1 ring-gray-600 ring-opacity-30"
-                      )}
                       style={{
-                        background: index === activeIndex 
-                          ? `linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%)` 
-                          : 'transparent'
+                        // Ensure image stays perfectly still
+                        transform: 'none',
+                        transition: 'none',
                       }}
+                    />
+                    
+                    {/* Subtle Gradient Overlay */}
+                    <div 
+                      className={cn(
+                        "absolute inset-0 transition-opacity duration-1000",
+                        `bg-gradient-to-br ${feature.gradient} opacity-10`
+                      )}
+                    />
+                    
+                    {/* Border Glow - Minimal effect */}
+                    <div 
+                      className={cn(
+                        "absolute inset-0 rounded-2xl transition-all duration-1000",
+                        index === activeIndex 
+                          ? "ring-1 ring-white/20" 
+                          : "ring-0"
+                      )}
                     />
                   </div>
                 ))}
 
-                {/* Floating Elements */}
-                <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-500 rounded-full opacity-60 animate-pulse" />
-                <div className="absolute -bottom-6 -left-6 w-6 h-6 bg-purple-500 rounded-full opacity-40 animate-pulse" style={{ animationDelay: '1s' }} />
-                <div className="absolute top-1/3 -right-8 w-4 h-4 bg-emerald-500 rounded-full opacity-50 animate-pulse" style={{ animationDelay: '2s' }} />
+                {/* Minimal Floating Elements */}
+                <div className="absolute -top-2 -right-2 w-3 h-3 bg-blue-400 rounded-full opacity-40 animate-pulse" />
+                <div className="absolute -bottom-3 -left-3 w-2 h-2 bg-purple-400 rounded-full opacity-30 animate-pulse" style={{ animationDelay: '1s' }} />
               </div>
 
               {/* Progress Indicator */}
-              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+              <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
                 {features.map((_, index) => (
                   <div
                     key={index}
                     className={cn(
-                      "w-2 h-2 rounded-full transition-all duration-300",
+                      "w-2 h-2 rounded-full transition-all duration-500",
                       index === activeIndex 
-                        ? "bg-white scale-125" 
+                        ? "bg-white scale-125 shadow-lg" 
                         : "bg-gray-600 scale-100"
                     )}
                   />
                 ))}
               </div>
+
+              {/* Feature Title Overlay - Shows on sticky mode */}
+              {isSticky && (
+                <div className="absolute bottom-4 left-4 right-4 bg-black/60 backdrop-blur-sm rounded-lg p-3 transition-all duration-500">
+                  <h4 className="text-sm font-semibold text-white mb-1">
+                    {features[activeIndex]?.title}
+                  </h4>
+                  <div 
+                    className={cn(
+                      "h-0.5 rounded-full transition-all duration-500",
+                      `bg-gradient-to-r ${features[activeIndex]?.gradient} w-12`
+                    )}
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -294,10 +343,6 @@ export function ProductFeatures() {
           100% {
             background-position: 40px 40px, 40px 40px;
           }
-        }
-        
-        .perspective-1000 {
-          perspective: 1000px;
         }
       `}</style>
     </section>
