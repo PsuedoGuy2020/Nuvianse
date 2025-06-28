@@ -1446,6 +1446,12 @@ video {
 .border-white\/30 {
   border-color: rgb(255 255 255 / 0.3);
 }
+.border-white\/25 {
+  border-color: rgb(255 255 255 / 0.25);
+}
+.border-white\/40 {
+  border-color: rgb(255 255 255 / 0.4);
+}
 .border-l-transparent {
   border-left-color: transparent;
 }
@@ -2329,6 +2335,15 @@ body {
 
 .hover\:border-emerald-500\/50:hover {
   border-color: rgb(16 185 129 / 0.5);
+}
+
+.hover\:border-gray-400:hover {
+  --tw-border-opacity: 1;
+  border-color: rgb(156 163 175 / var(--tw-border-opacity, 1));
+}
+
+.hover\:border-white\/60:hover {
+  border-color: rgb(255 255 255 / 0.6);
 }
 
 .hover\:bg-accent:hover {
