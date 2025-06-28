@@ -627,6 +627,9 @@ video {
 .invisible {
   visibility: hidden;
 }
+.static {
+  position: static;
+}
 .fixed {
   position: fixed;
 }
@@ -1094,6 +1097,9 @@ video {
 }
 .min-h-\[75vh\] {
   min-height: 75vh;
+}
+.min-h-\[25vh\] {
+  min-height: 25vh;
 }
 .w-0 {
   width: 0px;
@@ -2225,6 +2231,9 @@ video {
 }
 .opacity-90 {
   opacity: 0.9;
+}
+.opacity-35 {
+  opacity: 0.35;
 }
 .mix-blend-overlay {
   mix-blend-mode: overlay;
