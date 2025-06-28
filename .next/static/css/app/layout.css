@@ -866,6 +866,9 @@ video {
 .mt-8 {
   margin-top: 2rem;
 }
+.mb-20 {
+  margin-bottom: 5rem;
+}
 .block {
   display: block;
 }
@@ -1010,6 +1013,9 @@ video {
 }
 .min-h-svh {
   min-height: 100svh;
+}
+.min-h-\[700px\] {
+  min-height: 700px;
 }
 .w-0 {
   width: 0px;
@@ -1742,6 +1748,10 @@ video {
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
+.py-20 {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
 .pb-3 {
   padding-bottom: 0.75rem;
 }
@@ -1994,6 +2004,9 @@ video {
 }
 .opacity-90 {
   opacity: 0.9;
+}
+.opacity-20 {
+  opacity: 0.2;
 }
 .shadow-2xl {
   --tw-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.25);
