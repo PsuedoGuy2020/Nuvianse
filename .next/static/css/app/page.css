@@ -66,20 +66,22 @@
   line-height: 1;
 }
 
-/* Logo container to match text height */
+/* Logo container - significantly larger than text */
 .logo-container {
-  height: clamp(3rem, 12vw, 10rem);
-  width: clamp(3rem, 12vw, 10rem);
+  height: clamp(5rem, 18vw, 15rem);
+  width: clamp(5rem, 18vw, 15rem);
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 
 .logo-image {
   width: 100% !important;
   height: 100% !important;
-  max-width: clamp(3rem, 12vw, 10rem);
-  max-height: clamp(3rem, 12vw, 10rem);
+  max-width: clamp(5rem, 18vw, 15rem);
+  max-height: clamp(5rem, 18vw, 15rem);
+  object-fit: contain;
 }
 
 .copyright {
@@ -168,12 +170,12 @@
     padding-left: 1rem;
   }
   .logo-container {
-    height: clamp(2.5rem, 10vw, 7rem);
-    width: clamp(2.5rem, 10vw, 7rem);
+    height: clamp(4rem, 15vw, 11rem);
+    width: clamp(4rem, 15vw, 11rem);
   }
   .logo-image {
-    max-width: clamp(2.5rem, 10vw, 7rem);
-    max-height: clamp(2.5rem, 10vw, 7rem);
+    max-width: clamp(4rem, 15vw, 11rem);
+    max-height: clamp(4rem, 15vw, 11rem);
   }
 }
 
@@ -188,11 +190,11 @@
     padding-left: 0.75rem;
   }
   .logo-container {
-    height: clamp(2rem, 8vw, 5rem);
-    width: clamp(2rem, 8vw, 5rem);
+    height: clamp(3rem, 12vw, 8rem);
+    width: clamp(3rem, 12vw, 8rem);
   }
   .logo-image {
-    max-width: clamp(2rem, 8vw, 5rem);
-    max-height: clamp(2rem, 8vw, 5rem);
+    max-width: clamp(3rem, 12vw, 8rem);
+    max-height: clamp(3rem, 12vw, 8rem);
   }
 }
