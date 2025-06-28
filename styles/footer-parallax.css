@@ -37,27 +37,28 @@
   pointer-events: none;
 }
 
-/* Stay Connected Column - Compact design for grid placement */
-.stay-connected-column {
+/* Experience Demo Column - Compact design for grid placement */
+.experience-demo-column {
   display: flex;
   flex-direction: column;
   gap: 0;
 }
 
-.newsletter-compact {
+.demo-request-compact {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-.newsletter-description-compact {
+.demo-description-compact {
   color: rgba(255, 255, 255, 0.7);
   font-size: 0.875rem;
   line-height: 1.5;
   margin: 0;
+  font-weight: 500;
 }
 
-.newsletter-form-compact {
+.demo-form-compact {
   display: flex;
   gap: 0.5rem;
   align-items: stretch;
@@ -104,7 +105,7 @@
   box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.1);
 }
 
-.subscribe-button-compact {
+.demo-button-compact {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,13 +121,13 @@
   box-shadow: 0 2px 8px rgba(99, 102, 241, 0.3);
 }
 
-.subscribe-button-compact:hover:not(:disabled) {
+.demo-button-compact:hover:not(:disabled) {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
   background: linear-gradient(135deg, #5855eb 0%, #7c3aed 100%);
 }
 
-.subscribe-button-compact:disabled {
+.demo-button-compact:disabled {
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   cursor: not-allowed;
 }
@@ -137,7 +138,7 @@
   transition: transform 0.3s ease;
 }
 
-.subscribe-button-compact:hover:not(:disabled) .arrow-icon-compact {
+.demo-button-compact:hover:not(:disabled) .arrow-icon-compact {
   transform: translateX(1px);
 }
 
@@ -540,13 +541,13 @@
     display: none;
   }
   
-  .stay-connected-column {
+  .experience-demo-column {
     grid-column: 1 / -1;
     max-width: 300px;
     margin: 0 auto;
   }
   
-  .newsletter-form-compact {
+  .demo-form-compact {
     max-width: 250px;
     margin: 0 auto;
   }
@@ -584,11 +585,11 @@
     letter-spacing: clamp(0.2rem, 1vw, 0.6rem);
   }
   
-  .stay-connected-column {
+  .experience-demo-column {
     max-width: 280px;
   }
   
-  .newsletter-description-compact {
+  .demo-description-compact {
     font-size: 0.8rem;
   }
   
@@ -614,7 +615,7 @@
     font-size: 0.75rem;
   }
   
-  .subscribe-button-compact {
+  .demo-button-compact {
     width: 2.25rem;
     height: 2.25rem;
   }

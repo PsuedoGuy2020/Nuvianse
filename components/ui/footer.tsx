@@ -24,7 +24,7 @@ export function Footer() {
   return (
     <footer className="footer-parallax w-full min-h-[600px] py-16 mt-20">
       <div className="footer-content container mx-auto px-4">
-        {/* Main Footer Grid with Stay Connected replacing Contact */}
+        {/* Main Footer Grid with Experience Demo replacing Stay Connected */}
         <div className="footer-grid mb-16">
           {/* About Column */}
           <div className="space-y-4">
@@ -107,17 +107,17 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Stay Connected Column - Replacing Contact */}
-          <div className="stay-connected-column">
-            <h3 className="text-xl font-semibold text-white/90 mb-6">Stay Connected</h3>
+          {/* Experience Demo Column - Replacing Stay Connected */}
+          <div className="experience-demo-column">
+            <h3 className="text-xl font-semibold text-white/90 mb-6">Experience Demo</h3>
             
-            {/* Newsletter Form - Compact version */}
-            <div className="newsletter-compact">
-              <p className="newsletter-description-compact">
-                Subscribe for updates and insights.
+            {/* Demo Request Form - Updated content */}
+            <div className="demo-request-compact">
+              <p className="demo-description-compact">
+                Experience NUVIANCE in action — request your live demo.
               </p>
               
-              <form onSubmit={handleSubscribe} className="newsletter-form-compact">
+              <form onSubmit={handleSubscribe} className="demo-form-compact">
                 <div className="email-input-wrapper-compact">
                   <Mail className="email-icon-compact" />
                   <input
@@ -131,7 +131,7 @@ export function Footer() {
                 </div>
                 <button 
                   type="submit" 
-                  className="subscribe-button-compact"
+                  className="demo-button-compact"
                   disabled={isSubscribed}
                 >
                   {isSubscribed ? (
