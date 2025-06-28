@@ -218,7 +218,7 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Footer Bottom - Copyright, Legal Links, Contact Email, and System Status */}
+        {/* Footer Bottom - Reorganized with copyright above legal links */}
         <div className="footer-bottom">
           <div className="footer-bottom-content">
             {/* Left side - System Status */}
@@ -232,26 +232,29 @@ export function Footer() {
               </div>
             </div>
             
-            {/* Center Left - Copyright */}
-            <div className="copyright-section">
-              <p className="copyright-text">
-                © {new Date().getFullYear()} Nuviance. All rights reserved.
-              </p>
-            </div>
-            
-            {/* Center Right - Legal Links */}
-            <div className="legal-links">
-              <Link href="/privacy" className="legal-link">
-                Privacy Policy
-              </Link>
-              <span className="legal-separator">•</span>
-              <Link href="/terms" className="legal-link">
-                Terms of Service
-              </Link>
-              <span className="legal-separator">•</span>
-              <Link href="/cookies" className="legal-link">
-                Cookie Policy
-              </Link>
+            {/* Center - Copyright and Legal Links (stacked vertically) */}
+            <div className="center-legal-section">
+              {/* Copyright - Top */}
+              <div className="copyright-section">
+                <p className="copyright-text">
+                  © {new Date().getFullYear()} Nuviance. All rights reserved.
+                </p>
+              </div>
+              
+              {/* Legal Links - Bottom */}
+              <div className="legal-links">
+                <Link href="/privacy" className="legal-link">
+                  Privacy Policy
+                </Link>
+                <span className="legal-separator">•</span>
+                <Link href="/terms" className="legal-link">
+                  Terms of Service
+                </Link>
+                <span className="legal-separator">•</span>
+                <Link href="/cookies" className="legal-link">
+                  Cookie Policy
+                </Link>
+              </div>
             </div>
 
             {/* Right side - Contact Email */}
