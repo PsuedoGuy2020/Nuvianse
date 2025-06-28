@@ -43,36 +43,25 @@ const features = [
 
 export function ProductFeatures() {
   const [activeIndex, setActiveIndex] = useState(0)
-  const [stickyState, setStickyState] = useState<'before' | 'sticky' | 'after'>('before')
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([])
   const containerRef = useRef<HTMLDivElement>(null)
-  const firstFeatureRef = useRef<HTMLDivElement>(null)
-  const lastFeatureRef = useRef<HTMLDivElement>(null)
+  const [isInView, setIsInView] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!containerRef.current || !firstFeatureRef.current || !lastFeatureRef.current) return
+      if (!containerRef.current) return
 
       const containerRect = containerRef.current.getBoundingClientRect()
-      const firstFeatureRect = firstFeatureRef.current.getBoundingClientRect()
-      const lastFeatureRect = lastFeatureRef.current.getBoundingClientRect()
+      const containerTop = containerRect.top
+      const containerBottom = containerRect.bottom
       const viewportHeight = window.innerHeight
-      const headerHeight = 80 // Approximate header height
 
-      // Determine sticky state based on scroll position
-      if (firstFeatureRect.top > headerHeight) {
-        // Before sticky: first feature hasn't reached the header yet
-        setStickyState('before')
-      } else if (lastFeatureRect.bottom > headerHeight + 400) {
-        // Sticky: between first feature reaching header and last feature leaving
-        setStickyState('sticky')
-      } else {
-        // After sticky: last feature has passed, images move with section
-        setStickyState('after')
-      }
+      // Check if container is in view
+      const inView = containerTop < viewportHeight && containerBottom > 0
+      setIsInView(inView)
 
-      // Only process active feature detection when in view
-      if (containerRect.top < viewportHeight && containerRect.bottom > 0) {
+      // Only process scroll events when the container is in view
+      if (inView) {
         // Find which section is currently most visible
         let maxVisibleSection = 0
         let maxVisibleHeight = 0
@@ -81,7 +70,7 @@ export function ProductFeatures() {
           if (!sectionRef) return
 
           const rect = sectionRef.getBoundingClientRect()
-          const sectionTop = Math.max(rect.top, headerHeight)
+          const sectionTop = Math.max(rect.top, 0)
           const sectionBottom = Math.min(rect.bottom, viewportHeight)
           const visibleHeight = Math.max(0, sectionBottom - sectionTop)
 
@@ -104,7 +93,7 @@ export function ProductFeatures() {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full bg-black text-white py-12 overflow-hidden"
+      className="relative w-full min-h-screen bg-black text-white py-12 overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
@@ -136,18 +125,15 @@ export function ProductFeatures() {
 
       {/* Main Content Container */}
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col lg:flex-row gap-4">
+        <div className="flex flex-col lg:flex-row min-h-[75vh] gap-4">
           
           {/* Left Side - Features List */}
-          <div className="w-full lg:w-1/2 flex flex-col">
+          <div className="w-full lg:w-1/2 flex flex-col justify-center">
             {features.map((feature, index) => (
               <div
                 key={feature.id}
                 ref={(el) => {
                   sectionRefs.current[index] = el
-                  // Set refs for first and last features
-                  if (index === 0) firstFeatureRef.current = el
-                  if (index === features.length - 1) lastFeatureRef.current = el
                 }}
                 className="min-h-[30vh] flex items-center py-2"
               >
@@ -205,20 +191,10 @@ export function ProductFeatures() {
             ))}
           </div>
 
-          {/* Right Side - Images Container */}
+          {/* Right Side - Stacked Images */}
           <div className="w-full lg:w-1/2 relative">
-            {/* Spacer for when images are sticky */}
-            <div className="h-[60vh] lg:block hidden" />
-            
-            {/* Images Container with Dynamic Positioning */}
-            <div 
-              className={cn(
-                "w-full h-[60vh] transition-all duration-300 ease-out",
-                stickyState === 'before' && "relative",
-                stickyState === 'sticky' && "fixed top-20 right-4 lg:right-8 z-30 w-[calc(50%-2rem)] lg:w-[calc(50%-4rem)]",
-                stickyState === 'after' && "relative"
-              )}
-            >
+            <div className="sticky top-16 h-[60vh] relative">
+              
               {/* Image Container with Perspective */}
               <div className="relative w-full h-full perspective-1000">
                 
