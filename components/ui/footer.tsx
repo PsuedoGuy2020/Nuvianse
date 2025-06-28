@@ -218,17 +218,28 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Footer Bottom - Copyright, Legal Links, and Contact Email */}
+        {/* Footer Bottom - Copyright, Legal Links, Contact Email, and System Status */}
         <div className="footer-bottom">
           <div className="footer-bottom-content">
-            {/* Left side - Copyright */}
+            {/* Left side - System Status */}
+            <div className="system-status-section">
+              <div className="system-status-indicator">
+                <div className="status-dot-container">
+                  <div className="status-dot"></div>
+                  <div className="status-dot-glow"></div>
+                </div>
+                <span className="status-text">All Systems Running</span>
+              </div>
+            </div>
+            
+            {/* Center Left - Copyright */}
             <div className="copyright-section">
               <p className="copyright-text">
                 © {new Date().getFullYear()} Nuviance. All rights reserved.
               </p>
             </div>
             
-            {/* Center - Legal Links */}
+            {/* Center Right - Legal Links */}
             <div className="legal-links">
               <Link href="/privacy" className="legal-link">
                 Privacy Policy

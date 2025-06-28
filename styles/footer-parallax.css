@@ -548,7 +548,7 @@
   transform: translateX(5px);
 }
 
-/* Footer Bottom - Modern three-column layout with email in bottom right */
+/* Footer Bottom - Modern four-column layout with system status in bottom left */
 .footer-bottom {
   padding-top: 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
@@ -556,22 +556,153 @@
 }
 
 .footer-bottom-content {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
   align-items: center;
   gap: 2rem;
-  flex-wrap: wrap;
+  width: 100%;
+}
+
+/* System Status Section - Bottom left with blinking green dot */
+.system-status-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.system-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  border-radius: 0.75rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add subtle gradient overlay */
+.system-status-indicator::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    rgba(16, 185, 129, 0.05) 0%, 
+    transparent 50%, 
+    rgba(16, 185, 129, 0.03) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.system-status-indicator:hover {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 
+    0 4px 12px rgba(16, 185, 129, 0.2),
+    0 0 20px rgba(16, 185, 129, 0.1);
+}
+
+.system-status-indicator:hover::before {
+  opacity: 1;
+}
+
+.status-dot-container {
+  position: relative;
+  width: 0.5rem;
+  height: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* Main status dot - bright green with blinking animation */
+.status-dot {
+  position: absolute;
+  inset: 0;
+  background: #10b981;
+  border-radius: 50%;
+  animation: statusBlink 2s ease-in-out infinite;
+  box-shadow: 
+    0 0 4px rgba(16, 185, 129, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  z-index: 2;
+}
+
+/* Pulsing glow effect around the dot */
+.status-dot-glow {
+  position: absolute;
+  inset: -2px;
+  background: radial-gradient(circle, 
+    rgba(16, 185, 129, 0.4) 0%, 
+    rgba(16, 185, 129, 0.2) 40%, 
+    transparent 70%
+  );
+  border-radius: 50%;
+  animation: statusGlow 2s ease-in-out infinite;
+  z-index: 1;
+}
+
+/* Blinking animation for the main dot */
+@keyframes statusBlink {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1);
+    box-shadow: 
+      0 0 4px rgba(16, 185, 129, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+  50% { 
+    opacity: 0.3; 
+    transform: scale(0.9);
+    box-shadow: 
+      0 0 2px rgba(16, 185, 129, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Pulsing glow animation */
+@keyframes statusGlow {
+  0%, 100% { 
+    opacity: 0.6; 
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.2);
+  }
+}
+
+.status-text {
+  color: rgba(16, 185, 129, 0.9);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  text-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+  z-index: 1;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.system-status-indicator:hover .status-text {
+  color: rgba(16, 185, 129, 1);
+  text-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
 }
 
 .copyright-section {
-  flex: 1;
-  min-width: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .copyright-text {
   color: rgba(255, 255, 255, 0.6);
   font-size: 0.875rem;
   margin: 0;
+  text-align: center;
 }
 
 .legal-links {
@@ -580,8 +711,6 @@
   gap: 1rem;
   flex-wrap: wrap;
   justify-content: center;
-  flex: 1;
-  min-width: 250px;
 }
 
 .legal-link {
@@ -607,10 +736,8 @@
 
 /* Contact Email Section - Modern design positioned in bottom right */
 .contact-email-section {
-  flex: 1;
   display: flex;
   justify-content: flex-end;
-  min-width: 200px;
 }
 
 .contact-email-link {
@@ -794,10 +921,15 @@
   }
   
   .footer-bottom-content {
+    grid-template-columns: auto 1fr auto;
     gap: 1.5rem;
   }
   
   .contact-email-text {
+    font-size: 0.75rem;
+  }
+  
+  .status-text {
     font-size: 0.75rem;
   }
 }
@@ -824,26 +956,32 @@
   }
   
   .footer-bottom-content {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    grid-template-columns: 1fr;
     gap: 1.5rem;
+    text-align: center;
   }
   
+  .system-status-section,
   .copyright-section,
   .legal-links,
   .contact-email-section {
-    flex: none;
-    min-width: auto;
-    width: 100%;
+    justify-content: center;
   }
   
   .contact-email-section {
-    justify-content: center;
+    order: 4;
+  }
+  
+  .copyright-section {
+    order: 2;
   }
   
   .legal-links {
-    justify-content: center;
+    order: 3;
+  }
+  
+  .system-status-section {
+    order: 1;
   }
   
   .see-it-live-column {
@@ -952,6 +1090,14 @@
     width: 0.875rem;
     height: 0.875rem;
   }
+  
+  .system-status-indicator {
+    padding: 0.3rem 0.6rem;
+  }
+  
+  .status-text {
+    font-size: 0.7rem;
+  }
 }
 
 /* Ultra-small screens */
@@ -1032,5 +1178,18 @@
   
   .legal-link {
     font-size: 0.8rem;
+  }
+  
+  .system-status-indicator {
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .status-text {
+    font-size: 0.65rem;
+  }
+  
+  .status-dot-container {
+    width: 0.4rem;
+    height: 0.4rem;
   }
 }
