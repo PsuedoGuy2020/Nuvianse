@@ -149,11 +149,11 @@ export function ProductFeatures() {
                   if (index === 0) firstFeatureRef.current = el
                   if (index === features.length - 1) lastFeatureRef.current = el
                 }}
-                className="min-h-[25vh] flex items-center py-1"
+                className="min-h-[30vh] flex items-center py-2"
               >
                 <div
                   className={cn(
-                    "transition-all duration-500 transform w-full",
+                    "transition-all duration-700 transform w-full",
                     index === activeIndex
                       ? "opacity-100 translate-x-0 scale-100"
                       : "opacity-30 translate-x-8 scale-95"
@@ -163,7 +163,7 @@ export function ProductFeatures() {
                   <div className="flex items-center mb-3">
                     <div 
                       className={cn(
-                        "w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-xs mr-2 transition-all duration-300",
+                        "w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-xs mr-2 transition-all duration-500",
                         index === activeIndex 
                           ? `bg-gradient-to-r ${feature.gradient} shadow-lg scale-110` 
                           : "bg-gray-700 scale-100"
@@ -173,7 +173,7 @@ export function ProductFeatures() {
                     </div>
                     <div 
                       className={cn(
-                        "h-px flex-1 transition-all duration-300",
+                        "h-px flex-1 transition-all duration-500",
                         index === activeIndex 
                           ? `bg-gradient-to-r ${feature.gradient} opacity-60` 
                           : "bg-gray-600 opacity-30"
@@ -193,7 +193,7 @@ export function ProductFeatures() {
                     {/* Feature Highlight Bar */}
                     <div 
                       className={cn(
-                        "mt-3 h-1 rounded-full transition-all duration-300",
+                        "mt-3 h-1 rounded-full transition-all duration-700",
                         index === activeIndex 
                           ? `bg-gradient-to-r ${feature.gradient} w-16 opacity-100` 
                           : "bg-gray-600 w-8 opacity-50"
@@ -221,13 +221,13 @@ export function ProductFeatures() {
                 marginTop: stickyState === 'before' ? '0' : undefined
               }}
             >
-              {/* Image Container - Simple stacking without perspective effects */}
-              <div className="relative w-full h-full">
+              {/* Image Container with Perspective */}
+              <div className="relative w-full h-full perspective-1000">
                 
-                {/* Background Glow Effect - Instant change */}
+                {/* Background Glow Effect */}
                 <div 
                   className={cn(
-                    "absolute inset-0 rounded-2xl blur-3xl transition-all duration-200",
+                    "absolute inset-0 rounded-2xl transition-all duration-700 blur-3xl",
                     `bg-gradient-to-br ${features[activeIndex]?.gradient} opacity-20`
                   )}
                   style={{
@@ -235,18 +235,23 @@ export function ProductFeatures() {
                   }}
                 />
 
-                {/* Stacked Images - Instant opacity change, no transforms */}
+                {/* Stacked Images */}
                 {features.map((feature, index) => (
                   <div
                     key={feature.id}
                     className={cn(
-                      "absolute inset-0 rounded-2xl overflow-hidden transition-opacity duration-200",
+                      "absolute inset-0 transition-all duration-700 rounded-2xl overflow-hidden",
                       index === activeIndex 
-                        ? "opacity-100 z-20" 
-                        : "opacity-0 z-10"
+                        ? "opacity-100 z-20 transform-none" 
+                        : "opacity-0 z-10",
+                      index < activeIndex && "transform translate-y-4 scale-95",
+                      index > activeIndex && "transform -translate-y-4 scale-95"
                     )}
+                    style={{
+                      transformStyle: 'preserve-3d',
+                    }}
                   >
-                    {/* Image - No transforms or scaling */}
+                    {/* Image */}
                     <img
                       src={feature.image}
                       alt={feature.title}
@@ -254,51 +259,44 @@ export function ProductFeatures() {
                       loading="lazy"
                     />
                     
-                    {/* Gradient Overlay - Instant change */}
+                    {/* Gradient Overlay */}
                     <div 
                       className={cn(
-                        "absolute inset-0 transition-opacity duration-200",
+                        "absolute inset-0 transition-opacity duration-700",
                         `bg-gradient-to-br ${feature.gradient} opacity-20`
                       )}
                     />
                     
-                    {/* Border Glow - Instant change */}
+                    {/* Border Glow */}
                     <div 
                       className={cn(
-                        "absolute inset-0 rounded-2xl transition-all duration-200",
+                        "absolute inset-0 rounded-2xl transition-all duration-700",
                         index === activeIndex 
-                          ? `ring-2 ring-opacity-50` 
+                          ? `ring-2 ring-opacity-50 bg-gradient-to-r ${feature.gradient}` 
                           : "ring-1 ring-gray-600 ring-opacity-30"
                       )}
                       style={{
                         background: index === activeIndex 
                           ? `linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%)` 
-                          : 'transparent',
-                        boxShadow: index === activeIndex 
-                          ? `0 0 20px ${feature.gradient.includes('blue') ? 'rgba(59, 130, 246, 0.3)' : 
-                                       feature.gradient.includes('emerald') ? 'rgba(16, 185, 129, 0.3)' :
-                                       feature.gradient.includes('orange') ? 'rgba(249, 115, 22, 0.3)' :
-                                       feature.gradient.includes('purple') ? 'rgba(147, 51, 234, 0.3)' :
-                                       'rgba(99, 102, 241, 0.3)'}` 
-                          : 'none'
+                          : 'transparent'
                       }}
                     />
                   </div>
                 ))}
 
-                {/* Floating Elements - Subtle and static */}
-                <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-500 rounded-full opacity-40" />
-                <div className="absolute -bottom-6 -left-6 w-6 h-6 bg-purple-500 rounded-full opacity-30" />
-                <div className="absolute top-1/3 -right-8 w-4 h-4 bg-emerald-500 rounded-full opacity-35" />
+                {/* Floating Elements */}
+                <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-500 rounded-full opacity-60 animate-pulse" />
+                <div className="absolute -bottom-6 -left-6 w-6 h-6 bg-purple-500 rounded-full opacity-40 animate-pulse" style={{ animationDelay: '1s' }} />
+                <div className="absolute top-1/3 -right-8 w-4 h-4 bg-emerald-500 rounded-full opacity-50 animate-pulse" style={{ animationDelay: '2s' }} />
               </div>
 
-              {/* Progress Indicator - Instant change */}
+              {/* Progress Indicator */}
               <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
                 {features.map((_, index) => (
                   <div
                     key={index}
                     className={cn(
-                      "w-2 h-2 rounded-full transition-all duration-200",
+                      "w-2 h-2 rounded-full transition-all duration-300",
                       index === activeIndex 
                         ? "bg-white scale-125" 
                         : "bg-gray-600 scale-100"
@@ -322,6 +320,10 @@ export function ProductFeatures() {
           100% {
             background-position: 40px 40px, 40px 40px;
           }
+        }
+        
+        .perspective-1000 {
+          perspective: 1000px;
         }
       `}</style>
     </section>
