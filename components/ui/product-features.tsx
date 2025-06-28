@@ -93,7 +93,7 @@ export function ProductFeatures() {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full min-h-screen bg-black text-white py-20 overflow-hidden"
+      className="relative w-full min-h-screen bg-black text-white py-16 overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
@@ -112,7 +112,7 @@ export function ProductFeatures() {
       />
 
       {/* Section Header */}
-      <div className="container mx-auto px-4 mb-16 relative z-10">
+      <div className="container mx-auto px-4 mb-12 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
           <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
             Product Features
@@ -125,7 +125,7 @@ export function ProductFeatures() {
 
       {/* Main Content Container */}
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col lg:flex-row min-h-[80vh] gap-8">
+        <div className="flex flex-col lg:flex-row min-h-[80vh] gap-6">
           
           {/* Left Side - Features List */}
           <div className="w-full lg:w-1/2 flex flex-col justify-center">
@@ -135,7 +135,7 @@ export function ProductFeatures() {
                 ref={(el) => {
                   sectionRefs.current[index] = el
                 }}
-                className="min-h-[60vh] flex items-center py-8"
+                className="min-h-[40vh] flex items-center py-4"
               >
                 <div
                   className={cn(
@@ -146,10 +146,10 @@ export function ProductFeatures() {
                   )}
                 >
                   {/* Feature Number */}
-                  <div className="flex items-center mb-6">
+                  <div className="flex items-center mb-4">
                     <div 
                       className={cn(
-                        "w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4 transition-all duration-500",
+                        "w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3 transition-all duration-500",
                         index === activeIndex 
                           ? `bg-gradient-to-r ${feature.gradient} shadow-lg scale-110` 
                           : "bg-gray-700 scale-100"
@@ -168,21 +168,21 @@ export function ProductFeatures() {
                   </div>
 
                   {/* Feature Content */}
-                  <div className="pl-16">
-                    <h3 className="text-3xl md:text-4xl font-bold mb-6 leading-tight">
+                  <div className="pl-13">
+                    <h3 className="text-2xl md:text-3xl font-bold mb-4 leading-tight">
                       {feature.title}
                     </h3>
-                    <p className="text-lg text-gray-300 leading-relaxed max-w-xl">
+                    <p className="text-base text-gray-300 leading-relaxed max-w-xl">
                       {feature.description}
                     </p>
                     
                     {/* Feature Highlight Bar */}
                     <div 
                       className={cn(
-                        "mt-6 h-1 rounded-full transition-all duration-700",
+                        "mt-4 h-1 rounded-full transition-all duration-700",
                         index === activeIndex 
-                          ? `bg-gradient-to-r ${feature.gradient} w-24 opacity-100` 
-                          : "bg-gray-600 w-12 opacity-50"
+                          ? `bg-gradient-to-r ${feature.gradient} w-20 opacity-100` 
+                          : "bg-gray-600 w-10 opacity-50"
                       )}
                     />
                   </div>
@@ -193,7 +193,7 @@ export function ProductFeatures() {
 
           {/* Right Side - Stacked Images */}
           <div className="w-full lg:w-1/2 relative">
-            <div className="sticky top-24 h-[70vh] relative">
+            <div className="sticky top-20 h-[65vh] relative">
               
               {/* Image Container with Perspective */}
               <div className="relative w-full h-full perspective-1000">
@@ -265,7 +265,7 @@ export function ProductFeatures() {
               </div>
 
               {/* Progress Indicator */}
-              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
+              <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
                 {features.map((_, index) => (
                   <div
                     key={index}
