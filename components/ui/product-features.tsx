@@ -207,17 +207,19 @@ export function ProductFeatures() {
 
           {/* Right Side - Images Container */}
           <div className="w-full lg:w-1/2 relative">
-            {/* Spacer for when images are sticky */}
-            <div className="h-[60vh] lg:block hidden" />
-            
-            {/* Images Container with Dynamic Positioning */}
+            {/* Images Container with Dynamic Positioning - Aligned with first feature by default */}
             <div 
               className={cn(
                 "w-full h-[60vh] transition-all duration-300 ease-out",
-                stickyState === 'before' && "relative",
+                // Position images to align with first feature by default
+                stickyState === 'before' && "relative top-0",
                 stickyState === 'sticky' && "fixed top-20 right-4 lg:right-8 z-30 w-[calc(50%-2rem)] lg:w-[calc(50%-4rem)]",
                 stickyState === 'after' && "relative"
               )}
+              style={{
+                // When not sticky, position images to align with the first feature
+                marginTop: stickyState === 'before' ? '0' : undefined
+              }}
             >
               {/* Image Container with Perspective */}
               <div className="relative w-full h-full perspective-1000">
