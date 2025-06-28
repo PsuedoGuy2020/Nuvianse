@@ -39,10 +39,10 @@ export function Header() {
           : "w-full border-b border-transparent bg-white/60 backdrop-blur"
       )}
     >
-      <div className="relative flex items-center justify-between h-12 px-6 sm:px-8 lg:px-12 transition-all duration-500 ease-in-out">
+      <div className="relative flex items-center justify-between h-16 px-6 sm:px-8 lg:px-12 transition-all duration-500 ease-in-out">
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <div className="relative h-10 w-10 overflow-hidden">
+          <div className="relative h-14 w-14 overflow-hidden">
             <Image
               src={
                 isScrolled
