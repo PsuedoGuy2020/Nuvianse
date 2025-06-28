@@ -809,6 +809,18 @@ video {
 .top-16 {
   top: 4rem;
 }
+.-bottom-3 {
+  bottom: -0.75rem;
+}
+.-left-3 {
+  left: -0.75rem;
+}
+.-right-2 {
+  right: -0.5rem;
+}
+.-top-2 {
+  top: -0.5rem;
+}
 .z-0 {
   z-index: 0;
 }
@@ -1732,6 +1744,10 @@ video {
   --tw-bg-opacity: 1;
   background-color: rgb(59 130 246 / var(--tw-bg-opacity, 1));
 }
+.bg-gray-500 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(107 114 128 / var(--tw-bg-opacity, 1));
+}
 .bg-gradient-to-br {
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));
 }
@@ -2235,6 +2251,9 @@ video {
 .opacity-35 {
   opacity: 0.35;
 }
+.opacity-15 {
+  opacity: 0.15;
+}
 .mix-blend-overlay {
   mix-blend-mode: overlay;
 }
@@ -2310,11 +2329,21 @@ video {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(75 85 99 / var(--tw-ring-opacity, 1));
 }
+.ring-white {
+  --tw-ring-opacity: 1;
+  --tw-ring-color: rgb(255 255 255 / var(--tw-ring-opacity, 1));
+}
 .ring-opacity-30 {
   --tw-ring-opacity: 0.3;
 }
 .ring-opacity-50 {
   --tw-ring-opacity: 0.5;
+}
+.ring-opacity-10 {
+  --tw-ring-opacity: 0.1;
+}
+.ring-opacity-20 {
+  --tw-ring-opacity: 0.2;
 }
 .ring-offset-background {
   --tw-ring-offset-color: hsl(var(--background));
