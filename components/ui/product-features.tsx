@@ -93,7 +93,7 @@ export function ProductFeatures() {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full min-h-screen bg-black text-white py-16 overflow-hidden"
+      className="relative w-full min-h-screen bg-black text-white py-12 overflow-hidden"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
@@ -112,12 +112,12 @@ export function ProductFeatures() {
       />
 
       {/* Section Header */}
-      <div className="container mx-auto px-4 mb-12 relative z-10">
+      <div className="container mx-auto px-4 mb-8 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
-          <h2 className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
             Product Features
           </h2>
-          <p className="text-xl text-gray-300 leading-relaxed">
+          <p className="text-lg text-gray-300 leading-relaxed">
             Discover the powerful capabilities that make Hostpay the ultimate solution for modern financial management
           </p>
         </div>
@@ -125,7 +125,7 @@ export function ProductFeatures() {
 
       {/* Main Content Container */}
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col lg:flex-row min-h-[80vh] gap-6">
+        <div className="flex flex-col lg:flex-row min-h-[75vh] gap-4">
           
           {/* Left Side - Features List */}
           <div className="w-full lg:w-1/2 flex flex-col justify-center">
@@ -135,7 +135,7 @@ export function ProductFeatures() {
                 ref={(el) => {
                   sectionRefs.current[index] = el
                 }}
-                className="min-h-[40vh] flex items-center py-4"
+                className="min-h-[30vh] flex items-center py-2"
               >
                 <div
                   className={cn(
@@ -146,10 +146,10 @@ export function ProductFeatures() {
                   )}
                 >
                   {/* Feature Number */}
-                  <div className="flex items-center mb-4">
+                  <div className="flex items-center mb-3">
                     <div 
                       className={cn(
-                        "w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-sm mr-3 transition-all duration-500",
+                        "w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-xs mr-2 transition-all duration-500",
                         index === activeIndex 
                           ? `bg-gradient-to-r ${feature.gradient} shadow-lg scale-110` 
                           : "bg-gray-700 scale-100"
@@ -168,21 +168,21 @@ export function ProductFeatures() {
                   </div>
 
                   {/* Feature Content */}
-                  <div className="pl-13">
-                    <h3 className="text-2xl md:text-3xl font-bold mb-4 leading-tight">
+                  <div className="pl-10">
+                    <h3 className="text-xl md:text-2xl font-bold mb-3 leading-tight">
                       {feature.title}
                     </h3>
-                    <p className="text-base text-gray-300 leading-relaxed max-w-xl">
+                    <p className="text-sm text-gray-300 leading-relaxed max-w-xl">
                       {feature.description}
                     </p>
                     
                     {/* Feature Highlight Bar */}
                     <div 
                       className={cn(
-                        "mt-4 h-1 rounded-full transition-all duration-700",
+                        "mt-3 h-1 rounded-full transition-all duration-700",
                         index === activeIndex 
-                          ? `bg-gradient-to-r ${feature.gradient} w-20 opacity-100` 
-                          : "bg-gray-600 w-10 opacity-50"
+                          ? `bg-gradient-to-r ${feature.gradient} w-16 opacity-100` 
+                          : "bg-gray-600 w-8 opacity-50"
                       )}
                     />
                   </div>
@@ -193,7 +193,7 @@ export function ProductFeatures() {
 
           {/* Right Side - Stacked Images */}
           <div className="w-full lg:w-1/2 relative">
-            <div className="sticky top-20 h-[65vh] relative">
+            <div className="sticky top-16 h-[60vh] relative">
               
               {/* Image Container with Perspective */}
               <div className="relative w-full h-full perspective-1000">
@@ -265,7 +265,7 @@ export function ProductFeatures() {
               </div>
 
               {/* Progress Indicator */}
-              <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
+              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
                 {features.map((_, index) => (
                   <div
                     key={index}
