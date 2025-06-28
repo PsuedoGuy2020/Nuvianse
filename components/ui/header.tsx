@@ -39,6 +39,10 @@ export function Header() {
   const headerWidth = 100 - (scrollProgress * 10); // From 100% to 90%
   const backdropBlur = 8 + (scrollProgress * 12); // From 8px to 20px blur
   const bgOpacity = 0.6 + (scrollProgress * 0.2); // From 0.6 to 0.8 opacity
+  
+  // Shadow intensity based on scroll progress
+  const shadowOpacity = scrollProgress * 0.3; // Max 0.3 opacity for subtle effect
+  const glowIntensity = scrollProgress * 0.2; // Max 0.2 for glow effect
 
   return (
     <header
@@ -48,22 +52,51 @@ export function Header() {
         maxWidth: isScrolled ? '80rem' : 'none',
         borderRadius: `${borderRadius}px`,
         backdropFilter: `blur(${backdropBlur}px)`,
+        // Add multiple layered shadows for depth and glow effect
+        boxShadow: isScrolled ? `
+          0 0 0 1px rgba(255, 255, 255, ${shadowOpacity * 0.8}),
+          0 0 20px rgba(255, 255, 255, ${glowIntensity}),
+          0 0 40px rgba(255, 255, 255, ${glowIntensity * 0.6}),
+          0 8px 32px rgba(0, 0, 0, 0.12),
+          0 4px 16px rgba(0, 0, 0, 0.08),
+          inset 0 1px 0 rgba(255, 255, 255, ${shadowOpacity * 0.5})
+        ` : 'none',
       }}
     >
       <div 
         className={cn(
-          "relative border transition-all duration-700 ease-out",
+          "relative border transition-all duration-700 ease-out overflow-hidden",
           isScrolled
-            ? "border-gray-800/50 bg-black/80 shadow-2xl"
-            : "border-transparent bg-white/60 shadow-sm"
+            ? "border-white/20"
+            : "border-transparent"
         )}
         style={{
           borderRadius: `${borderRadius}px`,
           backgroundColor: isScrolled 
             ? `rgba(0, 0, 0, ${bgOpacity})` 
             : `rgba(255, 255, 255, ${bgOpacity})`,
+          // Inner border glow
+          boxShadow: isScrolled ? `
+            inset 0 0 0 1px rgba(255, 255, 255, ${shadowOpacity * 0.3}),
+            inset 0 1px 0 rgba(255, 255, 255, ${shadowOpacity * 0.4})
+          ` : 'none',
         }}
       >
+        {/* Subtle gradient overlay for extra depth */}
+        {isScrolled && (
+          <div 
+            className="absolute inset-0 pointer-events-none transition-opacity duration-700 ease-out"
+            style={{
+              background: `linear-gradient(135deg, 
+                rgba(255, 255, 255, ${shadowOpacity * 0.1}) 0%, 
+                transparent 50%, 
+                rgba(255, 255, 255, ${shadowOpacity * 0.05}) 100%)`,
+              borderRadius: `${borderRadius}px`,
+              opacity: scrollProgress,
+            }}
+          />
+        )}
+        
         <div className="relative flex items-center justify-between h-12 px-4 sm:px-6 lg:px-8 transition-all duration-700 ease-out">
           {/* Logo */}
           <div className="flex items-center gap-2 transition-all duration-700 ease-out">
@@ -73,6 +106,8 @@ export function Header() {
                 width: `${40 - (scrollProgress * 4)}px`,
                 height: `${40 - (scrollProgress * 4)}px`,
                 borderRadius: `${scrollProgress * 8}px`,
+                // Add subtle glow to logo when collapsed
+                boxShadow: isScrolled ? `0 0 8px rgba(255, 255, 255, ${glowIntensity * 0.5})` : 'none',
               }}
             >
               <Image
@@ -95,6 +130,8 @@ export function Header() {
               style={{
                 fontSize: `${18 - (scrollProgress * 2)}px`,
                 opacity: 1 - (scrollProgress * 0.1),
+                // Add text glow when collapsed
+                textShadow: isScrolled ? `0 0 8px rgba(168, 85, 247, ${glowIntensity})` : 'none',
               }}
             >
               Hostpay
@@ -116,6 +153,7 @@ export function Header() {
               )}
               style={{
                 fontSize: `${14 - (scrollProgress * 1)}px`,
+                textShadow: isScrolled ? `0 0 4px rgba(255, 255, 255, ${glowIntensity * 0.3})` : 'none',
               }}
             >
               Home
@@ -128,6 +166,7 @@ export function Header() {
               )}
               style={{
                 fontSize: `${14 - (scrollProgress * 1)}px`,
+                textShadow: isScrolled ? `0 0 4px rgba(255, 255, 255, ${glowIntensity * 0.2})` : 'none',
               }}
             >
               Features
@@ -140,6 +179,7 @@ export function Header() {
               )}
               style={{
                 fontSize: `${14 - (scrollProgress * 1)}px`,
+                textShadow: isScrolled ? `0 0 4px rgba(255, 255, 255, ${glowIntensity * 0.2})` : 'none',
               }}
             >
               Pricing
@@ -152,6 +192,7 @@ export function Header() {
               )}
               style={{
                 fontSize: `${14 - (scrollProgress * 1)}px`,
+                textShadow: isScrolled ? `0 0 4px rgba(255, 255, 255, ${glowIntensity * 0.2})` : 'none',
               }}
             >
               FAQ
@@ -164,6 +205,7 @@ export function Header() {
               )}
               style={{
                 fontSize: `${14 - (scrollProgress * 1)}px`,
+                textShadow: isScrolled ? `0 0 4px rgba(255, 255, 255, ${glowIntensity * 0.2})` : 'none',
               }}
             >
               About
@@ -182,13 +224,17 @@ export function Header() {
               className={cn(
                 "rounded-full font-medium uppercase transition-all duration-300 ease-out border",
                 isScrolled
-                  ? "bg-white/90 text-black border-transparent hover:bg-white"
+                  ? "bg-white/90 text-black border-white/30 hover:bg-white"
                   : "text-black border-gray-300 hover:bg-gray-100"
               )}
               style={{
                 padding: `${4 - (scrollProgress * 1)}px ${16 - (scrollProgress * 2)}px`,
                 fontSize: `${14 - (scrollProgress * 1)}px`,
                 borderRadius: `${25 + (scrollProgress * 5)}px`,
+                boxShadow: isScrolled ? `
+                  0 0 8px rgba(255, 255, 255, ${glowIntensity * 0.4}),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.3)
+                ` : 'none',
               }}
             >
               Login
@@ -205,6 +251,11 @@ export function Header() {
                 padding: `${4 - (scrollProgress * 1)}px ${16 - (scrollProgress * 2)}px`,
                 fontSize: `${14 - (scrollProgress * 1)}px`,
                 borderRadius: `${25 + (scrollProgress * 5)}px`,
+                boxShadow: isScrolled ? `
+                  0 0 12px rgba(16, 185, 129, ${glowIntensity * 0.6}),
+                  0 0 24px rgba(16, 185, 129, ${glowIntensity * 0.3}),
+                  inset 0 1px 0 rgba(255, 255, 255, 0.2)
+                ` : 'none',
               }}
             >
               Sign up
