@@ -40,47 +40,16 @@
   pointer-events: none;
 }
 
-/* See It Live Wrapper - Main container for attention-grabbing design */
-.see-it-live-wrapper {
-  position: relative;
+/* See It Live Column - Compelling and action-oriented design */
+.see-it-live-column {
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-}
-
-/* See It Live Container - Enhanced visual container */
-.see-it-live-container {
+  gap: 0;
   position: relative;
-  padding: 1.5rem;
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.08) 0%,
-    rgba(99, 102, 241, 0.05) 50%,
-    rgba(255, 255, 255, 0.08) 100%
-  );
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 1rem;
-  backdrop-filter: blur(20px);
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    0 0 0 1px rgba(255, 255, 255, 0.05),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
-  transition: all 0.3s ease;
 }
 
-.see-it-live-container:hover {
-  transform: translateY(-2px);
-  box-shadow: 
-    0 12px 40px rgba(0, 0, 0, 0.15),
-    0 0 0 1px rgba(255, 255, 255, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
-}
-
-/* See It Live Title - Enhanced typography */
-.see-it-live-title {
-  font-size: 1.25rem;
-  font-weight: 600;
-  margin-bottom: 1rem;
-  text-align: center;
+/* Add subtle glow effect to the title */
+.see-it-live-column h3 {
   background: linear-gradient(135deg, 
     rgba(255, 255, 255, 0.95) 0%, 
     rgba(99, 102, 241, 0.8) 50%, 
@@ -94,12 +63,11 @@
 }
 
 /* Add animated underline to "See It Live" */
-.see-it-live-title::after {
+.see-it-live-column h3::after {
   content: '';
   position: absolute;
-  left: 50%;
+  left: 0;
   bottom: -4px;
-  transform: translateX(-50%);
   width: 0;
   height: 2px;
   background: linear-gradient(90deg, 
@@ -116,27 +84,23 @@
   100% { width: 60%; }
 }
 
-/* Demo Content Wrapper - Organized layout */
-.demo-content-wrapper {
+.demo-request-compact {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  align-items: center;
 }
 
-.demo-description {
-  color: rgba(255, 255, 255, 0.8);
+.demo-description-compact {
+  color: rgba(255, 255, 255, 0.7);
   font-size: 0.875rem;
   line-height: 1.5;
-  text-align: center;
   margin: 0;
   font-weight: 500;
   position: relative;
-  padding: 0 0.5rem;
 }
 
 /* Add subtle pulse effect to description */
-.demo-description::before {
+.demo-description-compact::before {
   content: '🚀';
   position: absolute;
   left: -1.5rem;
@@ -150,17 +114,15 @@
   50% { opacity: 1; transform: scale(1.1); }
 }
 
-.demo-form {
+.demo-form-compact {
   display: flex;
   gap: 0.5rem;
   align-items: stretch;
-  width: 100%;
-  max-width: 280px;
   position: relative;
 }
 
 /* Add subtle glow animation to form */
-.demo-form::before {
+.demo-form-compact::before {
   content: '';
   position: absolute;
   inset: -2px;
@@ -182,13 +144,13 @@
   50% { opacity: 1; }
 }
 
-.email-input-wrapper {
+.email-input-wrapper-compact {
   position: relative;
   flex: 1;
   min-width: 0;
 }
 
-.email-icon {
+.email-icon-compact {
   position: absolute;
   left: 0.75rem;
   top: 50%;
@@ -200,7 +162,7 @@
   transition: all 0.3s ease;
 }
 
-.email-input {
+.email-input-compact {
   width: 100%;
   padding: 0.625rem 0.75rem 0.625rem 2.25rem;
   background: rgba(255, 255, 255, 0.08);
@@ -213,12 +175,12 @@
   position: relative;
 }
 
-.email-input::placeholder {
+.email-input-compact::placeholder {
   color: rgba(255, 255, 255, 0.5);
   font-size: 0.8rem;
 }
 
-.email-input:focus {
+.email-input-compact:focus {
   outline: none;
   border-color: rgba(99, 102, 241, 0.5);
   background: rgba(255, 255, 255, 0.12);
@@ -227,12 +189,12 @@
     0 0 20px rgba(99, 102, 241, 0.2);
 }
 
-.email-input:focus + .email-icon {
+.email-input-compact:focus + .email-icon-compact {
   color: rgba(99, 102, 241, 0.8);
   transform: translateY(-50%) scale(1.1);
 }
 
-.demo-button {
+.demo-button-compact {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -253,7 +215,7 @@
 }
 
 /* Add shimmer effect to button */
-.demo-button::before {
+.demo-button-compact::before {
   content: '';
   position: absolute;
   top: -50%;
@@ -274,7 +236,7 @@
   100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
 }
 
-.demo-button:hover:not(:disabled) {
+.demo-button-compact:hover:not(:disabled) {
   transform: translateY(-1px) scale(1.05);
   box-shadow: 
     0 4px 12px rgba(99, 102, 241, 0.4),
@@ -283,7 +245,7 @@
   background: linear-gradient(135deg, #5855eb 0%, #7c3aed 100%);
 }
 
-.demo-button:disabled {
+.demo-button-compact:disabled {
   background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   cursor: not-allowed;
   box-shadow: 
@@ -291,7 +253,7 @@
     0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
-.arrow-icon {
+.arrow-icon-compact {
   width: 0.875rem;
   height: 0.875rem;
   transition: transform 0.3s ease;
@@ -299,11 +261,11 @@
   position: relative;
 }
 
-.demo-button:hover:not(:disabled) .arrow-icon {
+.demo-button-compact:hover:not(:disabled) .arrow-icon-compact {
   transform: translateX(2px) scale(1.1);
 }
 
-.success-checkmark {
+.success-checkmark-compact {
   width: 0.875rem;
   height: 0.875rem;
   display: flex;
@@ -322,20 +284,18 @@
   100% { transform: scale(1); }
 }
 
-/* Social Icons Container - Enhanced linear layout */
-.social-icons-container {
+/* Social Icons Linear - Enhanced with better visual hierarchy */
+.social-icons-linear {
   display: flex;
   gap: 0.75rem;
-  justify-content: center;
+  margin-top: 1rem;
+  justify-content: flex-start;
   align-items: center;
   position: relative;
-  width: 100%;
-  max-width: 200px;
-  margin-top: 0.5rem;
 }
 
 /* Add subtle connecting line between icons */
-.social-icons-container::before {
+.social-icons-linear::before {
   content: '';
   position: absolute;
   top: 50%;
@@ -351,7 +311,7 @@
   z-index: 0;
 }
 
-.social-icon {
+.social-icon-compact {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -370,7 +330,7 @@
   z-index: 1;
 }
 
-.social-icon::before {
+.social-icon-compact::before {
   content: '';
   position: absolute;
   inset: 0;
@@ -383,7 +343,7 @@
   transition: opacity 0.3s ease;
 }
 
-.social-icon:hover {
+.social-icon-compact:hover {
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.25);
   color: rgba(255, 255, 255, 0.95);
@@ -393,7 +353,7 @@
     0 0 12px rgba(255, 255, 255, 0.05);
 }
 
-.social-icon:hover::before {
+.social-icon-compact:hover::before {
   opacity: 1;
 }
 
@@ -405,12 +365,12 @@
   position: relative;
 }
 
-.social-icon:hover .social-icon-svg {
+.social-icon-compact:hover .social-icon-svg {
   transform: scale(1.1);
 }
 
 /* Enhanced platform-specific hover effects */
-.social-icon:nth-child(1):hover {
+.social-icon-compact:nth-child(1):hover {
   /* Twitter */
   background: rgba(29, 161, 242, 0.15);
   border-color: rgba(29, 161, 242, 0.3);
@@ -420,7 +380,7 @@
     0 0 12px rgba(29, 161, 242, 0.1);
 }
 
-.social-icon:nth-child(2):hover {
+.social-icon-compact:nth-child(2):hover {
   /* GitHub */
   background: rgba(255, 255, 255, 0.15);
   border-color: rgba(255, 255, 255, 0.3);
@@ -430,7 +390,7 @@
     0 0 12px rgba(255, 255, 255, 0.1);
 }
 
-.social-icon:nth-child(3):hover {
+.social-icon-compact:nth-child(3):hover {
   /* LinkedIn */
   background: rgba(0, 119, 181, 0.15);
   border-color: rgba(0, 119, 181, 0.3);
@@ -440,7 +400,7 @@
     0 0 12px rgba(0, 119, 181, 0.1);
 }
 
-.social-icon:nth-child(4):hover {
+.social-icon-compact:nth-child(4):hover {
   /* Instagram */
   background: linear-gradient(135deg, 
     rgba(225, 48, 108, 0.15) 0%, 
@@ -683,16 +643,11 @@
     letter-spacing: clamp(0.4rem, 1.5vw, 1.2rem);
   }
   
-  .see-it-live-container {
-    padding: 1.25rem;
-  }
-  
-  .social-icons-container {
+  .social-icons-linear {
     gap: 0.625rem;
-    max-width: 180px;
   }
   
-  .social-icon {
+  .social-icon-compact {
     width: 2rem;
     height: 2rem;
   }
@@ -737,23 +692,21 @@
     display: none;
   }
   
-  .see-it-live-wrapper {
+  .see-it-live-column {
     grid-column: 1 / -1;
-    max-width: 320px;
+    max-width: 300px;
     margin: 0 auto;
   }
   
-  .see-it-live-container {
-    padding: 1rem;
+  .demo-form-compact {
+    max-width: 250px;
+    margin: 0 auto;
   }
   
-  .demo-form {
-    max-width: 260px;
-  }
-  
-  .social-icons-container {
+  .social-icons-linear {
     max-width: 200px;
     margin: 1rem auto 0;
+    justify-content: center;
   }
 }
 
@@ -783,24 +736,16 @@
     letter-spacing: clamp(0.2rem, 1vw, 0.6rem);
   }
   
-  .see-it-live-wrapper {
-    max-width: 300px;
+  .see-it-live-column {
+    max-width: 280px;
   }
   
-  .see-it-live-container {
-    padding: 1rem;
-  }
-  
-  .demo-description {
+  .demo-description-compact {
     font-size: 0.8rem;
   }
   
-  .demo-form {
-    max-width: 240px;
-  }
-  
-  .social-icons-container {
-    max-width: 180px;
+  .social-icons-linear {
+    justify-content: center;
   }
 }
 
@@ -816,31 +761,27 @@
     height: clamp(4rem, 18vw, 8rem);
   }
   
-  .see-it-live-container {
-    padding: 0.875rem;
-  }
-  
-  .email-input {
+  .email-input-compact {
     padding: 0.5rem 0.625rem 0.5rem 2rem;
     font-size: 0.75rem;
   }
   
-  .demo-button {
+  .demo-button-compact {
     width: 2.25rem;
     height: 2.25rem;
   }
   
-  .arrow-icon {
+  .arrow-icon-compact {
     width: 0.75rem;
     height: 0.75rem;
   }
   
-  .social-icons-container {
+  .social-icons-linear {
     gap: 0.5rem;
-    max-width: 160px;
+    max-width: 180px;
   }
   
-  .social-icon {
+  .social-icon-compact {
     width: 1.875rem;
     height: 1.875rem;
   }
