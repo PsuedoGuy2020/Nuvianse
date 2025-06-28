@@ -142,13 +142,14 @@ export function Footer() {
         {/* Company Name with Logo */}
         <div className="mt-20 mb-8">
           <div className="flex items-center justify-center gap-6">
-            {/* Logo */}
-            <div className="relative w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 flex-shrink-0">
+            {/* Logo - sized to match text height */}
+            <div className="relative flex-shrink-0 logo-container">
               <Image
                 src="/Screenshot_2025-06-26_at_1.15.07_AM-removebg-preview.png"
                 alt="Nuviance Logo"
-                fill
-                className="object-contain filter brightness-110"
+                width={200}
+                height={200}
+                className="object-contain filter brightness-110 logo-image"
                 priority
               />
             </div>

@@ -63,6 +63,22 @@
   line-height: 1;
 }
 
+/* Logo container to match text height */
+.logo-container {
+  height: clamp(3rem, 12vw, 10rem);
+  width: clamp(3rem, 12vw, 10rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-image {
+  width: 100% !important;
+  height: 100% !important;
+  max-width: clamp(3rem, 12vw, 10rem);
+  max-height: clamp(3rem, 12vw, 10rem);
+}
+
 .copyright {
   text-align: center;
   color: rgba(255, 255, 255, 0.6);
@@ -148,6 +164,14 @@
     letter-spacing: 1rem;
     padding-left: 1rem;
   }
+  .logo-container {
+    height: clamp(2.5rem, 10vw, 7rem);
+    width: clamp(2.5rem, 10vw, 7rem);
+  }
+  .logo-image {
+    max-width: clamp(2.5rem, 10vw, 7rem);
+    max-height: clamp(2.5rem, 10vw, 7rem);
+  }
 }
 
 @media (max-width: 640px) {
@@ -159,5 +183,13 @@
     font-size: clamp(2rem, 8vw, 5rem);
     letter-spacing: 0.75rem;
     padding-left: 0.75rem;
+  }
+  .logo-container {
+    height: clamp(2rem, 8vw, 5rem);
+    width: clamp(2rem, 8vw, 5rem);
+  }
+  .logo-image {
+    max-width: clamp(2rem, 8vw, 5rem);
+    max-height: clamp(2rem, 8vw, 5rem);
   }
 }
