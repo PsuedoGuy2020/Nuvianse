@@ -63,6 +63,46 @@ export function Footer() {
                   )}
                 </button>
               </form>
+
+              {/* Social Icons - Icons Only */}
+              <div className="social-icons-container">
+                <a
+                  href="https://twitter.com/nuviance"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon-link"
+                  title="Follow us on Twitter"
+                >
+                  <Twitter className="social-icon" />
+                </a>
+                <a
+                  href="https://github.com/nuviance"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon-link"
+                  title="Star us on GitHub"
+                >
+                  <Github className="social-icon" />
+                </a>
+                <a
+                  href="https://linkedin.com/company/nuviance"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon-link"
+                  title="Connect on LinkedIn"
+                >
+                  <Linkedin className="social-icon" />
+                </a>
+                <a
+                  href="https://instagram.com/nuviance"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="social-icon-link"
+                  title="Follow on Instagram"
+                >
+                  <Instagram className="social-icon" />
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -150,47 +190,31 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Connect Column */}
+          {/* Contact Column */}
           <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-white/90">Connect</h3>
-            <div className="social-links-grid">
-              <a
-                href="https://twitter.com/nuviance"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link-card"
-              >
-                <Twitter className="social-icon" />
-                <span>Follow us on Twitter</span>
-              </a>
-              <a
-                href="https://github.com/nuviance"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link-card"
-              >
-                <Star className="social-icon" />
-                <span>Star us on GitHub</span>
-              </a>
-              <a
-                href="https://linkedin.com/company/nuviance"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link-card"
-              >
-                <Linkedin className="social-icon" />
-                <span>Connect on LinkedIn</span>
-              </a>
-              <a
-                href="https://instagram.com/nuviance"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="social-link-card"
-              >
-                <Instagram className="social-icon" />
-                <span>Follow on Instagram</span>
-              </a>
-            </div>
+            <h3 className="text-xl font-semibold text-white/90">Contact</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/support" className="text-gray-400 hover:text-white transition-colors">
+                  Support
+                </Link>
+              </li>
+              <li>
+                <Link href="/sales" className="text-gray-400 hover:text-white transition-colors">
+                  Sales
+                </Link>
+              </li>
+              <li>
+                <Link href="/partnerships" className="text-gray-400 hover:text-white transition-colors">
+                  Partnerships
+                </Link>
+              </li>
+              <li>
+                <Link href="/press" className="text-gray-400 hover:text-white transition-colors">
+                  Press
+                </Link>
+              </li>
+            </ul>
           </div>
         </div>
 
