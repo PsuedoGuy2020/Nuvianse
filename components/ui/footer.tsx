@@ -142,8 +142,8 @@ export function Footer() {
                 </button>
               </form>
 
-              {/* Social Icons - Compact grid layout */}
-              <div className="social-icons-grid">
+              {/* Social Icons - Linear horizontal layout */}
+              <div className="social-icons-linear">
                 <a
                   href="https://twitter.com/nuviance"
                   target="_blank"

@@ -151,12 +151,13 @@
   font-size: 0.75rem;
 }
 
-/* Social Icons Grid - 2x2 compact layout */
-.social-icons-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+/* Social Icons Linear - Horizontal row layout */
+.social-icons-linear {
+  display: flex;
   gap: 0.75rem;
   margin-top: 1rem;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .social-icon-compact {
@@ -174,6 +175,7 @@
   backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
+  flex-shrink: 0;
 }
 
 .social-icon-compact::before {
@@ -489,7 +491,7 @@
     letter-spacing: clamp(0.4rem, 1.5vw, 1.2rem);
   }
   
-  .social-icons-grid {
+  .social-icons-linear {
     gap: 0.625rem;
   }
   
@@ -549,9 +551,10 @@
     margin: 0 auto;
   }
   
-  .social-icons-grid {
+  .social-icons-linear {
     max-width: 200px;
     margin: 1rem auto 0;
+    justify-content: center;
   }
 }
 
@@ -588,6 +591,10 @@
   .newsletter-description-compact {
     font-size: 0.8rem;
   }
+  
+  .social-icons-linear {
+    justify-content: center;
+  }
 }
 
 /* Ultra-small screens */
@@ -617,7 +624,7 @@
     height: 0.75rem;
   }
   
-  .social-icons-grid {
+  .social-icons-linear {
     gap: 0.5rem;
     max-width: 180px;
   }
