@@ -39,10 +39,10 @@ export function Header() {
           : "w-full border-b border-transparent bg-white/60 backdrop-blur"
       )}
     >
-      <div className="relative flex items-center justify-between h-16 px-6 sm:px-8 lg:px-12 transition-all duration-500 ease-in-out">
+      <div className="relative flex items-center justify-between h-12 px-4 sm:px-6 lg:px-8 transition-all duration-500 ease-in-out">
         {/* Logo */}
-        <div className="flex items-center gap-3">
-          <div className="relative h-14 w-14 overflow-hidden">
+        <div className="flex items-center gap-2">
+          <div className="relative h-10 w-10 overflow-hidden">
             <Image
               src={
                 isScrolled
@@ -55,34 +55,34 @@ export function Header() {
               priority
             />
           </div>
-          <span className="text-xl font-semibold text-purple-400 uppercase">Hostpay</span>
+          <span className="text-lg font-semibold text-purple-400 uppercase">Hostpay</span>
         </div>
 
         {/* Navigation */}
-        <nav className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:flex items-center gap-8">
-          <Link href="#" className="text-base font-medium text-black hover:text-black transition-colors uppercase">
+        <nav className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:flex items-center gap-6">
+          <Link href="#" className="text-sm font-medium text-black hover:text-black transition-colors uppercase">
             Home
           </Link>
-          <Link href="#features" className="text-base font-medium text-black/70 hover:text-black transition-colors uppercase">
+          <Link href="#features" className="text-sm font-medium text-black/70 hover:text-black transition-colors uppercase">
             Features
           </Link>
-          <Link href="#pricing" className="text-base font-medium text-black/70 hover:text-black transition-colors uppercase">
+          <Link href="#pricing" className="text-sm font-medium text-black/70 hover:text-black transition-colors uppercase">
             Pricing
           </Link>
-          <Link href="#faq" className="text-base font-medium text-black/70 hover:text-black transition-colors uppercase">
+          <Link href="#faq" className="text-sm font-medium text-black/70 hover:text-black transition-colors uppercase">
             FAQ
           </Link>
-          <Link href="#about" className="text-base font-medium text-black/70 hover:text-black transition-colors uppercase">
+          <Link href="#about" className="text-sm font-medium text-black/70 hover:text-black transition-colors uppercase">
             About
           </Link>
         </nav>
 
         {/* Buttons */}
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <Link
             href="#login"
             className={cn(
-              "rounded-full px-5 py-1.5 text-base font-medium uppercase transition-colors border",
+              "rounded-full px-4 py-1 text-sm font-medium uppercase transition-colors border",
               isScrolled
                 ? "bg-white/90 text-black border-transparent hover:bg-white"
                 : "text-black border-gray-300 hover:bg-gray-100"
@@ -93,7 +93,7 @@ export function Header() {
           <Link
             href="#signup"
             className={cn(
-              "rounded-full px-5 py-1.5 text-base font-medium uppercase transition-colors",
+              "rounded-full px-4 py-1 text-sm font-medium uppercase transition-colors",
               isScrolled
                 ? "bg-emerald-600 text-white hover:bg-emerald-700"
                 : "bg-emerald-500 text-white hover:bg-emerald-600"
