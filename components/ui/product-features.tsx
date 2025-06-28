@@ -149,31 +149,31 @@ export function ProductFeatures() {
                   if (index === 0) firstFeatureRef.current = el
                   if (index === features.length - 1) lastFeatureRef.current = el
                 }}
-                className="min-h-[25vh] flex items-center py-1"
+                className="min-h-[30vh] flex items-center py-2"
               >
                 <div
                   className={cn(
-                    "transition-all duration-500 ease-out w-full",
+                    "transition-all duration-700 transform w-full",
                     index === activeIndex
-                      ? "opacity-100 translate-x-0"
-                      : "opacity-40 translate-x-4"
+                      ? "opacity-100 translate-x-0 scale-100"
+                      : "opacity-30 translate-x-8 scale-95"
                   )}
                 >
                   {/* Feature Number */}
                   <div className="flex items-center mb-3">
                     <div 
                       className={cn(
-                        "w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-xs mr-2 transition-all duration-400",
+                        "w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-xs mr-2 transition-all duration-500",
                         index === activeIndex 
-                          ? `bg-gradient-to-r ${feature.gradient} shadow-lg` 
-                          : "bg-gray-700"
+                          ? `bg-gradient-to-r ${feature.gradient} shadow-lg scale-110` 
+                          : "bg-gray-700 scale-100"
                       )}
                     >
                       {String(index + 1).padStart(2, '0')}
                     </div>
                     <div 
                       className={cn(
-                        "h-px flex-1 transition-all duration-400",
+                        "h-px flex-1 transition-all duration-500",
                         index === activeIndex 
                           ? `bg-gradient-to-r ${feature.gradient} opacity-60` 
                           : "bg-gray-600 opacity-30"
@@ -193,7 +193,7 @@ export function ProductFeatures() {
                     {/* Feature Highlight Bar */}
                     <div 
                       className={cn(
-                        "mt-3 h-1 rounded-full transition-all duration-500",
+                        "mt-3 h-1 rounded-full transition-all duration-700",
                         index === activeIndex 
                           ? `bg-gradient-to-r ${feature.gradient} w-16 opacity-100` 
                           : "bg-gray-600 w-8 opacity-50"
@@ -207,39 +207,49 @@ export function ProductFeatures() {
 
           {/* Right Side - Images Container */}
           <div className="w-full lg:w-1/2 relative">
-            {/* Images Container with Dynamic Positioning */}
+            {/* Images Container with Dynamic Positioning - Aligned with first feature by default */}
             <div 
               className={cn(
                 "w-full h-[60vh] transition-all duration-300 ease-out",
+                // Position images to align with first feature by default
                 stickyState === 'before' && "relative top-0",
                 stickyState === 'sticky' && "fixed top-20 right-4 lg:right-8 z-30 w-[calc(50%-2rem)] lg:w-[calc(50%-4rem)]",
                 stickyState === 'after' && "relative"
               )}
+              style={{
+                // When not sticky, position images to align with the first feature
+                marginTop: stickyState === 'before' ? '0' : undefined
+              }}
             >
-              {/* Image Container */}
-              <div className="relative w-full h-full">
+              {/* Image Container with Perspective */}
+              <div className="relative w-full h-full perspective-1000">
                 
                 {/* Background Glow Effect */}
                 <div 
                   className={cn(
-                    "absolute inset-0 rounded-2xl transition-all duration-500 blur-3xl",
-                    `bg-gradient-to-br ${features[activeIndex]?.gradient} opacity-15`
+                    "absolute inset-0 rounded-2xl transition-all duration-700 blur-3xl",
+                    `bg-gradient-to-br ${features[activeIndex]?.gradient} opacity-20`
                   )}
                   style={{
-                    transform: 'scale(1.05)',
+                    transform: 'scale(1.1)',
                   }}
                 />
 
-                {/* Stacked Images - Smooth fade transitions only */}
+                {/* Stacked Images */}
                 {features.map((feature, index) => (
                   <div
                     key={feature.id}
                     className={cn(
-                      "absolute inset-0 transition-opacity duration-500 ease-out rounded-2xl overflow-hidden",
+                      "absolute inset-0 transition-all duration-700 rounded-2xl overflow-hidden",
                       index === activeIndex 
-                        ? "opacity-100 z-20" 
-                        : "opacity-0 z-10"
+                        ? "opacity-100 z-20 transform-none" 
+                        : "opacity-0 z-10",
+                      index < activeIndex && "transform translate-y-4 scale-95",
+                      index > activeIndex && "transform -translate-y-4 scale-95"
                     )}
+                    style={{
+                      transformStyle: 'preserve-3d',
+                    }}
                   >
                     {/* Image */}
                     <img
@@ -252,19 +262,24 @@ export function ProductFeatures() {
                     {/* Gradient Overlay */}
                     <div 
                       className={cn(
-                        "absolute inset-0 transition-opacity duration-500",
-                        `bg-gradient-to-br ${feature.gradient} opacity-15`
+                        "absolute inset-0 transition-opacity duration-700",
+                        `bg-gradient-to-br ${feature.gradient} opacity-20`
                       )}
                     />
                     
                     {/* Border Glow */}
                     <div 
                       className={cn(
-                        "absolute inset-0 rounded-2xl transition-all duration-500 border",
+                        "absolute inset-0 rounded-2xl transition-all duration-700",
                         index === activeIndex 
-                          ? "border-white/20 shadow-2xl" 
-                          : "border-gray-600/30"
+                          ? `ring-2 ring-opacity-50 bg-gradient-to-r ${feature.gradient}` 
+                          : "ring-1 ring-gray-600 ring-opacity-30"
                       )}
+                      style={{
+                        background: index === activeIndex 
+                          ? `linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%)` 
+                          : 'transparent'
+                      }}
                     />
                   </div>
                 ))}
@@ -283,8 +298,8 @@ export function ProductFeatures() {
                     className={cn(
                       "w-2 h-2 rounded-full transition-all duration-300",
                       index === activeIndex 
-                        ? "bg-white" 
-                        : "bg-gray-600"
+                        ? "bg-white scale-125" 
+                        : "bg-gray-600 scale-100"
                     )}
                   />
                 ))}
@@ -305,6 +320,10 @@ export function ProductFeatures() {
           100% {
             background-position: 40px 40px, 40px 40px;
           }
+        }
+        
+        .perspective-1000 {
+          perspective: 1000px;
         }
       `}</style>
     </section>
