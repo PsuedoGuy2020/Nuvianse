@@ -551,22 +551,43 @@
   transform: translateX(5px);
 }
 
-/* Footer Bottom - Modern four-column layout with system status in bottom left */
+/* Footer Bottom - Smart responsive layout with enhanced visual hierarchy */
 .footer-bottom {
-  padding-top: 2rem;
+  padding-top: 3rem; /* Increased from 2rem for better separation */
   border-top: 1px solid rgba(255, 255, 255, 0.08);
-  margin-top: 2rem;
+  margin-top: 3rem; /* Increased from 2rem for better spacing */
+  position: relative;
+}
+
+/* Add subtle gradient overlay to footer bottom */
+.footer-bottom::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -2rem;
+  right: -2rem;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(99, 102, 241, 0.3) 20%, 
+    rgba(139, 92, 246, 0.3) 50%, 
+    rgba(6, 182, 212, 0.3) 80%, 
+    transparent 100%
+  );
+  box-shadow: 0 0 20px rgba(99, 102, 241, 0.2);
 }
 
 .footer-bottom-content {
   display: grid;
-  grid-template-columns: auto 1fr auto auto;
+  grid-template-columns: minmax(200px, auto) 1fr minmax(300px, auto) minmax(220px, auto);
   align-items: center;
-  gap: 2rem;
+  gap: 3rem; /* Increased from 2rem for better breathing room */
   width: 100%;
+  padding: 1.5rem 0; /* Added vertical padding for better visual weight */
+  position: relative;
 }
 
-/* System Status Section - Bottom left with blinking green dot */
+/* System Status Section - Enhanced design with better visual prominence */
 .system-status-section {
   display: flex;
   align-items: center;
@@ -576,16 +597,17 @@
 .system-status-indicator {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.375rem 0.75rem;
+  gap: 0.75rem; /* Increased from 0.5rem for better spacing */
+  padding: 0.625rem 1rem; /* Increased padding for better presence */
   background: rgba(16, 185, 129, 0.08);
   border: 1px solid rgba(16, 185, 129, 0.15);
-  border-radius: 0.75rem;
+  border-radius: 1rem; /* Increased from 0.75rem for more modern look */
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  min-width: 180px; /* Ensure consistent width */
 }
 
 /* Add subtle gradient overlay */
@@ -605,10 +627,10 @@
 .system-status-indicator:hover {
   background: rgba(16, 185, 129, 0.12);
   border-color: rgba(16, 185, 129, 0.25);
-  transform: translateY(-1px);
+  transform: translateY(-2px); /* Increased lift for better feedback */
   box-shadow: 
-    0 4px 12px rgba(16, 185, 129, 0.2),
-    0 0 20px rgba(16, 185, 129, 0.1);
+    0 6px 20px rgba(16, 185, 129, 0.25), /* Enhanced shadow */
+    0 0 30px rgba(16, 185, 129, 0.15);
 }
 
 .system-status-indicator:hover::before {
@@ -617,12 +639,12 @@
 
 .status-dot-container {
   position: relative;
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 0.625rem; /* Increased from 0.5rem for better visibility */
+  height: 0.625rem;
   flex-shrink: 0;
 }
 
-/* Main status dot - bright green with blinking animation */
+/* Main status dot - bright green with enhanced blinking animation */
 .status-dot {
   position: absolute;
   inset: 0;
@@ -630,18 +652,18 @@
   border-radius: 50%;
   animation: statusBlink 2s ease-in-out infinite;
   box-shadow: 
-    0 0 4px rgba(16, 185, 129, 0.6),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    0 0 6px rgba(16, 185, 129, 0.7), /* Enhanced glow */
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
   z-index: 2;
 }
 
 /* Pulsing glow effect around the dot */
 .status-dot-glow {
   position: absolute;
-  inset: -2px;
+  inset: -3px; /* Increased from -2px for larger glow */
   background: radial-gradient(circle, 
-    rgba(16, 185, 129, 0.4) 0%, 
-    rgba(16, 185, 129, 0.2) 40%, 
+    rgba(16, 185, 129, 0.5) 0%, 
+    rgba(16, 185, 129, 0.3) 40%, 
     transparent 70%
   );
   border-radius: 50%;
@@ -649,109 +671,136 @@
   z-index: 1;
 }
 
-/* Blinking animation for the main dot */
+/* Enhanced blinking animation for the main dot */
 @keyframes statusBlink {
   0%, 100% { 
     opacity: 1; 
     transform: scale(1);
     box-shadow: 
-      0 0 4px rgba(16, 185, 129, 0.6),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+      0 0 6px rgba(16, 185, 129, 0.7),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4);
   }
   50% { 
-    opacity: 0.3; 
+    opacity: 0.4; /* Slightly less fade for better visibility */
     transform: scale(0.9);
     box-shadow: 
-      0 0 2px rgba(16, 185, 129, 0.3),
+      0 0 3px rgba(16, 185, 129, 0.4),
       inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 }
 
-/* Pulsing glow animation */
+/* Enhanced pulsing glow animation */
 @keyframes statusGlow {
   0%, 100% { 
-    opacity: 0.6; 
+    opacity: 0.7; /* Increased base opacity */
     transform: scale(1);
   }
   50% { 
     opacity: 1; 
-    transform: scale(1.2);
+    transform: scale(1.3); /* Increased scale for more dramatic effect */
   }
 }
 
 .status-text {
   color: rgba(16, 185, 129, 0.9);
-  font-size: 0.8rem;
+  font-size: 0.875rem; /* Increased from 0.8rem for better readability */
   font-weight: 600;
   letter-spacing: 0.025em;
-  text-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+  text-shadow: 0 0 10px rgba(16, 185, 129, 0.4); /* Enhanced text glow */
   z-index: 1;
   position: relative;
-  transition: all 0.3s ease;
-}
-
-.system-status-indicator:hover .status-text {
-  color: rgba(16, 185, 129, 1);
-  text-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
-}
-
-.copyright-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.copyright-text {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.875rem;
-  margin: 0;
-  text-align: center;
-}
-
-.legal-links {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-
-.legal-link {
-  color: rgba(255, 255, 255, 0.5);
-  font-size: 0.875rem;
-  text-decoration: none;
   transition: all 0.3s ease;
   white-space: nowrap;
 }
 
+.system-status-indicator:hover .status-text {
+  color: rgba(16, 185, 129, 1);
+  text-shadow: 0 0 15px rgba(16, 185, 129, 0.5);
+}
+
+/* Copyright Section - Enhanced typography and spacing */
+.copyright-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem; /* Added horizontal padding */
+}
+
+.copyright-text {
+  color: rgba(255, 255, 255, 0.65); /* Slightly increased opacity */
+  font-size: 0.9rem; /* Increased from 0.875rem for better readability */
+  margin: 0;
+  text-align: center;
+  font-weight: 500; /* Added font weight for better presence */
+  letter-spacing: 0.025em;
+  line-height: 1.4;
+}
+
+/* Legal Links - Enhanced spacing and visual hierarchy */
+.legal-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; /* Increased from 1rem for better spacing */
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0 1rem; /* Added horizontal padding */
+}
+
+.legal-link {
+  color: rgba(255, 255, 255, 0.55); /* Slightly increased opacity */
+  font-size: 0.875rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  font-weight: 500; /* Added font weight */
+  letter-spacing: 0.025em;
+  position: relative;
+}
+
+/* Add subtle underline animation */
+.legal-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: rgba(99, 102, 241, 0.6);
+  transition: width 0.3s ease;
+}
+
 .legal-link:hover {
-  color: rgba(255, 255, 255, 0.8);
-  text-decoration: underline;
-  text-decoration-color: rgba(255, 255, 255, 0.3);
-  text-underline-offset: 3px;
+  color: rgba(255, 255, 255, 0.85); /* Increased hover opacity */
+  transform: translateY(-1px); /* Added subtle lift */
+}
+
+.legal-link:hover::after {
+  width: 100%;
 }
 
 .legal-separator {
-  color: rgba(255, 255, 255, 0.3);
+  color: rgba(255, 255, 255, 0.25); /* Reduced opacity for subtlety */
   font-size: 0.875rem;
-  margin: 0 0.25rem;
+  margin: 0 0.5rem; /* Increased margin for better spacing */
+  font-weight: 300;
 }
 
-/* Contact Email Section - Modern design positioned in bottom right */
+/* Contact Email Section - Enhanced design and positioning */
 .contact-email-section {
   display: flex;
   justify-content: flex-end;
+  align-items: center;
 }
 
 .contact-email-link {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.625rem 1rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.75rem;
-  color: rgba(255, 255, 255, 0.8);
+  gap: 0.75rem; /* Increased from 0.5rem for better spacing */
+  padding: 0.75rem 1.25rem; /* Increased padding for better presence */
+  background: rgba(255, 255, 255, 0.06); /* Slightly increased opacity */
+  border: 1px solid rgba(255, 255, 255, 0.12); /* Increased border opacity */
+  border-radius: 1rem; /* Increased from 0.75rem for consistency */
+  color: rgba(255, 255, 255, 0.85); /* Increased text opacity */
   text-decoration: none;
   font-size: 0.875rem;
   font-weight: 500;
@@ -760,6 +809,7 @@
   position: relative;
   overflow: hidden;
   white-space: nowrap;
+  min-width: 200px; /* Ensure consistent width */
 }
 
 /* Add subtle gradient overlay */
@@ -768,23 +818,23 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg, 
-    rgba(99, 102, 241, 0.05) 0%, 
+    rgba(99, 102, 241, 0.08) 0%, 
     transparent 50%, 
-    rgba(139, 92, 246, 0.05) 100%
+    rgba(139, 92, 246, 0.08) 100%
   );
   opacity: 0;
   transition: opacity 0.3s ease;
 }
 
 .contact-email-link:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(99, 102, 241, 0.3);
+  background: rgba(255, 255, 255, 0.12); /* Increased hover opacity */
+  border-color: rgba(99, 102, 241, 0.4); /* Enhanced border color */
   color: rgba(255, 255, 255, 0.95);
-  transform: translateY(-2px);
+  transform: translateY(-3px); /* Increased lift for better feedback */
   box-shadow: 
-    0 4px 16px rgba(99, 102, 241, 0.2),
-    0 0 20px rgba(99, 102, 241, 0.1),
-    0 0 0 1px rgba(255, 255, 255, 0.1);
+    0 6px 24px rgba(99, 102, 241, 0.25), /* Enhanced shadow */
+    0 0 30px rgba(99, 102, 241, 0.15),
+    0 0 0 1px rgba(255, 255, 255, 0.15);
 }
 
 .contact-email-link:hover::before {
@@ -792,9 +842,9 @@
 }
 
 .contact-email-icon {
-  width: 1rem;
-  height: 1rem;
-  color: rgba(99, 102, 241, 0.7);
+  width: 1.125rem; /* Increased from 1rem for better visibility */
+  height: 1.125rem;
+  color: rgba(99, 102, 241, 0.8); /* Increased opacity */
   transition: all 0.3s ease;
   flex-shrink: 0;
   z-index: 1;
@@ -802,8 +852,8 @@
 }
 
 .contact-email-link:hover .contact-email-icon {
-  color: rgba(99, 102, 241, 0.9);
-  transform: scale(1.1);
+  color: rgba(99, 102, 241, 1);
+  transform: scale(1.15); /* Increased scale for better effect */
 }
 
 .contact-email-text {
@@ -812,6 +862,7 @@
   letter-spacing: 0.025em;
   z-index: 1;
   position: relative;
+  font-weight: 500; /* Added font weight */
 }
 
 .footer-container {
@@ -882,7 +933,28 @@
   transform: translateY(-2px);
 }
 
-/* Responsive Design - Smart breakpoints with optimized layouts */
+/* Enhanced Responsive Design - Smart breakpoints with optimized layouts */
+@media (max-width: 1200px) {
+  .footer-bottom-content {
+    grid-template-columns: minmax(180px, auto) 1fr minmax(280px, auto) minmax(200px, auto);
+    gap: 2.5rem;
+  }
+  
+  .system-status-indicator {
+    min-width: 160px;
+    padding: 0.5rem 0.875rem;
+  }
+  
+  .contact-email-link {
+    min-width: 180px;
+    padding: 0.625rem 1rem;
+  }
+  
+  .legal-links {
+    gap: 1.25rem;
+  }
+}
+
 @media (max-width: 1024px) {
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -925,7 +997,15 @@
   
   .footer-bottom-content {
     grid-template-columns: auto 1fr auto;
-    gap: 1.5rem;
+    gap: 2rem;
+  }
+  
+  .legal-links {
+    order: 3;
+  }
+  
+  .contact-email-section {
+    order: 2;
   }
   
   .contact-email-text {
@@ -933,7 +1013,15 @@
   }
   
   .status-text {
-    font-size: 0.75rem;
+    font-size: 0.8rem;
+  }
+  
+  .system-status-indicator {
+    min-width: 150px;
+  }
+  
+  .contact-email-link {
+    min-width: 160px;
   }
 }
 
@@ -958,9 +1046,14 @@
     letter-spacing: clamp(0.3rem, 1.2vw, 0.8rem);
   }
   
+  .footer-bottom {
+    padding-top: 2.5rem;
+    margin-top: 2.5rem;
+  }
+  
   .footer-bottom-content {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
     text-align: center;
   }
   
@@ -1013,6 +1106,16 @@
   .disclaimer-text {
     font-size: 0.65rem;
     text-align: center;
+  }
+  
+  .system-status-indicator {
+    min-width: auto;
+    width: auto;
+  }
+  
+  .contact-email-link {
+    min-width: auto;
+    width: auto;
   }
 }
 
@@ -1073,7 +1176,7 @@
   
   .legal-links {
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 1rem; /* Increased from 0.75rem for better spacing */
   }
   
   .legal-separator {
@@ -1081,7 +1184,7 @@
   }
   
   .contact-email-link {
-    padding: 0.5rem 0.875rem;
+    padding: 0.625rem 1rem; /* Increased padding */
     font-size: 0.8rem;
   }
   
@@ -1090,21 +1193,43 @@
   }
   
   .contact-email-icon {
-    width: 0.875rem;
-    height: 0.875rem;
+    width: 1rem; /* Increased from 0.875rem */
+    height: 1rem;
   }
   
   .system-status-indicator {
-    padding: 0.3rem 0.6rem;
+    padding: 0.5rem 0.875rem; /* Increased padding */
   }
   
   .status-text {
-    font-size: 0.7rem;
+    font-size: 0.75rem; /* Increased from 0.7rem */
+  }
+  
+  .status-dot-container {
+    width: 0.5rem; /* Slightly increased */
+    height: 0.5rem;
+  }
+  
+  .copyright-text {
+    font-size: 0.85rem; /* Increased from 0.8rem */
+  }
+  
+  .legal-link {
+    font-size: 0.85rem; /* Increased from 0.8rem */
   }
 }
 
-/* Ultra-small screens */
+/* Ultra-small screens - Enhanced readability and spacing */
 @media (max-width: 480px) {
+  .footer-bottom {
+    padding-top: 2rem;
+    margin-top: 2rem;
+  }
+  
+  .footer-bottom-content {
+    gap: 1.5rem; /* Increased from 1rem for better separation */
+  }
+  
   .brand-text {
     font-size: clamp(1.2rem, 5vw, 2.5rem);
     letter-spacing: clamp(0.1rem, 0.8vw, 0.4rem);
@@ -1156,14 +1281,10 @@
     line-height: 1.25;
   }
   
-  .footer-bottom-content {
-    gap: 1rem;
-  }
-  
   .contact-email-link {
-    padding: 0.4rem 0.75rem;
+    padding: 0.5rem 0.875rem; /* Increased padding */
     font-size: 0.75rem;
-    border-radius: 0.5rem;
+    border-radius: 0.75rem; /* Increased border radius */
   }
   
   .contact-email-text {
@@ -1171,8 +1292,8 @@
   }
   
   .contact-email-icon {
-    width: 0.75rem;
-    height: 0.75rem;
+    width: 0.875rem; /* Increased from 0.75rem */
+    height: 0.875rem;
   }
   
   .copyright-text {
@@ -1181,18 +1302,20 @@
   
   .legal-link {
     font-size: 0.8rem;
+    padding: 0.25rem 0; /* Added padding for better touch targets */
   }
   
   .system-status-indicator {
-    padding: 0.25rem 0.5rem;
+    padding: 0.375rem 0.75rem; /* Increased padding */
+    border-radius: 0.875rem; /* Increased border radius */
   }
   
   .status-text {
-    font-size: 0.65rem;
+    font-size: 0.7rem; /* Increased from 0.65rem */
   }
   
   .status-dot-container {
-    width: 0.4rem;
-    height: 0.4rem;
+    width: 0.45rem; /* Slightly increased */
+    height: 0.45rem;
   }
 }
