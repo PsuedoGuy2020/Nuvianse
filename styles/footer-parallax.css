@@ -322,14 +322,15 @@
   background: rgba(255, 255, 255, 0.03);
 }
 
-/* Social Icons Linear - Enhanced with better visual hierarchy */
+/* Social Icons Linear - Enhanced with perfect spacing and alignment */
 .social-icons-linear {
   display: flex;
-  gap: 0.75rem;
-  margin-top: 1rem;
+  gap: 1rem;
+  margin-top: 1.25rem;
   justify-content: flex-start;
   align-items: center;
   position: relative;
+  padding: 0.5rem 0;
 }
 
 /* Add subtle connecting line between icons */
@@ -353,14 +354,14 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
+  width: 2.5rem;
+  height: 2.5rem;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.5rem;
+  border-radius: 0.625rem;
   color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
@@ -385,10 +386,10 @@
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.25);
   color: rgba(255, 255, 255, 0.95);
-  transform: translateY(-2px) scale(1.05);
+  transform: translateY(-3px) scale(1.08);
   box-shadow: 
-    0 4px 15px rgba(255, 255, 255, 0.1),
-    0 0 12px rgba(255, 255, 255, 0.05);
+    0 6px 20px rgba(255, 255, 255, 0.12),
+    0 0 15px rgba(255, 255, 255, 0.08);
 }
 
 .social-icon-compact:hover::before {
@@ -396,26 +397,26 @@
 }
 
 .social-icon-svg {
-  width: 1rem;
-  height: 1rem;
-  transition: all 0.3s ease;
+  width: 1.125rem;
+  height: 1.125rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 1;
   position: relative;
 }
 
 .social-icon-compact:hover .social-icon-svg {
-  transform: scale(1.1);
+  transform: scale(1.15);
 }
 
-/* Enhanced platform-specific hover effects */
+/* Enhanced platform-specific hover effects with better spacing */
 .social-icon-compact:nth-child(1):hover {
   /* Twitter */
   background: rgba(29, 161, 242, 0.15);
   border-color: rgba(29, 161, 242, 0.3);
   color: #1da1f2;
   box-shadow: 
-    0 4px 15px rgba(29, 161, 242, 0.2),
-    0 0 12px rgba(29, 161, 242, 0.1);
+    0 6px 20px rgba(29, 161, 242, 0.25),
+    0 0 15px rgba(29, 161, 242, 0.15);
 }
 
 .social-icon-compact:nth-child(2):hover {
@@ -424,8 +425,8 @@
   border-color: rgba(255, 255, 255, 0.3);
   color: #ffffff;
   box-shadow: 
-    0 4px 15px rgba(255, 255, 255, 0.2),
-    0 0 12px rgba(255, 255, 255, 0.1);
+    0 6px 20px rgba(255, 255, 255, 0.25),
+    0 0 15px rgba(255, 255, 255, 0.15);
 }
 
 .social-icon-compact:nth-child(3):hover {
@@ -434,8 +435,8 @@
   border-color: rgba(0, 119, 181, 0.3);
   color: #0077b5;
   box-shadow: 
-    0 4px 15px rgba(0, 119, 181, 0.2),
-    0 0 12px rgba(0, 119, 181, 0.1);
+    0 6px 20px rgba(0, 119, 181, 0.25),
+    0 0 15px rgba(0, 119, 181, 0.15);
 }
 
 .social-icon-compact:nth-child(4):hover {
@@ -447,8 +448,8 @@
   border-color: rgba(225, 48, 108, 0.3);
   color: #e1306c;
   box-shadow: 
-    0 4px 15px rgba(225, 48, 108, 0.2),
-    0 0 12px rgba(225, 48, 108, 0.1);
+    0 6px 20px rgba(225, 48, 108, 0.25),
+    0 0 15px rgba(225, 48, 108, 0.15);
 }
 
 /* Smart Brand Container - Intelligent layout system */
@@ -659,7 +660,7 @@
   transform: translateY(-2px);
 }
 
-/* Responsive Design - Smart breakpoints */
+/* Responsive Design - Smart breakpoints with optimized social spacing */
 @media (max-width: 1024px) {
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -682,17 +683,18 @@
   }
   
   .social-icons-linear {
-    gap: 0.625rem;
+    gap: 0.875rem;
+    margin-top: 1rem;
   }
   
   .social-icon-compact {
-    width: 2rem;
-    height: 2rem;
+    width: 2.25rem;
+    height: 2.25rem;
   }
   
   .social-icon-svg {
-    width: 0.875rem;
-    height: 0.875rem;
+    width: 1rem;
+    height: 1rem;
   }
   
   .disclaimer-text {
@@ -736,19 +738,20 @@
   
   .see-it-live-column {
     grid-column: 1 / -1;
-    max-width: 300px;
+    max-width: 320px;
     margin: 0 auto;
   }
   
   .demo-form-compact {
-    max-width: 250px;
+    max-width: 280px;
     margin: 0 auto;
   }
   
   .social-icons-linear {
-    max-width: 200px;
+    max-width: 240px;
     margin: 1rem auto 0;
     justify-content: center;
+    gap: 0.75rem;
   }
   
   .privacy-disclaimer {
@@ -789,7 +792,7 @@
   }
   
   .see-it-live-column {
-    max-width: 280px;
+    max-width: 300px;
   }
   
   .demo-description-compact {
@@ -798,6 +801,18 @@
   
   .social-icons-linear {
     justify-content: center;
+    gap: 0.625rem;
+    max-width: 200px;
+  }
+  
+  .social-icon-compact {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .social-icon-svg {
+    width: 0.875rem;
+    height: 0.875rem;
   }
   
   .disclaimer-text {
@@ -836,11 +851,13 @@
   .social-icons-linear {
     gap: 0.5rem;
     max-width: 180px;
+    margin-top: 0.875rem;
   }
   
   .social-icon-compact {
     width: 1.875rem;
     height: 1.875rem;
+    border-radius: 0.5rem;
   }
   
   .social-icon-svg {
