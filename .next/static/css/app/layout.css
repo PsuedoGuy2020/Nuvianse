@@ -1435,6 +1435,9 @@ video {
 .items-stretch {
   align-items: stretch;
 }
+.justify-start {
+  justify-content: flex-start;
+}
 .justify-center {
   justify-content: center;
 }
@@ -1780,6 +1783,12 @@ video {
 }
 .bg-purple-500\/40 {
   background-color: rgb(168 85 247 / 0.4);
+}
+.bg-white\/20 {
+  background-color: rgb(255 255 255 / 0.2);
+}
+.bg-white\/30 {
+  background-color: rgb(255 255 255 / 0.3);
 }
 .bg-gradient-to-br {
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));

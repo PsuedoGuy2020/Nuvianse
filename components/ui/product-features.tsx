@@ -43,26 +43,26 @@ const features = [
 
 export function ProductFeatures() {
   const [activeIndex, setActiveIndex] = useState(0)
+  const [isSticky, setIsSticky] = useState(false)
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([])
   const containerRef = useRef<HTMLDivElement>(null)
-  const [isInView, setIsInView] = useState(false)
+  const imageContainerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!containerRef.current) return
+      if (!containerRef.current || !imageContainerRef.current) return
 
       const containerRect = containerRef.current.getBoundingClientRect()
-      const containerTop = containerRect.top
-      const containerBottom = containerRect.bottom
+      const imageContainerRect = imageContainerRef.current.getBoundingClientRect()
       const viewportHeight = window.innerHeight
+      const headerHeight = 80 // Approximate header height
 
-      // Check if container is in view
-      const inView = containerTop < viewportHeight && containerBottom > 0
-      setIsInView(inView)
+      // Check if image container should be sticky
+      const shouldBeSticky = containerRect.top <= headerHeight && containerRect.bottom > viewportHeight
+      setIsSticky(shouldBeSticky)
 
-      // Only process scroll events when the container is in view
-      if (inView) {
-        // Find which section is currently most visible
+      // Only process feature detection when container is in view
+      if (containerRect.top < viewportHeight && containerRect.bottom > 0) {
         let maxVisibleSection = 0
         let maxVisibleHeight = 0
 
@@ -70,12 +70,16 @@ export function ProductFeatures() {
           if (!sectionRef) return
 
           const rect = sectionRef.getBoundingClientRect()
-          const sectionTop = Math.max(rect.top, 0)
+          const sectionTop = Math.max(rect.top, headerHeight)
           const sectionBottom = Math.min(rect.bottom, viewportHeight)
           const visibleHeight = Math.max(0, sectionBottom - sectionTop)
 
-          if (visibleHeight > maxVisibleHeight) {
-            maxVisibleHeight = visibleHeight
+          // Give preference to sections that are more centered in viewport
+          const centerDistance = Math.abs((rect.top + rect.bottom) / 2 - viewportHeight / 2)
+          const adjustedHeight = visibleHeight - (centerDistance * 0.1)
+
+          if (adjustedHeight > maxVisibleHeight) {
+            maxVisibleHeight = adjustedHeight
             maxVisibleSection = index
           }
         })
@@ -128,7 +132,7 @@ export function ProductFeatures() {
         <div className="flex flex-col lg:flex-row min-h-[75vh] gap-4">
           
           {/* Left Side - Features List */}
-          <div className="w-full lg:w-1/2 flex flex-col justify-center">
+          <div className="w-full lg:w-1/2 flex flex-col justify-start">
             {features.map((feature, index) => (
               <div
                 key={feature.id}
@@ -191,39 +195,42 @@ export function ProductFeatures() {
             ))}
           </div>
 
-          {/* Right Side - Stacked Images */}
+          {/* Right Side - Sticky Image Container */}
           <div className="w-full lg:w-1/2 relative">
-            <div className="sticky top-16 h-[60vh] relative">
+            <div 
+              ref={imageContainerRef}
+              className={cn(
+                "w-full h-[60vh] relative transition-all duration-300 ease-out",
+                isSticky 
+                  ? "sticky top-20 z-30" 
+                  : "relative top-0"
+              )}
+            >
               
-              {/* Image Container with Perspective */}
-              <div className="relative w-full h-full perspective-1000">
-                
-                {/* Background Glow Effect */}
-                <div 
-                  className={cn(
-                    "absolute inset-0 rounded-2xl transition-all duration-700 blur-3xl",
-                    `bg-gradient-to-br ${features[activeIndex]?.gradient} opacity-20`
-                  )}
-                  style={{
-                    transform: 'scale(1.1)',
-                  }}
-                />
+              {/* Background Glow Effect */}
+              <div 
+                className={cn(
+                  "absolute inset-0 rounded-2xl transition-all duration-1000 blur-3xl",
+                  `bg-gradient-to-br ${features[activeIndex]?.gradient} opacity-20`
+                )}
+                style={{
+                  transform: 'scale(1.1)',
+                }}
+              />
 
-                {/* Stacked Images */}
+              {/* Image Stack Container */}
+              <div className="relative w-full h-full rounded-2xl overflow-hidden">
+                
+                {/* All Images Stacked */}
                 {features.map((feature, index) => (
                   <div
                     key={feature.id}
                     className={cn(
-                      "absolute inset-0 transition-all duration-700 rounded-2xl overflow-hidden",
+                      "absolute inset-0 transition-all duration-1000 ease-out",
                       index === activeIndex 
-                        ? "opacity-100 z-20 transform-none" 
-                        : "opacity-0 z-10",
-                      index < activeIndex && "transform translate-y-4 scale-95",
-                      index > activeIndex && "transform -translate-y-4 scale-95"
+                        ? "opacity-100 z-20" 
+                        : "opacity-0 z-10"
                     )}
-                    style={{
-                      transformStyle: 'preserve-3d',
-                    }}
                   >
                     {/* Image */}
                     <img
@@ -233,44 +240,38 @@ export function ProductFeatures() {
                       loading="lazy"
                     />
                     
-                    {/* Gradient Overlay */}
+                    {/* Subtle Gradient Overlay */}
                     <div 
                       className={cn(
-                        "absolute inset-0 transition-opacity duration-700",
-                        `bg-gradient-to-br ${feature.gradient} opacity-20`
+                        "absolute inset-0 transition-opacity duration-1000",
+                        `bg-gradient-to-br ${feature.gradient} opacity-10`
                       )}
                     />
                     
-                    {/* Border Glow */}
+                    {/* Minimal Border Effect */}
                     <div 
                       className={cn(
-                        "absolute inset-0 rounded-2xl transition-all duration-700",
+                        "absolute inset-0 rounded-2xl transition-all duration-1000",
                         index === activeIndex 
-                          ? `ring-2 ring-opacity-50 bg-gradient-to-r ${feature.gradient}` 
-                          : "ring-1 ring-gray-600 ring-opacity-30"
+                          ? "ring-1 ring-white/20" 
+                          : "ring-0"
                       )}
-                      style={{
-                        background: index === activeIndex 
-                          ? `linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%)` 
-                          : 'transparent'
-                      }}
                     />
                   </div>
                 ))}
 
-                {/* Floating Elements */}
-                <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-500 rounded-full opacity-60 animate-pulse" />
-                <div className="absolute -bottom-6 -left-6 w-6 h-6 bg-purple-500 rounded-full opacity-40 animate-pulse" style={{ animationDelay: '1s' }} />
-                <div className="absolute top-1/3 -right-8 w-4 h-4 bg-emerald-500 rounded-full opacity-50 animate-pulse" style={{ animationDelay: '2s' }} />
+                {/* Subtle Corner Accents */}
+                <div className="absolute top-4 right-4 w-2 h-2 bg-white/30 rounded-full opacity-60" />
+                <div className="absolute bottom-4 left-4 w-2 h-2 bg-white/20 rounded-full opacity-40" />
               </div>
 
-              {/* Progress Indicator */}
-              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
+              {/* Minimal Progress Indicator */}
+              <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
                 {features.map((_, index) => (
                   <div
                     key={index}
                     className={cn(
-                      "w-2 h-2 rounded-full transition-all duration-300",
+                      "w-2 h-2 rounded-full transition-all duration-500",
                       index === activeIndex 
                         ? "bg-white scale-125" 
                         : "bg-gray-600 scale-100"
@@ -278,6 +279,21 @@ export function ProductFeatures() {
                   />
                 ))}
               </div>
+
+              {/* Feature Title Overlay (appears when sticky) */}
+              {isSticky && (
+                <div className="absolute bottom-6 left-6 right-6 bg-black/60 backdrop-blur-sm rounded-lg p-4 transition-all duration-500">
+                  <h4 className="text-white font-semibold text-lg mb-1">
+                    {features[activeIndex]?.title}
+                  </h4>
+                  <div 
+                    className={cn(
+                      "h-1 w-12 rounded-full transition-all duration-500",
+                      `bg-gradient-to-r ${features[activeIndex]?.gradient}`
+                    )}
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>
@@ -294,10 +310,6 @@ export function ProductFeatures() {
           100% {
             background-position: 40px 40px, 40px 40px;
           }
-        }
-        
-        .perspective-1000 {
-          perspective: 1000px;
         }
       `}</style>
     </section>
