@@ -3,7 +3,7 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Github, Twitter, Linkedin, Instagram, Mail, ArrowRight, Copy, Check } from 'lucide-react'
+import { Github, Twitter, Linkedin, Instagram, Mail, ArrowRight } from 'lucide-react'
 import { useParallaxEffect } from '@/hooks/use-parallax'
 import '@/styles/footer-parallax.css'
 
@@ -11,7 +11,6 @@ export function Footer() {
   useParallaxEffect()
   const [email, setEmail] = useState('')
   const [isSubscribed, setIsSubscribed] = useState(false)
-  const [isCopied, setIsCopied] = useState(false)
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault()
@@ -19,16 +18,6 @@ export function Footer() {
       setIsSubscribed(true)
       setEmail('')
       setTimeout(() => setIsSubscribed(false), 3000)
-    }
-  }
-
-  const handleCopyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText('hello@nuviance.com')
-      setIsCopied(true)
-      setTimeout(() => setIsCopied(false), 2000)
-    } catch (err) {
-      console.error('Failed to copy email:', err)
     }
   }
 
@@ -121,32 +110,6 @@ export function Footer() {
           {/* See It Live Column - More compelling and action-oriented */}
           <div className="see-it-live-column">
             <h3 className="text-xl font-semibold text-white/90 mb-6">See It Live</h3>
-            
-            {/* Contact Email - Modern placement above demo form */}
-            <div className="contact-email-section">
-              <p className="contact-label">Get in touch</p>
-              <div className="email-display-container">
-                <a 
-                  href="mailto:hello@nuviance.com" 
-                  className="email-display-link"
-                  title="Send us an email"
-                >
-                  <Mail className="email-display-icon" />
-                  <span className="email-display-text">hello@nuviance.com</span>
-                </a>
-                <button 
-                  onClick={handleCopyEmail}
-                  className="copy-email-button"
-                  title="Copy email address"
-                >
-                  {isCopied ? (
-                    <Check className="copy-icon success" />
-                  ) : (
-                    <Copy className="copy-icon" />
-                  )}
-                </button>
-              </div>
-            </div>
             
             {/* Demo Request Form - Updated content */}
             <div className="demo-request-compact">

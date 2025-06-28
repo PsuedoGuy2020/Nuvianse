@@ -81,163 +81,6 @@
   100% { width: 60%; }
 }
 
-/* Contact Email Section - Modern placement and styling */
-.contact-email-section {
-  margin-bottom: 1.5rem;
-  padding: 1rem;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 0.75rem;
-  backdrop-filter: blur(15px);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Add subtle animated border */
-.contact-email-section::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  padding: 1px;
-  background: linear-gradient(45deg, 
-    transparent 0%, 
-    rgba(99, 102, 241, 0.3) 25%, 
-    transparent 50%, 
-    rgba(139, 92, 246, 0.3) 75%, 
-    transparent 100%
-  );
-  border-radius: 0.75rem;
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask-composite: exclude;
-  animation: borderGlow 3s ease-in-out infinite;
-}
-
-@keyframes borderGlow {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.8; }
-}
-
-.contact-label {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.75rem;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 0.5rem;
-  display: block;
-}
-
-.email-display-container {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  position: relative;
-}
-
-.email-display-link {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: rgba(255, 255, 255, 0.9);
-  text-decoration: none;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  flex: 1;
-  padding: 0.25rem 0;
-  border-radius: 0.375rem;
-  position: relative;
-}
-
-.email-display-link:hover {
-  color: rgba(99, 102, 241, 0.9);
-  transform: translateX(2px);
-}
-
-.email-display-link:hover .email-display-icon {
-  color: rgba(99, 102, 241, 0.8);
-  transform: scale(1.1);
-}
-
-.email-display-icon {
-  width: 1rem;
-  height: 1rem;
-  color: rgba(255, 255, 255, 0.7);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  flex-shrink: 0;
-}
-
-.email-display-text {
-  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
-  letter-spacing: 0.025em;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.copy-email-button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 2rem;
-  height: 2rem;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.375rem;
-  color: rgba(255, 255, 255, 0.6);
-  cursor: pointer;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
-  position: relative;
-  overflow: hidden;
-}
-
-.copy-email-button::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.1) 0%, 
-    transparent 50%, 
-    rgba(255, 255, 255, 0.05) 100%
-  );
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.copy-email-button:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
-  color: rgba(255, 255, 255, 0.9);
-  transform: translateY(-1px) scale(1.05);
-  box-shadow: 
-    0 4px 12px rgba(255, 255, 255, 0.1),
-    0 0 20px rgba(255, 255, 255, 0.05);
-}
-
-.copy-email-button:hover::before {
-  opacity: 1;
-}
-
-.copy-email-button:active {
-  transform: translateY(0) scale(0.98);
-}
-
-.copy-icon {
-  width: 0.875rem;
-  height: 0.875rem;
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.copy-icon.success {
-  color: rgba(16, 185, 129, 0.9);
-  animation: successPulse 0.5s ease-out;
-}
-
-@keyframes successPulse {
-  0% { transform: scale(0.8); opacity: 0; }
-  50% { transform: scale(1.2); opacity: 1; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
 .demo-request-compact {
   display: flex;
   flex-direction: column;
@@ -817,7 +660,7 @@
   transform: translateY(-2px);
 }
 
-/* Responsive Design - Smart breakpoints with optimized email and social spacing */
+/* Responsive Design - Smart breakpoints with optimized social spacing */
 @media (max-width: 1024px) {
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -837,14 +680,6 @@
   .brand-text {
     font-size: clamp(2rem, 7vw, 5.5rem);
     letter-spacing: clamp(0.4rem, 1.5vw, 1.2rem);
-  }
-  
-  .contact-email-section {
-    padding: 0.875rem;
-  }
-  
-  .email-display-text {
-    font-size: 0.8rem;
   }
   
   .social-icons-linear {
@@ -907,25 +742,6 @@
     margin: 0 auto;
   }
   
-  .contact-email-section {
-    padding: 0.75rem;
-    margin-bottom: 1.25rem;
-  }
-  
-  .email-display-text {
-    font-size: 0.75rem;
-  }
-  
-  .copy-email-button {
-    width: 1.75rem;
-    height: 1.75rem;
-  }
-  
-  .copy-icon {
-    width: 0.75rem;
-    height: 0.75rem;
-  }
-  
   .demo-form-compact {
     max-width: 280px;
     margin: 0 auto;
@@ -979,22 +795,6 @@
     max-width: 300px;
   }
   
-  .contact-email-section {
-    padding: 0.625rem;
-  }
-  
-  .email-display-container {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.5rem;
-  }
-  
-  .copy-email-button {
-    align-self: flex-end;
-    width: 1.5rem;
-    height: 1.5rem;
-  }
-  
   .demo-description-compact {
     font-size: 0.8rem;
   }
@@ -1031,14 +831,6 @@
   .logo-wrapper {
     width: clamp(4rem, 18vw, 8rem);
     height: clamp(4rem, 18vw, 8rem);
-  }
-  
-  .contact-email-section {
-    padding: 0.5rem;
-  }
-  
-  .email-display-text {
-    font-size: 0.7rem;
   }
   
   .email-input-compact {
