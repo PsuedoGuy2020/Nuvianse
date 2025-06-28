@@ -149,31 +149,31 @@ export function ProductFeatures() {
                   if (index === 0) firstFeatureRef.current = el
                   if (index === features.length - 1) lastFeatureRef.current = el
                 }}
-                className="min-h-[25vh] flex items-center py-1"
+                className="min-h-[30vh] flex items-center py-2"
               >
                 <div
                   className={cn(
-                    "transition-all duration-500 ease-out w-full",
+                    "transition-all duration-700 transform w-full",
                     index === activeIndex
-                      ? "opacity-100 translate-x-0"
-                      : "opacity-40 translate-x-4"
+                      ? "opacity-100 translate-x-0 scale-100"
+                      : "opacity-30 translate-x-8 scale-95"
                   )}
                 >
                   {/* Feature Number */}
                   <div className="flex items-center mb-3">
                     <div 
                       className={cn(
-                        "w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-xs mr-2 transition-all duration-400",
+                        "w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-xs mr-2 transition-all duration-500",
                         index === activeIndex 
-                          ? `bg-gradient-to-r ${feature.gradient} shadow-lg` 
-                          : "bg-gray-700"
+                          ? `bg-gradient-to-r ${feature.gradient} shadow-lg scale-110` 
+                          : "bg-gray-700 scale-100"
                       )}
                     >
                       {String(index + 1).padStart(2, '0')}
                     </div>
                     <div 
                       className={cn(
-                        "h-px flex-1 transition-all duration-400",
+                        "h-px flex-1 transition-all duration-500",
                         index === activeIndex 
                           ? `bg-gradient-to-r ${feature.gradient} opacity-60` 
                           : "bg-gray-600 opacity-30"
@@ -193,7 +193,7 @@ export function ProductFeatures() {
                     {/* Feature Highlight Bar */}
                     <div 
                       className={cn(
-                        "mt-3 h-1 rounded-full transition-all duration-500",
+                        "mt-3 h-1 rounded-full transition-all duration-700",
                         index === activeIndex 
                           ? `bg-gradient-to-r ${feature.gradient} w-16 opacity-100` 
                           : "bg-gray-600 w-8 opacity-50"
@@ -207,7 +207,7 @@ export function ProductFeatures() {
 
           {/* Right Side - Images Container */}
           <div className="w-full lg:w-1/2 relative">
-            {/* Images Container with Dynamic Positioning */}
+            {/* Images Container with Dynamic Positioning - Aligned with first feature by default */}
             <div 
               className={cn(
                 "w-full h-[60vh] transition-all duration-300 ease-out",
@@ -216,30 +216,42 @@ export function ProductFeatures() {
                 stickyState === 'sticky' && "fixed top-20 right-4 lg:right-8 z-30 w-[calc(50%-2rem)] lg:w-[calc(50%-4rem)]",
                 stickyState === 'after' && "relative"
               )}
+              style={{
+                // When not sticky, position images to align with the first feature
+                marginTop: stickyState === 'before' ? '0' : undefined
+              }}
             >
-              {/* Image Container - Static positioning, only opacity changes */}
-              <div className="relative w-full h-full">
+              {/* Image Container with Perspective */}
+              <div className="relative w-full h-full perspective-1000">
                 
-                {/* Background Glow Effect - Subtle and smooth */}
+                {/* Background Glow Effect */}
                 <div 
                   className={cn(
-                    "absolute inset-0 rounded-2xl transition-all duration-800 blur-3xl",
-                    `bg-gradient-to-br ${features[activeIndex]?.gradient} opacity-15`
+                    "absolute inset-0 rounded-2xl transition-all duration-700 blur-3xl",
+                    `bg-gradient-to-br ${features[activeIndex]?.gradient} opacity-20`
                   )}
+                  style={{
+                    transform: 'scale(1.1)',
+                  }}
                 />
 
-                {/* Stacked Images - Only opacity transitions, no scaling or movement */}
+                {/* Stacked Images */}
                 {features.map((feature, index) => (
                   <div
                     key={feature.id}
                     className={cn(
-                      "absolute inset-0 transition-opacity duration-600 ease-in-out rounded-2xl overflow-hidden",
+                      "absolute inset-0 transition-all duration-700 rounded-2xl overflow-hidden",
                       index === activeIndex 
-                        ? "opacity-100 z-20" 
-                        : "opacity-0 z-10"
+                        ? "opacity-100 z-20 transform-none" 
+                        : "opacity-0 z-10",
+                      index < activeIndex && "transform translate-y-4 scale-95",
+                      index > activeIndex && "transform -translate-y-4 scale-95"
                     )}
+                    style={{
+                      transformStyle: 'preserve-3d',
+                    }}
                   >
-                    {/* Image - No transforms, completely static */}
+                    {/* Image */}
                     <img
                       src={feature.image}
                       alt={feature.title}
@@ -247,41 +259,47 @@ export function ProductFeatures() {
                       loading="lazy"
                     />
                     
-                    {/* Gradient Overlay - Subtle and smooth */}
+                    {/* Gradient Overlay */}
                     <div 
                       className={cn(
-                        "absolute inset-0 transition-opacity duration-600",
-                        `bg-gradient-to-br ${feature.gradient} opacity-15`
+                        "absolute inset-0 transition-opacity duration-700",
+                        `bg-gradient-to-br ${feature.gradient} opacity-20`
                       )}
                     />
                     
-                    {/* Border Glow - Minimal effect */}
+                    {/* Border Glow */}
                     <div 
                       className={cn(
-                        "absolute inset-0 rounded-2xl transition-all duration-600",
+                        "absolute inset-0 rounded-2xl transition-all duration-700",
                         index === activeIndex 
-                          ? "ring-1 ring-white ring-opacity-20" 
-                          : "ring-1 ring-gray-600 ring-opacity-10"
+                          ? `ring-2 ring-opacity-50 bg-gradient-to-r ${feature.gradient}` 
+                          : "ring-1 ring-gray-600 ring-opacity-30"
                       )}
+                      style={{
+                        background: index === activeIndex 
+                          ? `linear-gradient(135deg, transparent 0%, rgba(255,255,255,0.1) 50%, transparent 100%)` 
+                          : 'transparent'
+                      }}
                     />
                   </div>
                 ))}
 
-                {/* Minimal Floating Elements - Reduced and subtle */}
-                <div className="absolute -top-2 -right-2 w-4 h-4 bg-blue-400 rounded-full opacity-30 animate-pulse" />
-                <div className="absolute -bottom-3 -left-3 w-3 h-3 bg-purple-400 rounded-full opacity-20 animate-pulse" style={{ animationDelay: '1s' }} />
+                {/* Floating Elements */}
+                <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-500 rounded-full opacity-60 animate-pulse" />
+                <div className="absolute -bottom-6 -left-6 w-6 h-6 bg-purple-500 rounded-full opacity-40 animate-pulse" style={{ animationDelay: '1s' }} />
+                <div className="absolute top-1/3 -right-8 w-4 h-4 bg-emerald-500 rounded-full opacity-50 animate-pulse" style={{ animationDelay: '2s' }} />
               </div>
 
-              {/* Progress Indicator - Clean and minimal */}
-              <div className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 flex space-x-2">
+              {/* Progress Indicator */}
+              <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2">
                 {features.map((_, index) => (
                   <div
                     key={index}
                     className={cn(
-                      "w-2 h-2 rounded-full transition-all duration-400",
+                      "w-2 h-2 rounded-full transition-all duration-300",
                       index === activeIndex 
-                        ? "bg-white opacity-100" 
-                        : "bg-gray-500 opacity-40"
+                        ? "bg-white scale-125" 
+                        : "bg-gray-600 scale-100"
                     )}
                   />
                 ))}
@@ -302,6 +320,10 @@ export function ProductFeatures() {
           100% {
             background-position: 40px 40px, 40px 40px;
           }
+        }
+        
+        .perspective-1000 {
+          perspective: 1000px;
         }
       `}</style>
     </section>
