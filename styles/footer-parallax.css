@@ -452,7 +452,7 @@
     0 0 20px rgba(225, 48, 108, 0.2);
 }
 
-/* Smart Brand Container - Intelligent layout system */
+/* Smart Brand Container - Enhanced for logo prominence */
 .brand-container {
   margin: 3rem 0 2rem;
   padding: 2rem;
@@ -469,10 +469,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: clamp(2rem, 5vw, 6rem);
+  gap: clamp(3rem, 6vw, 8rem); /* Increased gap for better logo prominence */
   width: 100%;
   max-width: 1200px;
-  padding: 1.5rem;
+  padding: 2rem; /* Increased padding for more breathing room */
   background: linear-gradient(135deg, 
     rgba(255, 255, 255, 0.03) 0%,
     rgba(255, 255, 255, 0.01) 50%,
@@ -486,42 +486,63 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
-/* Logo Wrapper - Smart sizing and positioning */
+/* Logo Wrapper - Made significantly larger than text */
 .logo-wrapper {
   flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: clamp(8rem, 20vw, 16rem);
-  height: clamp(8rem, 20vw, 16rem);
+  /* Logo is now 25% larger than before to be bigger than text */
+  width: clamp(10rem, 25vw, 20rem); /* Increased from 8-16rem to 10-20rem */
+  height: clamp(10rem, 25vw, 20rem); /* Increased from 8-16rem to 10-20rem */
   position: relative;
+  /* Add subtle glow effect to make logo more prominent */
+  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.1));
 }
 
 .brand-logo {
   width: 100% !important;
   height: 100% !important;
   object-fit: contain;
-  filter: brightness(1.1) contrast(1.05) drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
+  filter: brightness(1.15) contrast(1.08) drop-shadow(0 0 25px rgba(255, 255, 255, 0.15));
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Add subtle scale animation */
+  animation: logoGlow 4s ease-in-out infinite alternate;
+}
+
+/* Subtle breathing animation for logo */
+@keyframes logoGlow {
+  0% { 
+    filter: brightness(1.15) contrast(1.08) drop-shadow(0 0 25px rgba(255, 255, 255, 0.15));
+    transform: scale(1);
+  }
+  100% { 
+    filter: brightness(1.25) contrast(1.12) drop-shadow(0 0 35px rgba(255, 255, 255, 0.2));
+    transform: scale(1.02);
+  }
 }
 
 .brand-logo:hover {
-  filter: brightness(1.25) contrast(1.1) drop-shadow(0 0 30px rgba(255, 255, 255, 0.2));
-  transform: scale(1.05);
+  filter: brightness(1.3) contrast(1.15) drop-shadow(0 0 40px rgba(255, 255, 255, 0.25));
+  transform: scale(1.08); /* Increased hover scale */
+  animation-play-state: paused; /* Pause breathing animation on hover */
 }
 
-/* Text Wrapper - Balanced typography */
+/* Text Wrapper - Adjusted to complement larger logo */
 .text-wrapper {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  min-width: 0; /* Allows text to shrink if needed */
+  min-width: 0;
+  /* Add subtle offset to balance with larger logo */
+  margin-left: clamp(1rem, 3vw, 2rem);
 }
 
 .brand-text {
-  font-size: clamp(2.5rem, 8vw, 7rem);
-  letter-spacing: clamp(0.5rem, 2vw, 1.5rem);
+  /* Slightly reduced text size to make logo more prominent */
+  font-size: clamp(2.2rem, 7vw, 6rem); /* Reduced from 2.5-7rem to 2.2-6rem */
+  letter-spacing: clamp(0.4rem, 1.8vw, 1.2rem); /* Slightly reduced letter spacing */
   background: linear-gradient(135deg,
     #ffffff 0%,
     #e2e8f0 25%,
@@ -532,7 +553,7 @@
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  opacity: 0.95;
+  opacity: 0.92; /* Slightly reduced opacity to let logo dominate */
   font-weight: 900;
   text-transform: uppercase;
   white-space: nowrap;
@@ -541,11 +562,36 @@
     0 5px 15px rgba(0, 0, 0, 0.1),
     0 10px 25px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
+  position: relative;
+}
+
+/* Add subtle text glow effect */
+.brand-text::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0.1) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  z-index: -1;
+  filter: blur(2px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 .brand-text:hover {
   opacity: 1;
-  transform: translateX(5px);
+  transform: translateX(8px); /* Increased movement */
+}
+
+.brand-text:hover::after {
+  opacity: 1;
 }
 
 /* Footer Bottom - Smart three-column layout with reorganized content */
@@ -947,7 +993,7 @@
   transform: translateY(-2px);
 }
 
-/* Responsive Design - Smart breakpoints with optimized layouts */
+/* Responsive Design - Enhanced for larger logo */
 @media (max-width: 1024px) {
   .footer-grid {
     grid-template-columns: repeat(2, 1fr);
@@ -955,18 +1001,23 @@
   }
   
   .brand-content {
-    gap: clamp(1.5rem, 4vw, 4rem);
-    padding: 1.25rem;
+    gap: clamp(2rem, 5vw, 6rem); /* Adjusted for tablet */
+    padding: 1.75rem;
   }
   
   .logo-wrapper {
-    width: clamp(7rem, 18vw, 14rem);
-    height: clamp(7rem, 18vw, 14rem);
+    /* Maintain logo prominence on tablet */
+    width: clamp(9rem, 22vw, 18rem);
+    height: clamp(9rem, 22vw, 18rem);
   }
   
   .brand-text {
-    font-size: clamp(2rem, 7vw, 5.5rem);
-    letter-spacing: clamp(0.4rem, 1.5vw, 1.2rem);
+    font-size: clamp(2rem, 6.5vw, 5rem);
+    letter-spacing: clamp(0.35rem, 1.6vw, 1rem);
+  }
+  
+  .text-wrapper {
+    margin-left: clamp(0.75rem, 2.5vw, 1.5rem);
   }
   
   .social-icons-linear {
@@ -1012,22 +1063,31 @@
 @media (max-width: 768px) {
   .brand-content {
     flex-direction: column;
-    gap: 2rem;
+    gap: 2.5rem; /* Increased gap for mobile stacking */
     text-align: center;
+    padding: 1.5rem;
   }
   
   .text-wrapper {
     justify-content: center;
+    margin-left: 0; /* Reset margin for centered layout */
   }
   
   .logo-wrapper {
-    width: clamp(6rem, 25vw, 12rem);
-    height: clamp(6rem, 25vw, 12rem);
+    /* Logo remains prominent even on mobile */
+    width: clamp(8rem, 30vw, 15rem);
+    height: clamp(8rem, 30vw, 15rem);
+    /* Add order to ensure logo appears first */
+    order: 1;
+  }
+  
+  .text-wrapper {
+    order: 2;
   }
   
   .brand-text {
-    font-size: clamp(1.8rem, 8vw, 4rem);
-    letter-spacing: clamp(0.3rem, 1.2vw, 0.8rem);
+    font-size: clamp(1.6rem, 7vw, 3.5rem);
+    letter-spacing: clamp(0.25rem, 1vw, 0.7rem);
   }
   
   .footer-bottom-content {
@@ -1108,18 +1168,19 @@
   }
   
   .brand-content {
-    padding: 1rem;
-    gap: 1.5rem;
+    padding: 1.25rem;
+    gap: 2rem;
   }
   
   .logo-wrapper {
-    width: clamp(5rem, 20vw, 10rem);
-    height: clamp(5rem, 20vw, 10rem);
+    /* Logo still maintains good size on small screens */
+    width: clamp(7rem, 25vw, 12rem);
+    height: clamp(7rem, 25vw, 12rem);
   }
   
   .brand-text {
-    font-size: clamp(1.5rem, 6vw, 3rem);
-    letter-spacing: clamp(0.2rem, 1vw, 0.6rem);
+    font-size: clamp(1.4rem, 6vw, 2.8rem);
+    letter-spacing: clamp(0.2rem, 0.8vw, 0.5rem);
   }
   
   .see-it-live-column {
@@ -1192,16 +1253,22 @@
   }
 }
 
-/* Ultra-small screens */
+/* Ultra-small screens - Logo still prominent */
 @media (max-width: 480px) {
   .brand-text {
-    font-size: clamp(1.2rem, 5vw, 2.5rem);
-    letter-spacing: clamp(0.1rem, 0.8vw, 0.4rem);
+    font-size: clamp(1.2rem, 5vw, 2.2rem);
+    letter-spacing: clamp(0.15rem, 0.6vw, 0.35rem);
   }
   
   .logo-wrapper {
-    width: clamp(4rem, 18vw, 8rem);
-    height: clamp(4rem, 18vw, 8rem);
+    /* Logo maintains good presence even on very small screens */
+    width: clamp(6rem, 22vw, 10rem);
+    height: clamp(6rem, 22vw, 10rem);
+  }
+  
+  .brand-content {
+    gap: 1.75rem;
+    padding: 1rem;
   }
   
   .email-input-compact {
