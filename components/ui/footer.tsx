@@ -1,18 +1,73 @@
 'use client'
 
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { Github, Twitter, Linkedin, Instagram } from 'lucide-react'
+import { Github, Twitter, Linkedin, Instagram, Mail, ArrowRight, Star } from 'lucide-react'
 import { useParallaxEffect } from '@/hooks/use-parallax'
 import '@/styles/footer-parallax.css'
 
 export function Footer() {
   useParallaxEffect()
+  const [email, setEmail] = useState('')
+  const [isSubscribed, setIsSubscribed] = useState(false)
+
+  const handleSubscribe = (e: React.FormEvent) => {
+    e.preventDefault()
+    if (email) {
+      setIsSubscribed(true)
+      setEmail('')
+      setTimeout(() => setIsSubscribed(false), 3000)
+    }
+  }
 
   return (
     <footer className="footer-parallax w-full min-h-[600px] py-16 mt-20">
       <div className="footer-content container mx-auto px-4">
+        {/* Newsletter Section */}
+        <div className="newsletter-section">
+          <div className="newsletter-container">
+            <div className="newsletter-content">
+              <h3 className="newsletter-title">Stay Connected</h3>
+              <p className="newsletter-description">
+                Subscribe to our newsletter for the latest updates and insights.
+              </p>
+              
+              <form onSubmit={handleSubscribe} className="newsletter-form">
+                <div className="email-input-wrapper">
+                  <Mail className="email-icon" />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Enter your email"
+                    className="email-input"
+                    required
+                  />
+                </div>
+                <button 
+                  type="submit" 
+                  className="subscribe-button"
+                  disabled={isSubscribed}
+                >
+                  {isSubscribed ? (
+                    <>
+                      <span>Subscribed!</span>
+                      <div className="success-checkmark">✓</div>
+                    </>
+                  ) : (
+                    <>
+                      <span>Subscribe</span>
+                      <ArrowRight className="arrow-icon" />
+                    </>
+                  )}
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        {/* Main Footer Grid */}
         <div className="footer-grid mb-16">
           {/* About Column */}
           <div className="space-y-4">
@@ -95,45 +150,45 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Social Media Column */}
+          {/* Connect Column */}
           <div className="space-y-4">
             <h3 className="text-xl font-semibold text-white/90">Connect</h3>
-            <div className="flex flex-col space-y-4">
+            <div className="social-links-grid">
               <a
                 href="https://twitter.com/nuviance"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+                className="social-link-card"
               >
-                <Twitter className="h-5 w-5" />
-                <span>Twitter</span>
+                <Twitter className="social-icon" />
+                <span>Follow us on Twitter</span>
               </a>
               <a
                 href="https://github.com/nuviance"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+                className="social-link-card"
               >
-                <Github className="h-5 w-5" />
-                <span>GitHub</span>
+                <Star className="social-icon" />
+                <span>Star us on GitHub</span>
               </a>
               <a
                 href="https://linkedin.com/company/nuviance"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+                className="social-link-card"
               >
-                <Linkedin className="h-5 w-5" />
-                <span>LinkedIn</span>
+                <Linkedin className="social-icon" />
+                <span>Connect on LinkedIn</span>
               </a>
               <a
                 href="https://instagram.com/nuviance"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+                className="social-link-card"
               >
-                <Instagram className="h-5 w-5" />
-                <span>Instagram</span>
+                <Instagram className="social-icon" />
+                <span>Follow on Instagram</span>
               </a>
             </div>
           </div>
@@ -161,9 +216,27 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Copyright */}
-        <div className="text-center text-gray-400 text-sm mt-8">
-          <p>© {new Date().getFullYear()} Nuviance. All rights reserved.</p>
+        {/* Footer Bottom - Copyright and Legal */}
+        <div className="footer-bottom">
+          <div className="copyright-section">
+            <p className="copyright-text">
+              © {new Date().getFullYear()} Nuviance. All rights reserved.
+            </p>
+          </div>
+          
+          <div className="legal-links">
+            <Link href="/privacy" className="legal-link">
+              Privacy Policy
+            </Link>
+            <span className="legal-separator">•</span>
+            <Link href="/terms" className="legal-link">
+              Terms of Service
+            </Link>
+            <span className="legal-separator">•</span>
+            <Link href="/cookies" className="legal-link">
+              Cookie Policy
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
