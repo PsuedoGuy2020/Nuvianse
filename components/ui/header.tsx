@@ -136,14 +136,14 @@ export function Header() {
             </div>
             <span 
               className={cn(
-                "font-semibold text-purple-400 uppercase transition-all duration-700 ease-out",
-                showScrolledState ? "text-purple-300" : "text-purple-400"
+                "font-semibold uppercase transition-all duration-700 ease-out",
+                showScrolledState ? "text-white" : "text-black"
               )}
               style={{
                 fontSize: `${14 - (scrollProgress * 2)}px`,
                 opacity: 1 - (scrollProgress * 0.1),
                 // Add text glow when collapsed
-                textShadow: showScrolledState ? `0 0 8px rgba(168, 85, 247, ${glowIntensity})` : 'none',
+                textShadow: showScrolledState ? `0 0 8px rgba(255, 255, 255, ${glowIntensity})` : 'none',
               }}
             >
               NUVIANSE
