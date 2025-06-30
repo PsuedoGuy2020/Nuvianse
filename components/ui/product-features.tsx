@@ -97,7 +97,7 @@ export function ProductFeatures() {
   return (
     <section 
       ref={containerRef}
-      className="relative w-full bg-black text-white py-12 overflow-hidden"
+      className="relative w-full bg-black text-white py-20 overflow-hidden"
       style={{ minHeight: `${features.length * 100}vh` }} // Ensure enough scroll space
     >
       {/* Background Elements */}
@@ -117,9 +117,9 @@ export function ProductFeatures() {
       />
 
       {/* Section Header */}
-      <div className="container mx-auto px-4 mb-8 relative z-10">
+      <div className="container mx-auto px-4 mb-16 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
             AI Agent Capabilities
           </h2>
           <p className="text-lg text-gray-300 leading-relaxed">
@@ -130,7 +130,7 @@ export function ProductFeatures() {
 
       {/* Main Content Container */}
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-col lg:flex-row gap-8">
+        <div className="flex flex-col lg:flex-row gap-12">
           
           {/* Left Side - Features List */}
           <div className="w-full lg:w-1/2 flex flex-col">
@@ -140,57 +140,73 @@ export function ProductFeatures() {
                 ref={(el) => {
                   sectionRefs.current[index] = el
                 }}
-                className="min-h-[25vh] flex items-center py-4"
+                className="min-h-[30vh] flex items-center py-8"
               >
                 <div
                   suppressHydrationWarning
                   className={cn(
-                    "transition-all duration-500 transform w-full",
+                    "transition-all duration-700 transform w-full",
                     index === activeIndex
-                      ? "opacity-100 translate-x-0"
-                      : "opacity-40 translate-x-4"
+                      ? "opacity-100 translate-x-0 scale-100"
+                      : "opacity-40 translate-x-8 scale-95"
                   )}
                 >
                   {/* Feature Number */}
-                  <div className="flex items-center mb-3">
+                  <div className="flex items-center mb-6">
                     <div 
                       className={cn(
-                        "w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-xs mr-3 transition-all duration-300",
+                        "w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4 transition-all duration-500",
                         index === activeIndex 
-                          ? `bg-gradient-to-r ${feature.gradient} shadow-lg` 
-                          : "bg-gray-700"
+                          ? `bg-gradient-to-r ${feature.gradient} shadow-xl scale-110` 
+                          : "bg-gray-700 scale-100"
                       )}
                     >
                       {String(index + 1).padStart(2, '0')}
                     </div>
                     <div 
                       className={cn(
-                        "h-px flex-1 transition-all duration-300",
+                        "h-px flex-1 transition-all duration-500",
                         index === activeIndex 
-                          ? `bg-gradient-to-r ${feature.gradient} opacity-60` 
+                          ? `bg-gradient-to-r ${feature.gradient} opacity-80` 
                           : "bg-gray-600 opacity-30"
                       )}
                     />
                   </div>
 
                   {/* Feature Content */}
-                  <div className="pl-11">
-                    <h3 className="text-xl md:text-2xl font-bold mb-3 leading-tight">
+                  <div className="pl-16">
+                    <h3 className="text-2xl md:text-3xl font-bold mb-4 leading-tight">
                       {feature.title}
                     </h3>
-                    <p className="text-sm text-gray-300 leading-relaxed max-w-xl">
+                    <p className="text-gray-300 leading-relaxed max-w-xl text-base">
                       {feature.description}
                     </p>
                     
                     {/* Feature Highlight Bar */}
                     <div 
                       className={cn(
-                        "mt-4 h-1 rounded-full transition-all duration-500",
+                        "mt-6 h-1 rounded-full transition-all duration-700",
                         index === activeIndex 
-                          ? `bg-gradient-to-r ${feature.gradient} w-16 opacity-100` 
-                          : "bg-gray-600 w-8 opacity-50"
+                          ? `bg-gradient-to-r ${feature.gradient} w-24 opacity-100 shadow-lg` 
+                          : "bg-gray-600 w-12 opacity-50"
                       )}
                     />
+
+                    {/* Additional Info for Active Feature */}
+                    {index === activeIndex && (
+                      <div className="mt-6 opacity-0 animate-fadeIn">
+                        <div className="flex items-center gap-4 text-sm text-gray-400">
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
+                            <span>Active 24/7</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <div className="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                            <span>Real-time Processing</span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -203,7 +219,7 @@ export function ProductFeatures() {
               suppressHydrationWarning
               ref={imageContainerRef}
               className={cn(
-                "w-full h-[65vh] transition-all duration-300 ease-out",
+                "w-full h-[70vh] transition-all duration-500 ease-out",
                 isSticky 
                   ? "fixed top-20 right-0 z-30" 
                   : "relative"
@@ -221,11 +237,11 @@ export function ProductFeatures() {
                 {/* Background Glow Effect */}
                 <div 
                   className={cn(
-                    "absolute inset-0 rounded-2xl transition-all duration-700 blur-2xl",
-                    `bg-gradient-to-br ${features[activeIndex]?.gradient} opacity-15`
+                    "absolute inset-0 rounded-3xl transition-all duration-1000 blur-3xl",
+                    `bg-gradient-to-br ${features[activeIndex]?.gradient} opacity-20`
                   )}
                   style={{
-                    transform: 'scale(1.05)',
+                    transform: 'scale(1.1)',
                   }}
                 />
 
@@ -234,34 +250,34 @@ export function ProductFeatures() {
                   <div
                     key={feature.id}
                     className={cn(
-                      "absolute inset-0 transition-opacity duration-700 ease-in-out rounded-2xl overflow-hidden",
+                      "absolute inset-0 transition-all duration-1000 ease-in-out rounded-3xl overflow-hidden",
                       index === activeIndex 
-                        ? "opacity-100 z-20" 
-                        : "opacity-0 z-10"
+                        ? "opacity-100 z-20 scale-100" 
+                        : "opacity-0 z-10 scale-95"
                     )}
                   >
                     {/* Image */}
                     <img
                       src={feature.image}
                       alt={feature.title}
-                      className="w-full h-full object-cover transition-all duration-700 ease-in-out"
+                      className="w-full h-full object-cover transition-all duration-1000 ease-in-out"
                       loading="lazy"
                     />
                     
                     {/* Subtle Gradient Overlay */}
                     <div 
                       className={cn(
-                        "absolute inset-0 transition-opacity duration-700",
-                        `bg-gradient-to-br ${feature.gradient} opacity-10`
+                        "absolute inset-0 transition-opacity duration-1000",
+                        `bg-gradient-to-br ${feature.gradient} opacity-15`
                       )}
                     />
                     
                     {/* Border Highlight */}
                     <div 
                       className={cn(
-                        "absolute inset-0 rounded-2xl transition-all duration-700",
+                        "absolute inset-0 rounded-3xl transition-all duration-1000",
                         index === activeIndex 
-                          ? "ring-1 ring-white/20" 
+                          ? "ring-2 ring-white/30 shadow-2xl" 
                           : "ring-1 ring-gray-600/20"
                       )}
                     />
@@ -269,20 +285,20 @@ export function ProductFeatures() {
                 ))}
 
                 {/* Floating Accent Elements */}
-                <div className="absolute -top-3 -right-3 w-6 h-6 bg-blue-500/60 rounded-full animate-pulse" />
-                <div className="absolute -bottom-4 -left-4 w-4 h-4 bg-purple-500/40 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
-                <div className="absolute top-1/4 -right-6 w-3 h-3 bg-emerald-500/50 rounded-full animate-pulse" style={{ animationDelay: '2s' }} />
+                <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-500/60 rounded-full animate-pulse" />
+                <div className="absolute -bottom-6 -left-6 w-6 h-6 bg-purple-500/40 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
+                <div className="absolute top-1/4 -right-8 w-4 h-4 bg-emerald-500/50 rounded-full animate-pulse" style={{ animationDelay: '2s' }} />
               </div>
 
               {/* Progress Indicator */}
-              <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 flex space-x-2">
+              <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 flex space-x-3">
                 {features.map((_, index) => (
                   <div
                     key={index}
                     className={cn(
-                      "w-2 h-2 rounded-full transition-all duration-300",
+                      "w-3 h-3 rounded-full transition-all duration-500",
                       index === activeIndex 
-                        ? "bg-white scale-125" 
+                        ? "bg-white scale-125 shadow-lg" 
                         : "bg-gray-600 scale-100"
                     )}
                   />
@@ -291,7 +307,7 @@ export function ProductFeatures() {
 
               {/* Sticky State Indicator */}
               {isSticky && (
-                <div className="absolute top-4 left-4 px-3 py-1 bg-black/50 backdrop-blur-sm rounded-full text-xs text-white/70 border border-white/10">
+                <div className="absolute top-6 left-6 px-4 py-2 bg-black/60 backdrop-blur-sm rounded-full text-sm text-white/80 border border-white/20">
                   AI Feature Preview
                 </div>
               )}
@@ -301,7 +317,7 @@ export function ProductFeatures() {
       </div>
 
       {/* Bottom Fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black to-transparent pointer-events-none" />
 
       <style jsx global>{`
         @keyframes gridMove {
@@ -311,6 +327,21 @@ export function ProductFeatures() {
           100% {
             background-position: 40px 40px, 40px 40px;
           }
+        }
+        
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        
+        .animate-fadeIn {
+          animation: fadeIn 0.8s ease-out forwards;
         }
       `}</style>
     </section>

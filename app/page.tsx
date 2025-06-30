@@ -22,7 +22,6 @@ import { Header } from "@/components/ui/header"
 import { InfiniteGrid } from "@/components/ui/infinite-grid"
 import { ProductFeatures } from "@/components/ui/product-features"
 import { FeaturesShowcase } from "@/components/ui/features-showcase"
-import { AICapabilitiesGrid } from "@/components/ui/ai-capabilities-grid"
 
 export default function Home() {
   return (
@@ -69,14 +68,11 @@ export default function Home() {
       {/* Features Showcase Section */}
       <FeaturesShowcase />
 
-      {/* AI Capabilities Grid Section */}
-      <AICapabilitiesGrid />
-
       {/* Product Features Section */}
       <ProductFeatures />
 
       {/* AI Recruitment Dashboard Preview Section */}
-      <section className="container mx-auto px-4 py-16 mb-8">
+      <section className="container mx-auto px-4 py-16 mb-16">
         <div className="rounded-3xl border border-gray-800 bg-gray-900/50 p-6 overflow-hidden">
           {/* Dashboard Header */}
           <div className="flex items-center justify-between mb-6">
