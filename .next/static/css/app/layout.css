@@ -818,6 +818,9 @@ video {
 .top-full {
   top: 100%;
 }
+.bottom-10 {
+  bottom: 2.5rem;
+}
 .z-0 {
   z-index: 0;
 }
@@ -1104,6 +1107,9 @@ video {
 }
 .min-h-svh {
   min-height: 100svh;
+}
+.min-h-\[25vh\] {
+  min-height: 25vh;
 }
 .w-0 {
   width: 0px;
@@ -1853,6 +1859,9 @@ video {
 }
 .bg-white\/90 {
   background-color: rgb(255 255 255 / 0.9);
+}
+.bg-gray-800\/60 {
+  background-color: rgb(31 41 55 / 0.6);
 }
 .bg-gradient-to-br {
   background-image: linear-gradient(to bottom right, var(--tw-gradient-stops));

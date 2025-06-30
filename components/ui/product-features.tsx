@@ -44,25 +44,42 @@ const features = [
 export function ProductFeatures() {
   const [activeIndex, setActiveIndex] = useState(0)
   const [isSticky, setIsSticky] = useState(false)
+  const [sectionEnded, setSectionEnded] = useState(false)
   const sectionRefs = useRef<(HTMLDivElement | null)[]>([])
   const containerRef = useRef<HTMLDivElement>(null)
   const imageContainerRef = useRef<HTMLDivElement>(null)
+  const lastFeatureRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!containerRef.current || !imageContainerRef.current) return
+      if (!containerRef.current || !imageContainerRef.current || !lastFeatureRef.current) return
 
       const containerRect = containerRef.current.getBoundingClientRect()
       const imageContainerRect = imageContainerRef.current.getBoundingClientRect()
+      const lastFeatureRect = lastFeatureRef.current.getBoundingClientRect()
       const viewportHeight = window.innerHeight
-      const headerHeight = 80 // Approximate header height
+      const headerHeight = 80
 
-      // Check if image container should be sticky
-      const shouldBeSticky = containerRect.top <= headerHeight && containerRect.bottom > viewportHeight
-      setIsSticky(shouldBeSticky)
+      // Check if the last feature (Multi-Platform Integration) is visible
+      const lastFeatureVisible = lastFeatureRect.top < viewportHeight * 0.7 && lastFeatureRect.bottom > viewportHeight * 0.3
 
-      // Only process feature detection when container is in view
-      if (containerRect.top < viewportHeight && containerRect.bottom > 0) {
+      // End the section when the last feature becomes prominently visible
+      if (lastFeatureVisible && activeIndex === features.length - 1) {
+        setSectionEnded(true)
+        setIsSticky(false)
+      } else {
+        setSectionEnded(false)
+        
+        // Check if image container should be sticky
+        const shouldBeSticky = containerRect.top <= headerHeight && 
+                              containerRect.bottom > viewportHeight && 
+                              !lastFeatureVisible
+
+        setIsSticky(shouldBeSticky)
+      }
+
+      // Only process feature detection when container is in view and section hasn't ended
+      if (containerRect.top < viewportHeight && containerRect.bottom > 0 && !sectionEnded) {
         let maxVisibleSection = 0
         let maxVisibleHeight = 0
 
@@ -92,13 +109,13 @@ export function ProductFeatures() {
     handleScroll() // Initial check
 
     return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
+  }, [activeIndex, sectionEnded])
 
   return (
     <section 
       ref={containerRef}
       className="relative w-full bg-black text-white py-20 overflow-hidden"
-      style={{ minHeight: `${features.length * 100}vh` }} // Ensure enough scroll space
+      style={{ minHeight: `${features.length * 80}vh` }} // Reduced height for better flow
     >
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-br from-black via-gray-900 to-black"></div>
@@ -139,14 +156,18 @@ export function ProductFeatures() {
                 key={feature.id}
                 ref={(el) => {
                   sectionRefs.current[index] = el
+                  // Set ref for the last feature
+                  if (index === features.length - 1) {
+                    lastFeatureRef.current = el
+                  }
                 }}
-                className="min-h-[30vh] flex items-center py-8"
+                className="min-h-[25vh] flex items-center py-8"
               >
                 <div
                   suppressHydrationWarning
                   className={cn(
                     "transition-all duration-700 transform w-full",
-                    index === activeIndex
+                    index === activeIndex && !sectionEnded
                       ? "opacity-100 translate-x-0 scale-100"
                       : "opacity-40 translate-x-8 scale-95"
                   )}
@@ -156,7 +177,7 @@ export function ProductFeatures() {
                     <div 
                       className={cn(
                         "w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg mr-4 transition-all duration-500",
-                        index === activeIndex 
+                        index === activeIndex && !sectionEnded
                           ? `bg-gradient-to-r ${feature.gradient} shadow-xl scale-110` 
                           : "bg-gray-700 scale-100"
                       )}
@@ -166,7 +187,7 @@ export function ProductFeatures() {
                     <div 
                       className={cn(
                         "h-px flex-1 transition-all duration-500",
-                        index === activeIndex 
+                        index === activeIndex && !sectionEnded
                           ? `bg-gradient-to-r ${feature.gradient} opacity-80` 
                           : "bg-gray-600 opacity-30"
                       )}
@@ -186,14 +207,14 @@ export function ProductFeatures() {
                     <div 
                       className={cn(
                         "mt-6 h-1 rounded-full transition-all duration-700",
-                        index === activeIndex 
+                        index === activeIndex && !sectionEnded
                           ? `bg-gradient-to-r ${feature.gradient} w-24 opacity-100 shadow-lg` 
                           : "bg-gray-600 w-12 opacity-50"
                       )}
                     />
 
                     {/* Additional Info for Active Feature */}
-                    {index === activeIndex && (
+                    {index === activeIndex && !sectionEnded && (
                       <div className="mt-6 opacity-0 animate-fadeIn">
                         <div className="flex items-center gap-4 text-sm text-gray-400">
                           <div className="flex items-center gap-2">
@@ -213,21 +234,23 @@ export function ProductFeatures() {
             ))}
           </div>
 
-          {/* Right Side - Sticky Image Container */}
+          {/* Right Side - Image Container */}
           <div className="w-full lg:w-1/2 relative">
             <div 
               suppressHydrationWarning
               ref={imageContainerRef}
               className={cn(
                 "w-full h-[70vh] transition-all duration-500 ease-out",
-                isSticky 
+                isSticky && !sectionEnded
                   ? "fixed top-20 right-0 z-30" 
                   : "relative"
               )}
               style={{
-                width: isSticky ? '42%' : '100%',
-                maxWidth: isSticky ? '600px' : 'none',
-                right: isSticky ? '4%' : 'auto',
+                width: isSticky && !sectionEnded ? '42%' : '100%',
+                maxWidth: isSticky && !sectionEnded ? '600px' : 'none',
+                right: isSticky && !sectionEnded ? '4%' : 'auto',
+                opacity: sectionEnded ? 0.3 : 1,
+                transform: sectionEnded ? 'translateY(20px) scale(0.95)' : 'translateY(0) scale(1)',
               }}
             >
               
@@ -245,13 +268,13 @@ export function ProductFeatures() {
                   }}
                 />
 
-                {/* Stacked Images - All positioned absolutely for smooth transitions */}
+                {/* Stacked Images */}
                 {features.map((feature, index) => (
                   <div
                     key={feature.id}
                     className={cn(
                       "absolute inset-0 transition-all duration-1000 ease-in-out rounded-3xl overflow-hidden",
-                      index === activeIndex 
+                      index === activeIndex && !sectionEnded
                         ? "opacity-100 z-20 scale-100" 
                         : "opacity-0 z-10 scale-95"
                     )}
@@ -264,7 +287,7 @@ export function ProductFeatures() {
                       loading="lazy"
                     />
                     
-                    {/* Subtle Gradient Overlay */}
+                    {/* Gradient Overlay */}
                     <div 
                       className={cn(
                         "absolute inset-0 transition-opacity duration-1000",
@@ -276,7 +299,7 @@ export function ProductFeatures() {
                     <div 
                       className={cn(
                         "absolute inset-0 rounded-3xl transition-all duration-1000",
-                        index === activeIndex 
+                        index === activeIndex && !sectionEnded
                           ? "ring-2 ring-white/30 shadow-2xl" 
                           : "ring-1 ring-gray-600/20"
                       )}
@@ -284,29 +307,31 @@ export function ProductFeatures() {
                   </div>
                 ))}
 
-                {/* Floating Accent Elements */}
+                {/* Floating Elements */}
                 <div className="absolute -top-4 -right-4 w-8 h-8 bg-blue-500/60 rounded-full animate-pulse" />
                 <div className="absolute -bottom-6 -left-6 w-6 h-6 bg-purple-500/40 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
                 <div className="absolute top-1/4 -right-8 w-4 h-4 bg-emerald-500/50 rounded-full animate-pulse" style={{ animationDelay: '2s' }} />
               </div>
 
               {/* Progress Indicator */}
-              <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 flex space-x-3">
-                {features.map((_, index) => (
-                  <div
-                    key={index}
-                    className={cn(
-                      "w-3 h-3 rounded-full transition-all duration-500",
-                      index === activeIndex 
-                        ? "bg-white scale-125 shadow-lg" 
-                        : "bg-gray-600 scale-100"
-                    )}
-                  />
-                ))}
-              </div>
+              {!sectionEnded && (
+                <div className="absolute -bottom-12 left-1/2 transform -translate-x-1/2 flex space-x-3">
+                  {features.map((_, index) => (
+                    <div
+                      key={index}
+                      className={cn(
+                        "w-3 h-3 rounded-full transition-all duration-500",
+                        index === activeIndex 
+                          ? "bg-white scale-125 shadow-lg" 
+                          : "bg-gray-600 scale-100"
+                      )}
+                    />
+                  ))}
+                </div>
+              )}
 
               {/* Sticky State Indicator */}
-              {isSticky && (
+              {isSticky && !sectionEnded && (
                 <div className="absolute top-6 left-6 px-4 py-2 bg-black/60 backdrop-blur-sm rounded-full text-sm text-white/80 border border-white/20">
                   AI Feature Preview
                 </div>
@@ -315,6 +340,15 @@ export function ProductFeatures() {
           </div>
         </div>
       </div>
+
+      {/* Section End Indicator */}
+      {sectionEnded && (
+        <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 text-center">
+          <div className="px-6 py-3 bg-gray-800/60 backdrop-blur-sm rounded-full text-sm text-gray-400 border border-gray-700/50">
+            AI Capabilities Overview Complete
+          </div>
+        </div>
+      )}
 
       {/* Bottom Fade */}
       <div className="absolute bottom-0 left-0 right-0 h-40 bg-gradient-to-t from-black to-transparent pointer-events-none" />
