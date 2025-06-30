@@ -14,7 +14,9 @@ import {
   Search,
   MessageSquare,
   BarChart3,
-  Globe
+  Globe,
+  ArrowRight,
+  Sparkles
 } from "lucide-react"
 
 const capabilities = [
@@ -22,62 +24,78 @@ const capabilities = [
     id: 1,
     icon: Search,
     title: "Real-Time Candidate Discovery",
-    description: "Get instant notifications when AI agents discover candidates matching your criteria, ensuring you're always in control of your talent pipeline.",
-    stats: "50+ platforms scanned",
-    color: "emerald"
+    description: "AI agents continuously scan 50+ platforms including LinkedIn, GitHub, and Stack Overflow to discover top talent that matches your exact requirements.",
+    stats: "50+ platforms",
+    metric: "24/7 scanning",
+    color: "emerald",
+    gradient: "from-emerald-500 to-teal-600"
   },
   {
     id: 2,
     icon: MessageSquare,
     title: "Intelligent Communication Hub",
-    description: "Manage all candidate interactions through multiple channels, whether it's email, LinkedIn, or direct messaging with automated follow-ups.",
+    description: "Automated personalized outreach and follow-ups across multiple channels with AI-powered conversation management and response tracking.",
     stats: "89% response rate",
-    color: "blue"
+    metric: "Auto-personalized",
+    color: "blue",
+    gradient: "from-blue-500 to-cyan-600"
   },
   {
     id: 3,
     icon: Shield,
-    title: "Secure Candidate Management",
-    description: "Protect candidate data with advanced security features like encryption, secure access controls, and compliance monitoring.",
+    title: "Enterprise Security & Compliance",
+    description: "Bank-grade encryption, secure data handling, and full compliance with GDPR, CCPA, and industry standards for candidate data protection.",
     stats: "GDPR compliant",
-    color: "purple"
+    metric: "Bank-grade security",
+    color: "purple",
+    gradient: "from-purple-500 to-violet-600"
   },
   {
     id: 4,
     icon: BarChart3,
     title: "Advanced Analytics Dashboard",
-    description: "Track AI agent performance, candidate pipeline metrics, and recruitment ROI with comprehensive real-time analytics.",
-    stats: "24/7 monitoring",
-    color: "orange"
+    description: "Comprehensive insights into AI agent performance, candidate pipeline metrics, sourcing effectiveness, and recruitment ROI analytics.",
+    stats: "Real-time insights",
+    metric: "360° analytics",
+    color: "orange",
+    gradient: "from-orange-500 to-red-600"
   },
   {
     id: 5,
     icon: Target,
     title: "Precision Matching Algorithm",
-    description: "AI agents use advanced algorithms to match candidates based on skills, experience, culture fit, and career aspirations.",
-    stats: "92% accuracy rate",
-    color: "teal"
+    description: "Advanced AI algorithms evaluate candidates across technical skills, cultural fit, experience level, and career trajectory for perfect matches.",
+    stats: "92% accuracy",
+    metric: "Multi-dimensional",
+    color: "teal",
+    gradient: "from-teal-500 to-emerald-600"
   },
   {
     id: 6,
     icon: Globe,
-    title: "Multi-Platform Integration",
-    description: "Seamlessly connect with your existing ATS, HRIS, and communication tools for a unified recruitment workflow.",
+    title: "Seamless Platform Integration",
+    description: "Connect with your existing ATS, HRIS, Slack, Teams, and 100+ other tools for a unified recruitment workflow and data synchronization.",
     stats: "100+ integrations",
-    color: "indigo"
+    metric: "One-click setup",
+    color: "indigo",
+    gradient: "from-indigo-500 to-blue-600"
   }
 ]
 
 export function AICapabilitiesGrid() {
   const [visibleCards, setVisibleCards] = useState<number[]>([])
+  const [isHeaderVisible, setIsHeaderVisible] = useState(false)
   const sectionRef = useRef<HTMLDivElement>(null)
+  const headerRef = useRef<HTMLDivElement>(null)
   const cardRefs = useRef<(HTMLDivElement | null)[]>([])
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
+          if (entry.target === headerRef.current && entry.isIntersecting) {
+            setIsHeaderVisible(true)
+          } else if (cardRefs.current.includes(entry.target as HTMLDivElement) && entry.isIntersecting) {
             const index = cardRefs.current.indexOf(entry.target as HTMLDivElement)
             if (index !== -1 && !visibleCards.includes(index)) {
               setVisibleCards(prev => [...prev, index])
@@ -85,9 +103,10 @@ export function AICapabilitiesGrid() {
           }
         })
       },
-      { threshold: 0.3 }
+      { threshold: 0.2, rootMargin: '50px' }
     )
 
+    if (headerRef.current) observer.observe(headerRef.current)
     cardRefs.current.forEach((ref) => {
       if (ref) observer.observe(ref)
     })
@@ -98,24 +117,39 @@ export function AICapabilitiesGrid() {
   return (
     <section 
       ref={sectionRef}
-      className="relative py-20 bg-black overflow-hidden"
+      className="relative py-24 bg-gradient-to-br from-black via-gray-900 to-black overflow-hidden"
     >
-      {/* Background Elements */}
+      {/* Enhanced Background Elements */}
       <div className="absolute inset-0">
-        {/* Gradient Mesh */}
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-900/10 via-transparent to-blue-900/10"></div>
+        {/* Dynamic Grid Pattern */}
+        <div 
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `
+              linear-gradient(to right, rgba(99, 102, 241, 0.4) 1px, transparent 1px),
+              linear-gradient(to bottom, rgba(99, 102, 241, 0.4) 1px, transparent 1px)
+            `,
+            backgroundSize: '80px 80px',
+            animation: 'gridPulse 8s ease-in-out infinite',
+          }}
+        />
+        
+        {/* Floating Gradient Orbs */}
+        <div className="absolute top-20 left-10 w-96 h-96 bg-emerald-500/5 rounded-full blur-3xl animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-80 h-80 bg-blue-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        <div className="absolute top-1/2 left-1/3 w-64 h-64 bg-purple-500/5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '4s' }} />
         
         {/* Animated Particles */}
         <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
+          {[...Array(30)].map((_, i) => (
             <div
               key={i}
-              className="absolute w-1 h-1 bg-white/20 rounded-full animate-pulse"
+              className="absolute w-1 h-1 bg-white/10 rounded-full animate-twinkle"
               style={{
                 left: `${Math.random() * 100}%`,
                 top: `${Math.random() * 100}%`,
-                animationDelay: `${Math.random() * 3}s`,
-                animationDuration: `${2 + Math.random() * 2}s`
+                animationDelay: `${Math.random() * 5}s`,
+                animationDuration: `${3 + Math.random() * 3}s`
               }}
             />
           ))}
@@ -124,137 +158,242 @@ export function AICapabilitiesGrid() {
 
       <div className="container mx-auto px-4 relative z-10">
         
-        {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Powerful AI Capabilities
+        {/* Enhanced Section Header */}
+        <div 
+          ref={headerRef}
+          suppressHydrationWarning
+          className={cn(
+            "text-center mb-20 transition-all duration-1000 ease-out",
+            isHeaderVisible 
+              ? "opacity-100 translate-y-0" 
+              : "opacity-0 translate-y-12"
+          )}
+        >
+          {/* Subtitle with Icon */}
+          <div className="flex items-center justify-center gap-2 mb-4">
+            <Sparkles className="w-5 h-5 text-emerald-400 animate-pulse" />
+            <span className="text-emerald-400 text-sm font-semibold uppercase tracking-wider">
+              AI-Powered Capabilities
+            </span>
+            <Sparkles className="w-5 h-5 text-emerald-400 animate-pulse" />
+          </div>
+
+          {/* Main Title */}
+          <h2 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+            Intelligent Recruitment
             <br />
             <span className="bg-gradient-to-r from-emerald-400 via-blue-400 to-purple-400 bg-clip-text text-transparent">
-              Built for Modern Recruiting
+              Powered by AI Agents
             </span>
           </h2>
-          <p className="text-gray-300 text-lg max-w-3xl mx-auto leading-relaxed">
-            Experience the future of talent acquisition with our comprehensive suite of AI-powered tools designed to streamline every aspect of your recruitment process.
+
+          {/* Description */}
+          <p className="text-gray-300 text-lg md:text-xl max-w-4xl mx-auto leading-relaxed">
+            Transform your hiring process with our comprehensive suite of AI-powered tools. 
+            From candidate discovery to final placement, our intelligent agents work around the clock 
+            to find, engage, and qualify the perfect talent for your organization.
           </p>
+
+          {/* Decorative Line */}
+          <div className="flex items-center justify-center mt-8">
+            <div className="h-px w-20 bg-gradient-to-r from-transparent to-emerald-500"></div>
+            <div className="w-2 h-2 bg-emerald-500 rounded-full mx-4 animate-pulse"></div>
+            <div className="h-px w-20 bg-gradient-to-l from-transparent to-emerald-500"></div>
+          </div>
         </div>
 
-        {/* Capabilities Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Enhanced Capabilities Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
           {capabilities.map((capability, index) => (
             <div
               key={capability.id}
               ref={(el) => { cardRefs.current[index] = el }}
               suppressHydrationWarning
               className={cn(
-                "group relative bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-gray-600/50 transition-all duration-500",
+                "group relative transition-all duration-700 ease-out",
                 visibleCards.includes(index)
                   ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
+                  : "opacity-0 translate-y-12"
               )}
-              style={{ transitionDelay: `${index * 100}ms` }}
+              style={{ transitionDelay: `${index * 150}ms` }}
             >
               
-              {/* Background Glow */}
-              <div className={cn(
-                "absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl",
-                capability.color === "emerald" && "bg-emerald-500/10",
-                capability.color === "blue" && "bg-blue-500/10",
-                capability.color === "purple" && "bg-purple-500/10",
-                capability.color === "orange" && "bg-orange-500/10",
-                capability.color === "teal" && "bg-teal-500/10",
-                capability.color === "indigo" && "bg-indigo-500/10"
-              )} />
-
-              {/* Card Content */}
-              <div className="relative z-10">
+              {/* Card Container */}
+              <div className="relative bg-gradient-to-br from-gray-900/80 to-gray-800/40 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/30 hover:border-gray-600/50 transition-all duration-500 group-hover:transform group-hover:scale-[1.02] group-hover:shadow-2xl">
                 
-                {/* Icon & Stats */}
-                <div className="flex items-start justify-between mb-4">
-                  <div className={cn(
-                    "w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 group-hover:scale-110",
-                    capability.color === "emerald" && "bg-emerald-500/20 text-emerald-400",
-                    capability.color === "blue" && "bg-blue-500/20 text-blue-400",
-                    capability.color === "purple" && "bg-purple-500/20 text-purple-400",
-                    capability.color === "orange" && "bg-orange-500/20 text-orange-400",
-                    capability.color === "teal" && "bg-teal-500/20 text-teal-400",
-                    capability.color === "indigo" && "bg-indigo-500/20 text-indigo-400"
-                  )}>
-                    <capability.icon className="w-6 h-6" />
-                  </div>
+                {/* Dynamic Background Glow */}
+                <div className={cn(
+                  "absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-all duration-500 blur-xl",
+                  `bg-gradient-to-br ${capability.gradient} opacity-10`
+                )} />
+
+                {/* Floating Accent Dot */}
+                <div className={cn(
+                  "absolute -top-2 -right-2 w-4 h-4 rounded-full opacity-60 group-hover:opacity-100 transition-all duration-300 animate-pulse",
+                  capability.color === "emerald" && "bg-emerald-500",
+                  capability.color === "blue" && "bg-blue-500",
+                  capability.color === "purple" && "bg-purple-500",
+                  capability.color === "orange" && "bg-orange-500",
+                  capability.color === "teal" && "bg-teal-500",
+                  capability.color === "indigo" && "bg-indigo-500"
+                )} />
+
+                {/* Card Content */}
+                <div className="relative z-10">
                   
-                  <div className={cn(
-                    "px-3 py-1 rounded-full text-xs font-medium",
-                    capability.color === "emerald" && "bg-emerald-500/20 text-emerald-400",
-                    capability.color === "blue" && "bg-blue-500/20 text-blue-400",
-                    capability.color === "purple" && "bg-purple-500/20 text-purple-400",
-                    capability.color === "orange" && "bg-orange-500/20 text-orange-400",
-                    capability.color === "teal" && "bg-teal-500/20 text-teal-400",
-                    capability.color === "indigo" && "bg-indigo-500/20 text-indigo-400"
-                  )}>
-                    {capability.stats}
+                  {/* Header Section */}
+                  <div className="flex items-start justify-between mb-6">
+                    {/* Icon */}
+                    <div className={cn(
+                      "w-14 h-14 rounded-2xl flex items-center justify-center transition-all duration-500 group-hover:scale-110 group-hover:rotate-3",
+                      `bg-gradient-to-br ${capability.gradient} shadow-lg`
+                    )}>
+                      <capability.icon className="w-7 h-7 text-white" />
+                    </div>
+                    
+                    {/* Stats Badge */}
+                    <div className="flex flex-col items-end gap-1">
+                      <div className={cn(
+                        "px-3 py-1 rounded-full text-xs font-bold",
+                        capability.color === "emerald" && "bg-emerald-500/20 text-emerald-300",
+                        capability.color === "blue" && "bg-blue-500/20 text-blue-300",
+                        capability.color === "purple" && "bg-purple-500/20 text-purple-300",
+                        capability.color === "orange" && "bg-orange-500/20 text-orange-300",
+                        capability.color === "teal" && "bg-teal-500/20 text-teal-300",
+                        capability.color === "indigo" && "bg-indigo-500/20 text-indigo-300"
+                      )}>
+                        {capability.stats}
+                      </div>
+                      <div className="text-xs text-gray-500 font-medium">
+                        {capability.metric}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="text-white text-xl font-bold mb-4 group-hover:text-white transition-colors leading-tight">
+                    {capability.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors text-sm">
+                    {capability.description}
+                  </p>
+
+                  {/* Action Link */}
+                  <div className="mt-6 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
+                    <div className={cn(
+                      "inline-flex items-center text-sm font-semibold cursor-pointer",
+                      capability.color === "emerald" && "text-emerald-400 hover:text-emerald-300",
+                      capability.color === "blue" && "text-blue-400 hover:text-blue-300",
+                      capability.color === "purple" && "text-purple-400 hover:text-purple-300",
+                      capability.color === "orange" && "text-orange-400 hover:text-orange-300",
+                      capability.color === "teal" && "text-teal-400 hover:text-teal-300",
+                      capability.color === "indigo" && "text-indigo-400 hover:text-indigo-300"
+                    )}>
+                      Explore feature
+                      <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+                    </div>
                   </div>
                 </div>
 
-                {/* Title */}
-                <h3 className="text-white text-xl font-semibold mb-3 group-hover:text-white transition-colors">
-                  {capability.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-gray-400 leading-relaxed group-hover:text-gray-300 transition-colors">
-                  {capability.description}
-                </p>
-
-                {/* Hover Arrow */}
-                <div className="mt-4 opacity-0 group-hover:opacity-100 transition-all duration-300 transform translate-x-0 group-hover:translate-x-2">
-                  <div className={cn(
-                    "inline-flex items-center text-sm font-medium",
-                    capability.color === "emerald" && "text-emerald-400",
-                    capability.color === "blue" && "text-blue-400",
-                    capability.color === "purple" && "text-purple-400",
-                    capability.color === "orange" && "text-orange-400",
-                    capability.color === "teal" && "text-teal-400",
-                    capability.color === "indigo" && "text-indigo-400"
-                  )}>
-                    Learn more
-                    <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                    </svg>
-                  </div>
-                </div>
+                {/* Corner Gradient Accent */}
+                <div className={cn(
+                  "absolute top-0 right-0 w-24 h-24 opacity-5 group-hover:opacity-15 transition-opacity duration-500",
+                  `bg-gradient-to-br ${capability.gradient}`
+                )} style={{
+                  clipPath: "polygon(100% 0%, 0% 0%, 100% 100%)"
+                }} />
               </div>
-
-              {/* Corner Accent */}
-              <div className={cn(
-                "absolute top-0 right-0 w-20 h-20 opacity-10 transition-opacity duration-300 group-hover:opacity-20",
-                capability.color === "emerald" && "bg-emerald-500",
-                capability.color === "blue" && "bg-blue-500",
-                capability.color === "purple" && "bg-purple-500",
-                capability.color === "orange" && "bg-orange-500",
-                capability.color === "teal" && "bg-teal-500",
-                capability.color === "indigo" && "bg-indigo-500"
-              )} style={{
-                clipPath: "polygon(100% 0%, 0% 0%, 100% 100%)"
-              }} />
             </div>
           ))}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="text-center mt-16">
-          <div className="inline-flex items-center gap-4 bg-gradient-to-r from-gray-800/50 to-gray-700/50 backdrop-blur-sm rounded-full px-8 py-4 border border-gray-600/30">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-              <span className="text-emerald-400 text-sm font-medium">AI Agents Active</span>
+        {/* Enhanced Bottom CTA Section */}
+        <div className="text-center">
+          <div className="inline-flex flex-col items-center gap-6 bg-gradient-to-br from-gray-900/60 to-gray-800/40 backdrop-blur-lg rounded-3xl px-12 py-10 border border-gray-600/20 shadow-2xl">
+            
+            {/* Status Indicator */}
+            <div className="flex items-center gap-3">
+              <div className="relative">
+                <div className="w-3 h-3 bg-emerald-500 rounded-full animate-pulse"></div>
+                <div className="absolute inset-0 w-3 h-3 bg-emerald-500 rounded-full animate-ping opacity-75"></div>
+              </div>
+              <span className="text-emerald-400 text-sm font-semibold">AI Agents Active & Ready</span>
             </div>
-            <div className="w-px h-6 bg-gray-600"></div>
-            <span className="text-gray-300 text-sm">Ready to transform your hiring process?</span>
-            <button className="bg-gradient-to-r from-emerald-600 to-blue-600 text-white px-6 py-2 rounded-full text-sm font-medium hover:shadow-lg hover:shadow-emerald-500/25 transition-all duration-300">
-              Get Started
-            </button>
+
+            {/* Main CTA Text */}
+            <div className="text-center">
+              <h3 className="text-white text-2xl font-bold mb-2">
+                Ready to Transform Your Hiring Process?
+              </h3>
+              <p className="text-gray-400 text-sm max-w-md">
+                Join thousands of companies already using AI agents to find and hire top talent faster than ever before.
+              </p>
+            </div>
+
+            {/* CTA Buttons */}
+            <div className="flex flex-col sm:flex-row items-center gap-4">
+              <button className="group bg-gradient-to-r from-emerald-600 to-blue-600 text-white px-8 py-4 rounded-full text-sm font-semibold hover:shadow-2xl hover:shadow-emerald-500/25 transition-all duration-300 hover:scale-105 flex items-center gap-2">
+                <Brain className="w-5 h-5 group-hover:animate-pulse" />
+                Deploy AI Agents Now
+                <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </button>
+              
+              <button className="text-gray-300 hover:text-white px-6 py-3 rounded-full text-sm font-medium border border-gray-600/50 hover:border-gray-500/50 transition-all duration-300 hover:bg-gray-800/50">
+                Watch Demo
+              </button>
+            </div>
+
+            {/* Trust Indicators */}
+            <div className="flex items-center gap-6 text-xs text-gray-500 mt-2">
+              <div className="flex items-center gap-1">
+                <Shield className="w-3 h-3" />
+                <span>Enterprise Security</span>
+              </div>
+              <div className="w-px h-4 bg-gray-600"></div>
+              <div className="flex items-center gap-1">
+                <CheckCircle className="w-3 h-3" />
+                <span>GDPR Compliant</span>
+              </div>
+              <div className="w-px h-4 bg-gray-600"></div>
+              <div className="flex items-center gap-1">
+                <Clock className="w-3 h-3" />
+                <span>24/7 Support</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
+
+      {/* Enhanced CSS Animations */}
+      <style jsx global>{`
+        @keyframes gridPulse {
+          0%, 100% {
+            opacity: 0.03;
+            background-position: 0 0, 0 0;
+          }
+          50% {
+            opacity: 0.08;
+            background-position: 40px 40px, 40px 40px;
+          }
+        }
+        
+        @keyframes twinkle {
+          0%, 100% { 
+            opacity: 0.2; 
+            transform: scale(1);
+          }
+          50% { 
+            opacity: 1; 
+            transform: scale(1.2);
+          }
+        }
+        
+        .animate-twinkle {
+          animation: twinkle 4s ease-in-out infinite;
+        }
+      `}</style>
     </section>
   )
 }

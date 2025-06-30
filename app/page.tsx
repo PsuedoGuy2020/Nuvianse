@@ -72,58 +72,11 @@ export default function Home() {
       {/* AI Capabilities Grid Section */}
       <AICapabilitiesGrid />
 
-      {/* AI Capabilities Section */}
-      <section className="relative py-24 overflow-hidden">
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: "url('/Gemini_Generated_Image_b5mbyzb5mbyzb5mb.jpeg')",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            backgroundAttachment: "fixed",
-          }}
-        >
-          <div className="absolute inset-0 bg-black/60"></div>
-        </div>
-
-        <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">AI Agent Capabilities</h2>
-            <p className="text-white/70 max-w-2xl mx-auto">
-              Discover how our autonomous AI agents transform every aspect of your recruitment pipeline
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="bg-black/40 backdrop-blur-sm p-6 rounded-xl border border-white/10 hover:border-emerald-500/50 transition-all">
-              <Brain className="w-12 h-12 text-emerald-500 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Intelligent Sourcing</h3>
-              <p className="text-white/70">
-                AI agents continuously scan multiple platforms to identify and engage with top talent that matches your requirements
-              </p>
-            </div>
-
-            <div className="bg-black/40 backdrop-blur-sm p-6 rounded-xl border border-white/10 hover:border-emerald-500/50 transition-all">
-              <Target className="w-12 h-12 text-emerald-500 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Smart Screening</h3>
-              <p className="text-white/70">
-                Advanced AI algorithms evaluate candidates across multiple dimensions, ensuring only the best matches reach your pipeline
-              </p>
-            </div>
-
-            <div className="bg-black/40 backdrop-blur-sm p-6 rounded-xl border border-white/10 hover:border-emerald-500/50 transition-all">
-              <Zap className="w-12 h-12 text-emerald-500 mb-4" />
-              <h3 className="text-xl font-semibold mb-2">Automated Engagement</h3>
-              <p className="text-white/70">
-                Personalized outreach and follow-ups powered by AI, maintaining consistent communication with potential candidates
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Product Features Section */}
+      <ProductFeatures />
 
       {/* AI Recruitment Dashboard Preview Section */}
-      <section className="container mx-auto px-4 py-8 mb-16">
+      <section className="container mx-auto px-4 py-16 mb-8">
         <div className="rounded-3xl border border-gray-800 bg-gray-900/50 p-6 overflow-hidden">
           {/* Dashboard Header */}
           <div className="flex items-center justify-between mb-6">
@@ -364,9 +317,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Product Features Section */}
-      <ProductFeatures />
       
       {/* Footer */}
       <Footer />
