@@ -21,9 +21,6 @@ import { Footer } from "@/components/ui/footer"
 import { Header } from "@/components/ui/header"
 import { InfiniteGrid } from "@/components/ui/infinite-grid"
 import { ProductFeatures } from "@/components/ui/product-features"
-import { FeatureShowcase } from "@/components/ui/feature-showcase"
-import { AiCapabilitiesSection } from "@/components/ui/ai-capabilities-section"
-import { IntegrationShowcase } from "@/components/ui/integration-showcase"
 
 export default function Home() {
   return (
@@ -360,17 +357,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Product Features Section */}
+      {/* New Product Features Section */}
       <ProductFeatures />
-
-      {/* Feature Showcase Section */}
-      <FeatureShowcase />
-
-      {/* AI Capabilities Section */}
-      <AiCapabilitiesSection />
-
-      {/* Integration Showcase Section */}
-      <IntegrationShowcase />
       
       {/* Footer */}
       <Footer />
