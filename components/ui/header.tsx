@@ -57,169 +57,328 @@ export function Header() {
 
   return (
     <>
-      {/* Custom Font Styles for NUVIANSE */}
+      {/* Ultra-Premium Font Styles for NUVIANSE */}
       <style jsx global>{`
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&family=Exo+2:wght@400;600;700;800;900&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;800;900&family=Exo+2:wght@400;600;700;800;900&family=Rajdhani:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
         
         .nuvianse-brand {
-          font-family: 'Orbitron', 'Exo 2', monospace;
+          font-family: 'Orbitron', 'Space Grotesk', 'Exo 2', 'Rajdhani', monospace;
           font-weight: 900;
-          letter-spacing: 0.15em;
+          letter-spacing: 0.2em;
           position: relative;
           background: linear-gradient(
             135deg,
             #ffffff 0%,
-            #e0e7ff 15%,
-            #c7d2fe 30%,
-            #a5b4fc 45%,
-            #818cf8 60%,
-            #6366f1 75%,
-            #4f46e5 90%,
-            #4338ca 100%
+            #f8fafc 8%,
+            #e2e8f0 16%,
+            #cbd5e1 24%,
+            #94a3b8 32%,
+            #64748b 40%,
+            #475569 48%,
+            #334155 56%,
+            #1e293b 64%,
+            #0f172a 72%,
+            #020617 80%,
+            #000000 88%,
+            #1a1a1a 96%,
+            #ffffff 100%
           );
-          background-size: 300% 300%;
+          background-size: 400% 400%;
           -webkit-background-clip: text;
           background-clip: text;
           color: transparent;
-          animation: gradientShift 4s ease-in-out infinite;
+          animation: ultraGradientFlow 6s ease-in-out infinite;
           text-transform: uppercase;
           text-shadow: none;
-          filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.3));
-          transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+          filter: 
+            drop-shadow(0 0 12px rgba(0, 0, 0, 0.8))
+            drop-shadow(0 0 24px rgba(0, 0, 0, 0.6))
+            drop-shadow(0 0 36px rgba(0, 0, 0, 0.4));
+          transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+          transform-style: preserve-3d;
+          perspective: 1000px;
         }
         
         .nuvianse-brand.scrolled {
           background: linear-gradient(
             135deg,
             #ffffff 0%,
-            #f8fafc 10%,
-            #e2e8f0 20%,
-            #cbd5e1 30%,
-            #94a3b8 40%,
-            #64748b 50%,
-            #475569 60%,
-            #334155 70%,
-            #1e293b 80%,
-            #0f172a 90%,
-            #020617 100%
+            #f1f5f9 5%,
+            #e2e8f0 10%,
+            #cbd5e1 15%,
+            #94a3b8 20%,
+            #64748b 25%,
+            #475569 30%,
+            #334155 35%,
+            #1e293b 40%,
+            #0f172a 45%,
+            #020617 50%,
+            #000000 55%,
+            #1a1a1a 60%,
+            #333333 65%,
+            #4d4d4d 70%,
+            #666666 75%,
+            #808080 80%,
+            #999999 85%,
+            #b3b3b3 90%,
+            #cccccc 95%,
+            #ffffff 100%
           );
-          background-size: 400% 400%;
+          background-size: 500% 500%;
           -webkit-background-clip: text;
           background-clip: text;
           color: transparent;
-          animation: gradientShiftWhite 3s ease-in-out infinite;
-          filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.4)) 
-                  drop-shadow(0 0 24px rgba(255, 255, 255, 0.2));
+          animation: ultraGradientFlowWhite 4s ease-in-out infinite;
+          filter: 
+            drop-shadow(0 0 16px rgba(255, 255, 255, 0.9))
+            drop-shadow(0 0 32px rgba(255, 255, 255, 0.7))
+            drop-shadow(0 0 48px rgba(255, 255, 255, 0.5))
+            drop-shadow(0 0 64px rgba(255, 255, 255, 0.3));
           text-shadow: 
-            0 0 10px rgba(255, 255, 255, 0.5),
-            0 0 20px rgba(255, 255, 255, 0.3),
-            0 0 30px rgba(255, 255, 255, 0.1);
+            0 0 10px rgba(255, 255, 255, 0.8),
+            0 0 20px rgba(255, 255, 255, 0.6),
+            0 0 30px rgba(255, 255, 255, 0.4),
+            0 0 40px rgba(255, 255, 255, 0.2);
         }
         
+        /* Ultra-Premium Glow Effects */
         .nuvianse-brand::before {
           content: '';
           position: absolute;
-          inset: -2px;
+          inset: -4px;
           background: linear-gradient(
             45deg,
-            transparent 30%,
-            rgba(99, 102, 241, 0.1) 50%,
-            transparent 70%
+            transparent 20%,
+            rgba(0, 0, 0, 0.3) 30%,
+            rgba(0, 0, 0, 0.6) 50%,
+            rgba(0, 0, 0, 0.3) 70%,
+            transparent 80%
           );
-          border-radius: 8px;
+          border-radius: 12px;
           opacity: 0;
-          transition: opacity 0.3s ease;
+          transition: opacity 0.4s ease;
           z-index: -1;
-          animation: shimmer 2s ease-in-out infinite;
+          animation: ultraShimmer 3s ease-in-out infinite;
+          filter: blur(2px);
         }
         
         .nuvianse-brand.scrolled::before {
           background: linear-gradient(
             45deg,
-            transparent 30%,
-            rgba(255, 255, 255, 0.15) 50%,
-            transparent 70%
+            transparent 20%,
+            rgba(255, 255, 255, 0.2) 30%,
+            rgba(255, 255, 255, 0.4) 50%,
+            rgba(255, 255, 255, 0.2) 70%,
+            transparent 80%
           );
+          filter: blur(3px);
         }
         
         .nuvianse-brand:hover::before {
           opacity: 1;
+          animation-play-state: paused;
         }
         
+        /* Ultra-Premium Shadow Layer */
         .nuvianse-brand::after {
-          content: '';
+          content: 'NUVIANSE';
           position: absolute;
           inset: 0;
           background: inherit;
           background-clip: text;
           -webkit-background-clip: text;
           color: transparent;
-          filter: blur(1px);
-          opacity: 0.6;
-          z-index: -1;
+          filter: blur(2px);
+          opacity: 0.4;
+          z-index: -2;
           animation: inherit;
+          transform: translateZ(-10px) scale(1.02);
         }
         
-        @keyframes gradientShift {
+        /* Premium Gradient Animations */
+        @keyframes ultraGradientFlow {
           0%, 100% {
             background-position: 0% 50%;
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg);
+          }
+          20% {
+            background-position: 100% 0%;
+            transform: perspective(1000px) rotateX(2deg) rotateY(-1deg);
+          }
+          40% {
+            background-position: 100% 100%;
+            transform: perspective(1000px) rotateX(-1deg) rotateY(2deg);
+          }
+          60% {
+            background-position: 0% 100%;
+            transform: perspective(1000px) rotateX(1deg) rotateY(-2deg);
+          }
+          80% {
+            background-position: 0% 0%;
+            transform: perspective(1000px) rotateX(-2deg) rotateY(1deg);
+          }
+        }
+        
+        @keyframes ultraGradientFlowWhite {
+          0%, 100% {
+            background-position: 0% 50%;
+            transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1);
           }
           25% {
             background-position: 100% 0%;
+            transform: perspective(1000px) rotateX(1deg) rotateY(-1deg) scale(1.02);
           }
           50% {
             background-position: 100% 100%;
+            transform: perspective(1000px) rotateX(-1deg) rotateY(1deg) scale(1.01);
           }
           75% {
             background-position: 0% 100%;
+            transform: perspective(1000px) rotateX(1deg) rotateY(-1deg) scale(1.02);
           }
         }
         
-        @keyframes gradientShiftWhite {
-          0%, 100% {
-            background-position: 0% 50%;
-          }
-          33% {
-            background-position: 100% 0%;
-          }
-          66% {
-            background-position: 100% 100%;
-          }
-        }
-        
-        @keyframes shimmer {
+        @keyframes ultraShimmer {
           0% {
-            transform: translateX(-100%) rotate(45deg);
+            transform: translateX(-200%) rotate(45deg) scale(0.8);
+            opacity: 0;
+          }
+          50% {
+            opacity: 1;
+            transform: translateX(0%) rotate(45deg) scale(1);
           }
           100% {
-            transform: translateX(200%) rotate(45deg);
+            transform: translateX(200%) rotate(45deg) scale(0.8);
+            opacity: 0;
           }
         }
         
+        /* Ultra-Premium Hover Effects */
         .nuvianse-brand:hover {
-          transform: scale(1.05);
-          filter: drop-shadow(0 0 16px rgba(99, 102, 241, 0.5)) 
-                  drop-shadow(0 0 32px rgba(99, 102, 241, 0.3));
+          transform: scale(1.08) perspective(1000px) rotateX(5deg) rotateY(-5deg);
+          filter: 
+            drop-shadow(0 0 20px rgba(0, 0, 0, 1))
+            drop-shadow(0 0 40px rgba(0, 0, 0, 0.8))
+            drop-shadow(0 0 60px rgba(0, 0, 0, 0.6));
+          animation-play-state: paused;
+          letter-spacing: 0.25em;
         }
         
         .nuvianse-brand.scrolled:hover {
-          filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.6)) 
-                  drop-shadow(0 0 40px rgba(255, 255, 255, 0.4));
+          transform: scale(1.08) perspective(1000px) rotateX(-3deg) rotateY(3deg);
+          filter: 
+            drop-shadow(0 0 24px rgba(255, 255, 255, 1))
+            drop-shadow(0 0 48px rgba(255, 255, 255, 0.8))
+            drop-shadow(0 0 72px rgba(255, 255, 255, 0.6))
+            drop-shadow(0 0 96px rgba(255, 255, 255, 0.4));
+          letter-spacing: 0.25em;
         }
         
-        /* Responsive font sizing */
+        /* Ultra-Premium Pulsing Effect */
+        .nuvianse-brand {
+          animation: 
+            ultraGradientFlow 6s ease-in-out infinite,
+            ultraPulse 4s ease-in-out infinite;
+        }
+        
+        .nuvianse-brand.scrolled {
+          animation: 
+            ultraGradientFlowWhite 4s ease-in-out infinite,
+            ultraPulseWhite 3s ease-in-out infinite;
+        }
+        
+        @keyframes ultraPulse {
+          0%, 100% {
+            text-shadow: 
+              0 0 5px rgba(0, 0, 0, 0.8),
+              0 0 10px rgba(0, 0, 0, 0.6),
+              0 0 15px rgba(0, 0, 0, 0.4);
+          }
+          50% {
+            text-shadow: 
+              0 0 10px rgba(0, 0, 0, 1),
+              0 0 20px rgba(0, 0, 0, 0.8),
+              0 0 30px rgba(0, 0, 0, 0.6),
+              0 0 40px rgba(0, 0, 0, 0.4);
+          }
+        }
+        
+        @keyframes ultraPulseWhite {
+          0%, 100% {
+            text-shadow: 
+              0 0 8px rgba(255, 255, 255, 0.8),
+              0 0 16px rgba(255, 255, 255, 0.6),
+              0 0 24px rgba(255, 255, 255, 0.4);
+          }
+          50% {
+            text-shadow: 
+              0 0 12px rgba(255, 255, 255, 1),
+              0 0 24px rgba(255, 255, 255, 0.8),
+              0 0 36px rgba(255, 255, 255, 0.6),
+              0 0 48px rgba(255, 255, 255, 0.4);
+          }
+        }
+        
+        /* Ultra-Premium Responsive Design */
         @media (max-width: 768px) {
           .nuvianse-brand {
-            font-size: 0.9rem;
-            letter-spacing: 0.1em;
+            font-size: 1rem;
+            letter-spacing: 0.15em;
+            font-weight: 800;
+          }
+          
+          .nuvianse-brand:hover {
+            transform: scale(1.05) perspective(800px) rotateX(3deg) rotateY(-3deg);
+            letter-spacing: 0.18em;
           }
         }
         
         @media (max-width: 480px) {
           .nuvianse-brand {
-            font-size: 0.8rem;
-            letter-spacing: 0.08em;
+            font-size: 0.9rem;
+            letter-spacing: 0.12em;
+            font-weight: 700;
           }
+          
+          .nuvianse-brand:hover {
+            transform: scale(1.03) perspective(600px) rotateX(2deg) rotateY(-2deg);
+            letter-spacing: 0.15em;
+          }
+        }
+        
+        /* Ultra-Premium Loading State */
+        .nuvianse-brand.loading {
+          animation: 
+            ultraGradientFlow 6s ease-in-out infinite,
+            ultraPulse 4s ease-in-out infinite,
+            ultraLoading 2s ease-in-out infinite;
+        }
+        
+        @keyframes ultraLoading {
+          0%, 100% {
+            opacity: 0.8;
+            transform: scale(0.98);
+          }
+          50% {
+            opacity: 1;
+            transform: scale(1.02);
+          }
+        }
+        
+        /* Ultra-Premium Focus State */
+        .nuvianse-brand:focus {
+          outline: none;
+          transform: scale(1.1) perspective(1000px) rotateX(8deg) rotateY(-8deg);
+          filter: 
+            drop-shadow(0 0 30px rgba(0, 0, 0, 1))
+            drop-shadow(0 0 60px rgba(0, 0, 0, 0.8));
+        }
+        
+        .nuvianse-brand.scrolled:focus {
+          transform: scale(1.1) perspective(1000px) rotateX(-5deg) rotateY(5deg);
+          filter: 
+            drop-shadow(0 0 36px rgba(255, 255, 255, 1))
+            drop-shadow(0 0 72px rgba(255, 255, 255, 0.8));
         }
       `}</style>
 
@@ -303,13 +462,17 @@ export function Header() {
               </div>
               <span 
                 className={cn(
-                  "nuvianse-brand transition-all duration-700 ease-out",
-                  showScrolledState ? "scrolled" : ""
+                  "nuvianse-brand transition-all duration-700 ease-out cursor-pointer",
+                  showScrolledState ? "scrolled" : "",
+                  !mounted ? "loading" : ""
                 )}
                 style={{
-                  fontSize: `${16 - (scrollProgress * 2)}px`,
+                  fontSize: `${18 - (scrollProgress * 2)}px`,
                   opacity: 1 - (scrollProgress * 0.05),
                 }}
+                tabIndex={0}
+                role="button"
+                aria-label="NUVIANSE Brand"
               >
                 NUVIANSE
               </span>
