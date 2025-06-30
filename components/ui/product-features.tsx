@@ -6,37 +6,37 @@ import { cn } from "@/lib/utils"
 const features = [
   {
     id: 1,
-    title: "AI-Powered Financial Insights",
-    description: "Experience cutting-edge AI technology that analyzes your financial data in real-time, providing personalized insights and recommendations for smarter financial decisions.",
-    image: "https://images.pexels.com/photos/8386440/pexels-photo-8386440.jpeg?auto=compress&cs=tinysrgb&w=800",
+    title: "Autonomous Candidate Sourcing",
+    description: "AI agents continuously scan LinkedIn, GitHub, Stack Overflow, and 50+ platforms to identify and engage with top talent that perfectly matches your job requirements, working 24/7 without human intervention.",
+    image: "https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800",
     gradient: "from-blue-500 to-purple-600"
   },
   {
     id: 2,
-    title: "Smart Portfolio Management",
-    description: "Manage your investment portfolio with our intelligent platform that adapts to market changes and your financial goals, ensuring optimal performance and risk management.",
-    image: "https://images.pexels.com/photos/7567486/pexels-photo-7567486.jpeg?auto=compress&cs=tinysrgb&w=800",
+    title: "Intelligent Candidate Screening",
+    description: "Advanced AI algorithms evaluate candidates across technical skills, cultural fit, experience level, and career trajectory. Our agents conduct preliminary assessments and rank candidates by compatibility score.",
+    image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800",
     gradient: "from-emerald-500 to-teal-600"
   },
   {
     id: 3,
-    title: "Secure Payment Processing",
-    description: "Process payments with confidence using our state-of-the-art security measures. End-to-end encryption and fraud protection keep your transactions safe.",
-    image: "https://images.pexels.com/photos/4386321/pexels-photo-4386321.jpeg?auto=compress&cs=tinysrgb&w=800",
+    title: "Personalized Outreach Automation",
+    description: "AI agents craft personalized messages based on candidate profiles, company culture, and role requirements. Automated follow-ups and engagement sequences maintain consistent communication throughout the hiring process.",
+    image: "https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800",
     gradient: "from-orange-500 to-red-600"
   },
   {
     id: 4,
-    title: "Advanced Analytics Dashboard",
-    description: "Gain deep insights into your financial performance with our comprehensive analytics dashboard. Track trends, monitor KPIs, and make data-driven decisions.",
-    image: "https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=800",
+    title: "Real-time Analytics & Insights",
+    description: "Comprehensive dashboard showing AI agent performance, candidate pipeline metrics, sourcing effectiveness, and hiring funnel analytics. Get actionable insights to optimize your recruitment strategy.",
+    image: "https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800",
     gradient: "from-purple-500 to-pink-600"
   },
   {
     id: 5,
-    title: "Multi-Currency Support",
-    description: "Seamlessly handle transactions in multiple currencies with real-time exchange rates and automatic conversion. Perfect for global businesses and international transactions.",
-    image: "https://images.pexels.com/photos/7567443/pexels-photo-7567443.jpeg?auto=compress&cs=tinysrgb&w=800",
+    title: "Multi-Platform Integration",
+    description: "Seamlessly integrate with your existing ATS, HRIS, and communication tools. Our AI agents work across Slack, Teams, email, and popular recruiting platforms to streamline your entire workflow.",
+    image: "https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=800",
     gradient: "from-indigo-500 to-blue-600"
   }
 ]
@@ -120,10 +120,10 @@ export function ProductFeatures() {
       <div className="container mx-auto px-4 mb-8 relative z-10">
         <div className="text-center max-w-4xl mx-auto">
           <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent">
-            Product Features
+            AI Agent Capabilities
           </h2>
           <p className="text-lg text-gray-300 leading-relaxed">
-            Discover the powerful capabilities that make Hostpay the ultimate solution for modern financial management
+            Discover how our autonomous AI agents revolutionize every aspect of your recruitment process
           </p>
         </div>
       </div>
@@ -290,7 +290,7 @@ export function ProductFeatures() {
               {/* Sticky State Indicator */}
               {isSticky && (
                 <div className="absolute top-4 left-4 px-3 py-1 bg-black/50 backdrop-blur-sm rounded-full text-xs text-white/70 border border-white/10">
-                  Feature Preview
+                  AI Feature Preview
                 </div>
               )}
             </div>

@@ -134,7 +134,7 @@ export function Header() {
                 textShadow: isScrolled ? `0 0 8px rgba(168, 85, 247, ${glowIntensity})` : 'none',
               }}
             >
-              Hostpay
+              TalentAI
             </span>
           </div>
 
@@ -169,7 +169,7 @@ export function Header() {
                 textShadow: isScrolled ? `0 0 4px rgba(255, 255, 255, ${glowIntensity * 0.2})` : 'none',
               }}
             >
-              Features
+              AI Agents
             </Link>
             <Link 
               href="#pricing" 
@@ -185,7 +185,7 @@ export function Header() {
               Pricing
             </Link>
             <Link 
-              href="#faq" 
+              href="#demo" 
               className={cn(
                 "font-medium hover:text-black transition-all duration-300 ease-out uppercase",
                 isScrolled ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black"
@@ -195,7 +195,7 @@ export function Header() {
                 textShadow: isScrolled ? `0 0 4px rgba(255, 255, 255, ${glowIntensity * 0.2})` : 'none',
               }}
             >
-              FAQ
+              Demo
             </Link>
             <Link 
               href="#about" 
@@ -258,7 +258,7 @@ export function Header() {
                 ` : 'none',
               }}
             >
-              Sign up
+              Start Free
             </Link>
           </div>
         </div>
