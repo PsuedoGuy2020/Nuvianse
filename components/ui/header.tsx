@@ -47,7 +47,7 @@ export function Header() {
   return (
     <header
       suppressHydrationWarning
-      className="fixed z-50 top-4 left-1/2 -translate-x-1/2 transition-all duration-700 ease-out"
+      className="fixed z-50 top-2 sm:top-4 left-1/2 -translate-x-1/2 transition-all duration-700 ease-out"
       style={{
         width: `${headerWidth}%`,
         maxWidth: isScrolled ? '80rem' : 'none',
@@ -98,14 +98,14 @@ export function Header() {
           />
         )}
         
-        <div className="relative flex items-center justify-between h-12 px-4 sm:px-6 lg:px-8 transition-all duration-700 ease-out">
+        <div className="relative flex items-center justify-between h-10 sm:h-12 px-3 sm:px-4 lg:px-8 transition-all duration-700 ease-out">
           {/* Logo */}
-          <div className="flex items-center gap-2 transition-all duration-700 ease-out">
+          <div className="flex items-center gap-1.5 sm:gap-2 transition-all duration-700 ease-out">
             <div 
               className="relative overflow-hidden transition-all duration-700 ease-out"
               style={{
-                width: `${40 - (scrollProgress * 4)}px`,
-                height: `${40 - (scrollProgress * 4)}px`,
+                width: `${32 - (scrollProgress * 4)}px`,
+                height: `${32 - (scrollProgress * 4)}px`,
                 borderRadius: `${scrollProgress * 8}px`,
                 // Add subtle glow to logo when collapsed
                 boxShadow: isScrolled ? `0 0 8px rgba(255, 255, 255, ${glowIntensity * 0.5})` : 'none',
@@ -129,13 +129,13 @@ export function Header() {
                 isScrolled ? "text-purple-300" : "text-purple-400"
               )}
               style={{
-                fontSize: `${18 - (scrollProgress * 2)}px`,
+                fontSize: `${14 - (scrollProgress * 2)}px`,
                 opacity: 1 - (scrollProgress * 0.1),
                 // Add text glow when collapsed
                 textShadow: isScrolled ? `0 0 8px rgba(168, 85, 247, ${glowIntensity})` : 'none',
               }}
             >
-              TalentAI
+              NUVIANSE
             </span>
           </div>
 
@@ -143,7 +143,7 @@ export function Header() {
           <nav 
             className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:flex items-center transition-all duration-700 ease-out"
             style={{
-              gap: `${24 - (scrollProgress * 4)}px`,
+              gap: `${20 - (scrollProgress * 4)}px`,
             }}
           >
             <Link 
@@ -153,7 +153,7 @@ export function Header() {
                 isScrolled ? "text-white" : "text-black"
               )}
               style={{
-                fontSize: `${14 - (scrollProgress * 1)}px`,
+                fontSize: `${12 - (scrollProgress * 1)}px`,
                 textShadow: isScrolled ? `0 0 4px rgba(255, 255, 255, ${glowIntensity * 0.3})` : 'none',
               }}
             >
@@ -166,7 +166,7 @@ export function Header() {
                 isScrolled ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black"
               )}
               style={{
-                fontSize: `${14 - (scrollProgress * 1)}px`,
+                fontSize: `${12 - (scrollProgress * 1)}px`,
                 textShadow: isScrolled ? `0 0 4px rgba(255, 255, 255, ${glowIntensity * 0.2})` : 'none',
               }}
             >
@@ -179,7 +179,7 @@ export function Header() {
                 isScrolled ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black"
               )}
               style={{
-                fontSize: `${14 - (scrollProgress * 1)}px`,
+                fontSize: `${12 - (scrollProgress * 1)}px`,
                 textShadow: isScrolled ? `0 0 4px rgba(255, 255, 255, ${glowIntensity * 0.2})` : 'none',
               }}
             >
@@ -192,7 +192,7 @@ export function Header() {
                 isScrolled ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black"
               )}
               style={{
-                fontSize: `${14 - (scrollProgress * 1)}px`,
+                fontSize: `${12 - (scrollProgress * 1)}px`,
                 textShadow: isScrolled ? `0 0 4px rgba(255, 255, 255, ${glowIntensity * 0.2})` : 'none',
               }}
             >
@@ -205,7 +205,7 @@ export function Header() {
                 isScrolled ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black"
               )}
               style={{
-                fontSize: `${14 - (scrollProgress * 1)}px`,
+                fontSize: `${12 - (scrollProgress * 1)}px`,
                 textShadow: isScrolled ? `0 0 4px rgba(255, 255, 255, ${glowIntensity * 0.2})` : 'none',
               }}
             >
@@ -217,7 +217,7 @@ export function Header() {
           <div 
             className="flex items-center transition-all duration-700 ease-out"
             style={{
-              gap: `${8 - (scrollProgress * 2)}px`,
+              gap: `${6 - (scrollProgress * 2)}px`,
             }}
           >
             <Link
@@ -229,9 +229,9 @@ export function Header() {
                   : "text-black border-gray-300 hover:bg-gray-100"
               )}
               style={{
-                padding: `${4 - (scrollProgress * 1)}px ${16 - (scrollProgress * 2)}px`,
-                fontSize: `${14 - (scrollProgress * 1)}px`,
-                borderRadius: `${25 + (scrollProgress * 5)}px`,
+                padding: `${3 - (scrollProgress * 1)}px ${12 - (scrollProgress * 2)}px`,
+                fontSize: `${12 - (scrollProgress * 1)}px`,
+                borderRadius: `${20 + (scrollProgress * 5)}px`,
                 boxShadow: isScrolled ? `
                   0 0 8px rgba(255, 255, 255, ${glowIntensity * 0.4}),
                   inset 0 1px 0 rgba(255, 255, 255, 0.3)
@@ -249,9 +249,9 @@ export function Header() {
                   : "bg-emerald-500 text-white hover:bg-emerald-600"
               )}
               style={{
-                padding: `${4 - (scrollProgress * 1)}px ${16 - (scrollProgress * 2)}px`,
-                fontSize: `${14 - (scrollProgress * 1)}px`,
-                borderRadius: `${25 + (scrollProgress * 5)}px`,
+                padding: `${3 - (scrollProgress * 1)}px ${12 - (scrollProgress * 2)}px`,
+                fontSize: `${12 - (scrollProgress * 1)}px`,
+                borderRadius: `${20 + (scrollProgress * 5)}px`,
                 boxShadow: isScrolled ? `
                   0 0 12px rgba(16, 185, 129, ${glowIntensity * 0.6}),
                   0 0 24px rgba(16, 185, 129, ${glowIntensity * 0.3}),

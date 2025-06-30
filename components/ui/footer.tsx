@@ -27,31 +27,31 @@ export function Footer() {
   }
 
   return (
-    <footer className="footer-parallax w-full min-h-[600px] py-16 mt-20">
-      <div className="footer-content container mx-auto px-4">
+    <footer className="footer-parallax w-full min-h-[600px] py-8 sm:py-12 lg:py-16 mt-12 sm:mt-16 lg:mt-20">
+      <div className="footer-content container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Grid */}
-        <div className="footer-grid mb-16">
+        <div className="footer-grid mb-12 sm:mb-16">
           {/* About Column */}
           <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-white/90">About</h3>
+            <h3 className="text-lg sm:text-xl font-semibold text-white/90">About</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/about" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/about" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">
                   Our Story
                 </Link>
               </li>
               <li>
-                <Link href="/team" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/team" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">
                   Team
                 </Link>
               </li>
               <li>
-                <Link href="/careers" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/careers" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">
                   Careers
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/contact" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">
                   Contact
                 </Link>
               </li>
@@ -60,25 +60,25 @@ export function Footer() {
 
           {/* AI Solutions Column */}
           <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-white/90">AI Solutions</h3>
+            <h3 className="text-lg sm:text-xl font-semibold text-white/90">AI Solutions</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/sourcing-agents" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/sourcing-agents" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">
                   Sourcing Agents
                 </Link>
               </li>
               <li>
-                <Link href="/screening-ai" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/screening-ai" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">
                   Screening AI
                 </Link>
               </li>
               <li>
-                <Link href="/engagement-bots" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/engagement-bots" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">
                   Engagement Bots
                 </Link>
               </li>
               <li>
-                <Link href="/analytics" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/analytics" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">
                   Analytics
                 </Link>
               </li>
@@ -87,25 +87,25 @@ export function Footer() {
 
           {/* Resources Column */}
           <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-white/90">Resources</h3>
+            <h3 className="text-lg sm:text-xl font-semibold text-white/90">Resources</h3>
             <ul className="space-y-2">
               <li>
-                <Link href="/blog" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/blog" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">
                   Blog
                 </Link>
               </li>
               <li>
-                <Link href="/docs" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/docs" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">
                   Documentation
                 </Link>
               </li>
               <li>
-                <Link href="/case-studies" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/case-studies" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">
                   Case Studies
                 </Link>
               </li>
               <li>
-                <Link href="/api" className="text-gray-400 hover:text-white transition-colors">
+                <Link href="/api" className="text-gray-400 hover:text-white transition-colors text-sm sm:text-base">
                   API
                 </Link>
               </li>
@@ -114,12 +114,12 @@ export function Footer() {
 
           {/* See It Live Column */}
           <div className="see-it-live-column">
-            <h3 className="text-xl font-semibold text-white/90 mb-6">See AI in Action</h3>
+            <h3 className="text-lg sm:text-xl font-semibold text-white/90 mb-4 sm:mb-6">See AI in Action</h3>
             
             {/* Demo Request Form */}
             <div className="demo-request-compact">
-              <p className="demo-description-compact">
-                Experience TalentAI agents in action — request your live demo.
+              <p className="demo-description-compact text-sm sm:text-base">
+                Experience NUVIANSE agents in action — request your live demo.
               </p>
               
               <form onSubmit={handleSubscribe} className="demo-form-compact">
@@ -150,7 +150,7 @@ export function Footer() {
               {/* Privacy Disclaimer */}
               <div className="privacy-disclaimer">
                 <p className="disclaimer-text">
-                  Clicking "See TalentAI" means you agree to how we handle your data, as outlined in our{' '}
+                  Clicking "See NUVIANSE" means you agree to how we handle your data, as outlined in our{' '}
                   <Link href="/privacy" className="privacy-link">
                     Privacy Notice
                   </Link>
@@ -161,7 +161,7 @@ export function Footer() {
               {/* Social Icons */}
               <div className="social-icons-linear">
                 <a
-                  href="https://twitter.com/talentai"
+                  href="https://twitter.com/nuvianse"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="social-icon-compact"
@@ -170,7 +170,7 @@ export function Footer() {
                   <Twitter className="social-icon-svg" />
                 </a>
                 <a
-                  href="https://github.com/talentai"
+                  href="https://github.com/nuvianse"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="social-icon-compact"
@@ -179,7 +179,7 @@ export function Footer() {
                   <Github className="social-icon-svg" />
                 </a>
                 <a
-                  href="https://linkedin.com/company/talentai"
+                  href="https://linkedin.com/company/nuvianse"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="social-icon-compact"
@@ -188,7 +188,7 @@ export function Footer() {
                   <Linkedin className="social-icon-svg" />
                 </a>
                 <a
-                  href="https://instagram.com/talentai"
+                  href="https://instagram.com/nuvianse"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="social-icon-compact"
@@ -208,7 +208,7 @@ export function Footer() {
             <div className="logo-wrapper">
               <Image
                 src="/Screenshot_2025-06-26_at_1.15.07_AM-removebg-preview.png"
-                alt="TalentAI Logo"
+                alt="NUVIANSE Logo"
                 width={400}
                 height={400}
                 className="brand-logo"
@@ -218,7 +218,7 @@ export function Footer() {
             
             {/* Text Container */}
             <div className="text-wrapper">
-              <h2 className="brand-text">TALENTAI</h2>
+              <h2 className="brand-text">NUVIANSE</h2>
             </div>
           </div>
         </div>
@@ -241,8 +241,8 @@ export function Footer() {
             <div className="center-legal-section">
               {/* Copyright - Top */}
               <div className="copyright-section">
-                <p className="copyright-text">
-                  © {currentYear || '2025'} TalentAI. All rights reserved.
+                <p className="copyright-text text-sm sm:text-base">
+                  © {currentYear || '2025'} NUVIANSE. All rights reserved.
                 </p>
               </div>
               
@@ -265,12 +265,12 @@ export function Footer() {
             {/* Right side - Contact Email */}
             <div className="contact-email-section">
               <a 
-                href="mailto:hello@talentai.com" 
+                href="mailto:hello@nuvianse.com" 
                 className="contact-email-link"
                 title="Send us an email"
               >
                 <Mail className="contact-email-icon" />
-                <span className="contact-email-text">hello@talentai.com</span>
+                <span className="contact-email-text">hello@nuvianse.com</span>
               </a>
             </div>
           </div>
