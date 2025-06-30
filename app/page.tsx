@@ -22,6 +22,7 @@ import { Header } from "@/components/ui/header"
 import { InfiniteGrid } from "@/components/ui/infinite-grid"
 import { FeaturesShowcase } from "@/components/ui/features-showcase"
 import { AICapabilitiesGrid } from "@/components/ui/ai-capabilities-grid"
+import { PopupTrigger } from "@/components/ui/popup-trigger"
 
 export default function Home() {
   return (
@@ -49,18 +50,24 @@ export default function Home() {
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4">
-            <Link
-              href="#"
-              className="rounded-full bg-gradient-to-r from-emerald-600 to-blue-600 px-6 sm:px-8 py-3 sm:py-4 font-medium text-white hover:opacity-90 transition-opacity w-full sm:w-auto shadow-lg hover:shadow-xl text-center"
+            <PopupTrigger 
+              title="Deploy AI Agents Now"
+              description="Start your free trial and experience the future of recruitment. Our AI agents will begin sourcing candidates within minutes."
+              className="w-full sm:w-auto"
             >
-              Deploy AI Agents
-            </Link>
-            <Link
-              href="#"
-              className="rounded-full border-2 border-gray-200 px-6 sm:px-8 py-3 sm:py-4 font-medium text-gray-700 hover:bg-gray-50 w-full sm:w-auto transition-colors text-center"
+              <div className="rounded-full bg-gradient-to-r from-emerald-600 to-blue-600 px-6 sm:px-8 py-3 sm:py-4 font-medium text-white hover:opacity-90 transition-opacity w-full sm:w-auto shadow-lg hover:shadow-xl text-center cursor-pointer">
+                Deploy AI Agents
+              </div>
+            </PopupTrigger>
+            <PopupTrigger 
+              title="Watch AI Agents in Action"
+              description="See how our AI agents discover, screen, and engage with top talent. Get a personalized demo tailored to your hiring needs."
+              className="w-full sm:w-auto"
             >
-              Watch Demo
-            </Link>
+              <div className="rounded-full border-2 border-gray-200 px-6 sm:px-8 py-3 sm:py-4 font-medium text-gray-700 hover:bg-gray-50 w-full sm:w-auto transition-colors text-center cursor-pointer">
+                Watch Demo
+              </div>
+            </PopupTrigger>
           </div>
         </div>
       </section>
@@ -189,18 +196,23 @@ export default function Home() {
                       </svg>
                     </div>
 
-                    <button className="flex items-center justify-center gap-2 rounded-full bg-emerald-600/20 text-emerald-500 px-3 sm:px-4 py-2">
-                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                          d="M12 5v14M5 12h14"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                      <span className="text-xs sm:text-sm">Deploy Agent</span>
-                    </button>
+                    <PopupTrigger 
+                      title="Deploy New AI Agent"
+                      description="Configure and deploy a new AI agent tailored to your specific hiring needs. Choose from our library of specialized recruitment agents."
+                    >
+                      <button className="flex items-center justify-center gap-2 rounded-full bg-emerald-600/20 text-emerald-500 px-3 sm:px-4 py-2 cursor-pointer hover:bg-emerald-600/30 transition-colors">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path
+                            d="M12 5v14M5 12h14"
+                            stroke="currentColor"
+                            strokeWidth="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                        <span className="text-xs sm:text-sm">Deploy Agent</span>
+                      </button>
+                    </PopupTrigger>
                   </div>
                 </div>
 
@@ -350,9 +362,14 @@ export default function Home() {
                       performance="+31%"
                     />
 
-                    <button className="w-full rounded-xl bg-emerald-600/20 py-3 text-emerald-500 font-medium text-sm sm:text-base">
-                      Deploy New AI Agent
-                    </button>
+                    <PopupTrigger 
+                      title="Deploy New AI Agent"
+                      description="Choose from our library of specialized AI agents or create a custom agent tailored to your unique hiring requirements."
+                    >
+                      <button className="w-full rounded-xl bg-emerald-600/20 py-3 text-emerald-500 font-medium text-sm sm:text-base hover:bg-emerald-600/30 transition-colors cursor-pointer">
+                        Deploy New AI Agent
+                      </button>
+                    </PopupTrigger>
                   </div>
                 </div>
               </div>
