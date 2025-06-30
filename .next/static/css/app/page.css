@@ -1,0 +1,1443 @@
+/*!************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./styles/footer-parallax.css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************/
+.footer-wrapper {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.footer-parallax {
+  position: relative;
+  width: 100%;
+  transform-style: preserve-3d;
+  perspective: 1000px;
+}
+
+.footer-upper {
+  position: relative;
+  z-index: 20;
+  background: linear-gradient(to bottom, 
+    rgba(15, 23, 42, 0.97),
+    rgba(15, 23, 42, 0.99)
+  );
+  backdrop-filter: blur(10px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 4rem 0;
+}
+
+.footer-lower {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 10;
+  background: linear-gradient(to bottom,
+    rgba(15, 23, 42, 0.8),
+    rgba(15, 23, 42, 0.95)
+  );
+  padding: 6rem 0 3rem;
+  pointer-events: none;
+}
+
+/* See It Live Column - Compelling and action-oriented design */
+.see-it-live-column {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  position: relative;
+}
+
+/* Add subtle glow effect to the title */
+.see-it-live-column h3 {
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.95) 0%, 
+    rgba(99, 102, 241, 0.8) 50%, 
+    rgba(255, 255, 255, 0.95) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+  position: relative;
+}
+
+/* Add animated underline to "See It Live" */
+.see-it-live-column h3::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, 
+    #6366f1 0%, 
+    #8b5cf6 50%, 
+    #06b6d4 100%
+  );
+  animation: expandLine 2s ease-in-out infinite alternate;
+  box-shadow: 0 0 8px rgba(99, 102, 241, 0.5);
+}
+
+@keyframes expandLine {
+  0% { width: 0; }
+  100% { width: 60%; }
+}
+
+.demo-request-compact {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.demo-description-compact {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 500;
+  position: relative;
+}
+
+/* Add subtle pulse effect to description */
+.demo-description-compact::before {
+  content: '🚀';
+  position: absolute;
+  left: -1.5rem;
+  top: 0;
+  animation: pulse 2s ease-in-out infinite;
+  font-size: 0.75rem;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.5; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.1); }
+}
+
+.demo-form-compact {
+  display: flex;
+  gap: 0.5rem;
+  align-items: stretch;
+  position: relative;
+}
+
+/* Add subtle glow animation to form */
+.demo-form-compact::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(45deg, 
+    transparent 0%, 
+    rgba(99, 102, 241, 0.1) 25%, 
+    transparent 50%, 
+    rgba(139, 92, 246, 0.1) 75%, 
+    transparent 100%
+  );
+  border-radius: 0.75rem;
+  z-index: -1;
+  opacity: 0;
+  animation: formGlow 3s ease-in-out infinite;
+}
+
+@keyframes formGlow {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+.email-input-wrapper-compact {
+  position: relative;
+  flex: 1;
+  min-width: 0;
+}
+
+.email-icon-compact {
+  position: absolute;
+  left: 0.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1rem;
+  height: 1rem;
+  color: rgba(255, 255, 255, 0.4);
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.email-input-compact {
+  width: 100%;
+  padding: 0.625rem 0.75rem 0.625rem 2.25rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 0.5rem;
+  color: white;
+  font-size: 0.8rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.email-input-compact::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+}
+
+.email-input-compact:focus {
+  outline: none;
+  border-color: rgba(99, 102, 241, 0.5);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 
+    0 0 0 2px rgba(99, 102, 241, 0.1),
+    0 0 20px rgba(99, 102, 241, 0.2);
+}
+
+.email-input-compact:focus + .email-icon-compact {
+  color: rgba(99, 102, 241, 0.8);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.demo-button-compact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  border: none;
+  border-radius: 0.5rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  box-shadow: 
+    0 2px 8px rgba(99, 102, 241, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add shimmer effect to button */
+.demo-button-compact::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, 
+    transparent 30%, 
+    rgba(255, 255, 255, 0.3) 50%, 
+    transparent 70%
+  );
+  transform: rotate(45deg);
+  animation: shimmer 2s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+.demo-button-compact:hover:not(:disabled) {
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 
+    0 4px 12px rgba(99, 102, 241, 0.4),
+    0 0 20px rgba(99, 102, 241, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.2);
+  background: linear-gradient(135deg, #5855eb 0%, #7c3aed 100%);
+}
+
+.demo-button-compact:disabled {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  cursor: not-allowed;
+  box-shadow: 
+    0 2px 8px rgba(16, 185, 129, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.arrow-icon-compact {
+  width: 0.875rem;
+  height: 0.875rem;
+  transition: transform 0.3s ease;
+  z-index: 1;
+  position: relative;
+}
+
+.demo-button-compact:hover:not(:disabled) .arrow-icon-compact {
+  transform: translateX(2px) scale(1.1);
+}
+
+.success-checkmark-compact {
+  width: 0.875rem;
+  height: 0.875rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.75rem;
+  z-index: 1;
+  position: relative;
+  animation: checkmarkBounce 0.5s ease-out;
+}
+
+@keyframes checkmarkBounce {
+  0% { transform: scale(0); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Privacy Disclaimer - Professional and compliant styling */
+.privacy-disclaimer {
+  margin-top: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0.5rem;
+  backdrop-filter: blur(10px);
+  position: relative;
+}
+
+.disclaimer-text {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  margin: 0;
+  text-align: left;
+  font-weight: 400;
+}
+
+.privacy-link {
+  color: rgba(99, 102, 241, 0.8);
+  text-decoration: underline;
+  text-decoration-color: rgba(99, 102, 241, 0.3);
+  text-underline-offset: 2px;
+  transition: all 0.3s ease;
+  font-weight: 500;
+}
+
+.privacy-link:hover {
+  color: rgba(99, 102, 241, 1);
+  text-decoration-color: rgba(99, 102, 241, 0.6);
+  text-shadow: 0 0 8px rgba(99, 102, 241, 0.3);
+}
+
+/* Add subtle border glow on hover */
+.privacy-disclaimer:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+/* Social Icons Linear - Significantly increased spacing for better visual separation */
+.social-icons-linear {
+  display: flex;
+  gap: 2rem; /* Increased from 1rem to 2rem for much better spacing */
+  margin-top: 1.5rem; /* Increased from 1.25rem to 1.5rem */
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  padding: 0.75rem 0; /* Increased from 0.5rem to 0.75rem */
+}
+
+/* Add subtle connecting line between icons */
+.social-icons-linear::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.1) 20%, 
+    rgba(255, 255, 255, 0.1) 80%, 
+    transparent 100%
+  );
+  z-index: 0;
+}
+
+.social-icon-compact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.75rem; /* Increased from 2.5rem to 2.75rem for better presence */
+  height: 2.75rem; /* Increased from 2.5rem to 2.75rem */
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem; /* Increased from 0.625rem to 0.75rem */
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.social-icon-compact::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.1) 0%, 
+    transparent 50%, 
+    rgba(255, 255, 255, 0.05) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.social-icon-compact:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: rgba(255, 255, 255, 0.95);
+  transform: translateY(-4px) scale(1.1); /* Increased lift and scale for better effect */
+  box-shadow: 
+    0 8px 24px rgba(255, 255, 255, 0.15), /* Enhanced shadow */
+    0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.social-icon-compact:hover::before {
+  opacity: 1;
+}
+
+.social-icon-svg {
+  width: 1.25rem; /* Increased from 1.125rem to 1.25rem */
+  height: 1.25rem; /* Increased from 1.125rem to 1.25rem */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  position: relative;
+}
+
+.social-icon-compact:hover .social-icon-svg {
+  transform: scale(1.2); /* Increased from 1.15 to 1.2 */
+}
+
+/* Enhanced platform-specific hover effects with better spacing */
+.social-icon-compact:nth-child(1):hover {
+  /* Twitter */
+  background: rgba(29, 161, 242, 0.15);
+  border-color: rgba(29, 161, 242, 0.3);
+  color: #1da1f2;
+  box-shadow: 
+    0 8px 24px rgba(29, 161, 242, 0.3),
+    0 0 20px rgba(29, 161, 242, 0.2);
+}
+
+.social-icon-compact:nth-child(2):hover {
+  /* GitHub */
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  box-shadow: 
+    0 8px 24px rgba(255, 255, 255, 0.3),
+    0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+.social-icon-compact:nth-child(3):hover {
+  /* LinkedIn */
+  background: rgba(0, 119, 181, 0.15);
+  border-color: rgba(0, 119, 181, 0.3);
+  color: #0077b5;
+  box-shadow: 
+    0 8px 24px rgba(0, 119, 181, 0.3),
+    0 0 20px rgba(0, 119, 181, 0.2);
+}
+
+.social-icon-compact:nth-child(4):hover {
+  /* Instagram */
+  background: linear-gradient(135deg, 
+    rgba(225, 48, 108, 0.15) 0%, 
+    rgba(255, 204, 0, 0.15) 100%
+  );
+  border-color: rgba(225, 48, 108, 0.3);
+  color: #e1306c;
+  box-shadow: 
+    0 8px 24px rgba(225, 48, 108, 0.3),
+    0 0 20px rgba(225, 48, 108, 0.2);
+}
+
+/* Smart Brand Container - Enhanced with glow effects and hover zoom */
+.brand-container {
+  margin: 3rem 0 2rem;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 1400px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.brand-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(1.5rem, 3vw, 3rem);
+  width: 100%;
+  max-width: 1200px;
+  padding: 2rem;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.03) 0%,
+    rgba(255, 255, 255, 0.01) 50%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  border-radius: 2rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(20px);
+  box-shadow: 
+    0 0 40px rgba(255, 255, 255, 0.05),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Logo Wrapper - Enhanced with subtle glow and hover zoom */
+.logo-wrapper {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: clamp(10rem, 25vw, 20rem);
+  height: clamp(10rem, 25vw, 20rem);
+  position: relative;
+  /* Add subtle glow effect to make logo more prominent */
+  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.1));
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+/* Enhanced glow effect for logo wrapper */
+.logo-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  background: radial-gradient(circle, 
+    rgba(255, 255, 255, 0.08) 0%, 
+    rgba(255, 255, 255, 0.04) 40%, 
+    transparent 70%
+  );
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  animation: logoGlowPulse 3s ease-in-out infinite alternate;
+}
+
+/* Subtle pulsing glow animation */
+@keyframes logoGlowPulse {
+  0% { 
+    opacity: 0.3;
+    transform: scale(0.95);
+  }
+  100% { 
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+/* Hover effect for logo wrapper */
+.logo-wrapper:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 40px rgba(255, 255, 255, 0.2));
+}
+
+.logo-wrapper:hover::before {
+  opacity: 1;
+  animation-play-state: paused;
+}
+
+.brand-logo {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+  filter: brightness(1.15) contrast(1.08) drop-shadow(0 0 25px rgba(255, 255, 255, 0.15));
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  /* Add subtle scale animation */
+  animation: logoBreathing 4s ease-in-out infinite alternate;
+}
+
+/* Subtle breathing animation for logo */
+@keyframes logoBreathing {
+  0% { 
+    filter: brightness(1.15) contrast(1.08) drop-shadow(0 0 25px rgba(255, 255, 255, 0.15));
+    transform: scale(1);
+  }
+  100% { 
+    filter: brightness(1.25) contrast(1.12) drop-shadow(0 0 35px rgba(255, 255, 255, 0.2));
+    transform: scale(1.02);
+  }
+}
+
+.brand-logo:hover {
+  filter: brightness(1.3) contrast(1.15) drop-shadow(0 0 40px rgba(255, 255, 255, 0.25));
+  transform: scale(1.08);
+  animation-play-state: paused;
+}
+
+/* Text Wrapper - Enhanced with glow and fixed hover displacement */
+.text-wrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-width: 0;
+  margin-left: clamp(0.5rem, 1.5vw, 1rem);
+  position: relative;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Enhanced glow effect for text wrapper */
+.text-wrapper::before {
+  content: '';
+  position: absolute;
+  inset: -15px;
+  background: radial-gradient(ellipse, 
+    rgba(255, 255, 255, 0.06) 0%, 
+    rgba(255, 255, 255, 0.03) 40%, 
+    transparent 70%
+  );
+  border-radius: 1rem;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: -1;
+  animation: textGlowPulse 3.5s ease-in-out infinite alternate;
+}
+
+/* Subtle pulsing glow animation for text */
+@keyframes textGlowPulse {
+  0% { 
+    opacity: 0.2;
+    transform: scale(0.98);
+  }
+  100% { 
+    opacity: 0.5;
+    transform: scale(1.02);
+  }
+}
+
+/* Hover effect for text wrapper - FIXED: No displacement */
+.text-wrapper:hover {
+  transform: scale(1.03); /* Only scale, no translation */
+}
+
+.text-wrapper:hover::before {
+  opacity: 1;
+  animation-play-state: paused;
+}
+
+.brand-text {
+  font-size: clamp(2.2rem, 7vw, 6rem);
+  letter-spacing: clamp(0.4rem, 1.8vw, 1.2rem);
+  background: linear-gradient(135deg,
+    #ffffff 0%,
+    #e2e8f0 25%,
+    #ffffff 50%,
+    #e2e8f0 75%,
+    #ffffff 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  opacity: 0.92;
+  font-weight: 900;
+  text-transform: uppercase;
+  white-space: nowrap;
+  line-height: 1;
+  text-shadow: 
+    0 5px 15px rgba(0, 0, 0, 0.1),
+    0 10px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  /* Add subtle text glow */
+  filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.1));
+}
+
+/* Enhanced glow effect for text */
+.brand-text::after {
+  content: '';
+  position: absolute;
+  inset: -5px;
+  background: linear-gradient(135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.04) 50%,
+    rgba(255, 255, 255, 0.08) 100%
+  );
+  border-radius: 0.5rem;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  filter: blur(8px);
+}
+
+/* Hover effect for text - FIXED: No displacement, only scale and glow */
+.brand-text:hover {
+  opacity: 1;
+  transform: scale(1.02); /* Only scale, no translateX */
+  filter: drop-shadow(0 0 30px rgba(255, 255, 255, 0.2));
+}
+
+.brand-text:hover::after {
+  opacity: 1;
+}
+
+/* Footer Bottom - Smart three-column layout with reorganized content */
+.footer-bottom {
+  padding-top: 2rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  margin-top: 2rem;
+}
+
+.footer-bottom-content {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 2rem;
+  width: 100%;
+}
+
+/* System Status Section - Bottom left with blinking green dot */
+.system-status-section {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.system-status-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.75rem;
+  background: rgba(16, 185, 129, 0.08);
+  border: 1px solid rgba(16, 185, 129, 0.15);
+  border-radius: 0.75rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Add subtle gradient overlay */
+.system-status-indicator::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    rgba(16, 185, 129, 0.05) 0%, 
+    transparent 50%, 
+    rgba(16, 185, 129, 0.03) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.system-status-indicator:hover {
+  background: rgba(16, 185, 129, 0.12);
+  border-color: rgba(16, 185, 129, 0.25);
+  transform: translateY(-1px);
+  box-shadow: 
+    0 4px 12px rgba(16, 185, 129, 0.2),
+    0 0 20px rgba(16, 185, 129, 0.1);
+}
+
+.system-status-indicator:hover::before {
+  opacity: 1;
+}
+
+.status-dot-container {
+  position: relative;
+  width: 0.5rem;
+  height: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* Main status dot - bright green with blinking animation */
+.status-dot {
+  position: absolute;
+  inset: 0;
+  background: #10b981;
+  border-radius: 50%;
+  animation: statusBlink 2s ease-in-out infinite;
+  box-shadow: 
+    0 0 4px rgba(16, 185, 129, 0.6),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  z-index: 2;
+}
+
+/* Pulsing glow effect around the dot */
+.status-dot-glow {
+  position: absolute;
+  inset: -2px;
+  background: radial-gradient(circle, 
+    rgba(16, 185, 129, 0.4) 0%, 
+    rgba(16, 185, 129, 0.2) 40%, 
+    transparent 70%
+  );
+  border-radius: 50%;
+  animation: statusGlow 2s ease-in-out infinite;
+  z-index: 1;
+}
+
+/* Blinking animation for the main dot */
+@keyframes statusBlink {
+  0%, 100% { 
+    opacity: 1; 
+    transform: scale(1);
+    box-shadow: 
+      0 0 4px rgba(16, 185, 129, 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  }
+  50% { 
+    opacity: 0.3; 
+    transform: scale(0.9);
+    box-shadow: 
+      0 0 2px rgba(16, 185, 129, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Pulsing glow animation */
+@keyframes statusGlow {
+  0%, 100% { 
+    opacity: 0.6; 
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 1; 
+    transform: scale(1.2);
+  }
+}
+
+.status-text {
+  color: rgba(16, 185, 129, 0.9);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  text-shadow: 0 0 8px rgba(16, 185, 129, 0.3);
+  z-index: 1;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.system-status-indicator:hover .status-text {
+  color: rgba(16, 185, 129, 1);
+  text-shadow: 0 0 12px rgba(16, 185, 129, 0.4);
+}
+
+/* Center Legal Section - Copyright above legal links with smart vertical stacking */
+.center-legal-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  text-align: center;
+}
+
+.copyright-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copyright-text {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.9rem;
+  margin: 0;
+  text-align: center;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  position: relative;
+}
+
+/* Add subtle glow effect to copyright */
+.copyright-text::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  background: linear-gradient(135deg, 
+    rgba(255, 255, 255, 0.05) 0%, 
+    transparent 50%, 
+    rgba(255, 255, 255, 0.03) 100%
+  );
+  border-radius: 0.5rem;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.copyright-section:hover .copyright-text::after {
+  opacity: 1;
+}
+
+.legal-links {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 0.75rem;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.legal-links:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+}
+
+.legal-link {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.8rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  position: relative;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.375rem;
+}
+
+.legal-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    rgba(99, 102, 241, 0.1) 0%, 
+    transparent 50%, 
+    rgba(139, 92, 246, 0.1) 100%
+  );
+  border-radius: 0.375rem;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.legal-link:hover {
+  color: rgba(255, 255, 255, 0.9);
+  transform: translateY(-1px);
+  text-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.legal-link:hover::before {
+  opacity: 1;
+}
+
+.legal-separator {
+  color: rgba(255, 255, 255, 0.25);
+  font-size: 0.8rem;
+  margin: 0 0.25rem;
+  font-weight: 300;
+}
+
+/* Contact Email Section - Modern design positioned in bottom right */
+.contact-email-section {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.contact-email-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.75rem;
+  color: rgba(255, 255, 255, 0.8);
+  text-decoration: none;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+/* Add subtle gradient overlay */
+.contact-email-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, 
+    rgba(99, 102, 241, 0.05) 0%, 
+    transparent 50%, 
+    rgba(139, 92, 246, 0.05) 100%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.contact-email-link:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(99, 102, 241, 0.3);
+  color: rgba(255, 255, 255, 0.95);
+  transform: translateY(-2px);
+  box-shadow: 
+    0 4px 16px rgba(99, 102, 241, 0.2),
+    0 0 20px rgba(99, 102, 241, 0.1),
+    0 0 0 1px rgba(255, 255, 255, 0.1);
+}
+
+.contact-email-link:hover::before {
+  opacity: 1;
+}
+
+.contact-email-icon {
+  width: 1rem;
+  height: 1rem;
+  color: rgba(99, 102, 241, 0.7);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  z-index: 1;
+  position: relative;
+}
+
+.contact-email-link:hover .contact-email-icon {
+  color: rgba(99, 102, 241, 0.9);
+  transform: scale(1.1);
+}
+
+.contact-email-text {
+  font-family: 'SF Mono', 'Monaco', 'Inconsolata', 'Roboto Mono', monospace;
+  font-size: 0.8rem;
+  letter-spacing: 0.025em;
+  z-index: 1;
+  position: relative;
+}
+
+.footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4rem;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.footer-title {
+  color: rgba(255, 255, 255, 0.95);
+  font-size: 1.125rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.footer-title::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 2rem;
+  height: 2px;
+  background: linear-gradient(to right, 
+    rgba(99, 102, 241, 0.5), 
+    transparent
+  );
+}
+
+.footer-link {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.footer-link:hover {
+  color: rgba(255, 255, 255, 0.95);
+  transform: translateX(5px);
+}
+
+.social-links {
+  display: flex;
+  gap: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.social-link {
+  color: rgba(255, 255, 255, 0.6);
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  color: rgba(255, 255, 255, 0.95);
+  transform: translateY(-2px);
+}
+
+/* Responsive Design - Enhanced for larger logo with tighter spacing */
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+  
+  .brand-content {
+    gap: clamp(1.25rem, 3vw, 2.5rem);
+    padding: 1.75rem;
+  }
+  
+  .logo-wrapper {
+    width: clamp(9rem, 22vw, 18rem);
+    height: clamp(9rem, 22vw, 18rem);
+  }
+  
+  .brand-text {
+    font-size: clamp(2rem, 6.5vw, 5rem);
+    letter-spacing: clamp(0.35rem, 1.6vw, 1rem);
+  }
+  
+  .text-wrapper {
+    margin-left: clamp(0.4rem, 1.2vw, 0.8rem);
+  }
+  
+  .social-icons-linear {
+    gap: 1.75rem;
+    margin-top: 1.25rem;
+  }
+  
+  .social-icon-compact {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  
+  .social-icon-svg {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+  
+  .disclaimer-text {
+    font-size: 0.7rem;
+  }
+  
+  .footer-bottom-content {
+    gap: 1.5rem;
+  }
+  
+  .contact-email-text {
+    font-size: 0.75rem;
+  }
+  
+  .status-text {
+    font-size: 0.75rem;
+  }
+  
+  .copyright-text {
+    font-size: 0.85rem;
+  }
+  
+  .legal-link {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .brand-content {
+    flex-direction: column;
+    gap: 1.5rem;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  
+  .text-wrapper {
+    justify-content: center;
+    margin-left: 0;
+  }
+  
+  .logo-wrapper {
+    width: clamp(8rem, 30vw, 15rem);
+    height: clamp(8rem, 30vw, 15rem);
+    order: 1;
+  }
+  
+  .text-wrapper {
+    order: 2;
+  }
+  
+  .brand-text {
+    font-size: clamp(1.6rem, 7vw, 3.5rem);
+    letter-spacing: clamp(0.25rem, 1vw, 0.7rem);
+  }
+  
+  .footer-bottom-content {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: center;
+  }
+  
+  .system-status-section,
+  .center-legal-section,
+  .contact-email-section {
+    justify-content: center;
+  }
+  
+  .center-legal-section {
+    order: 2;
+  }
+  
+  .contact-email-section {
+    order: 3;
+  }
+  
+  .system-status-section {
+    order: 1;
+  }
+  
+  .see-it-live-column {
+    grid-column: 1 / -1;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  
+  .demo-form-compact {
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  
+  .social-icons-linear {
+    max-width: 280px;
+    margin: 1rem auto 0;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+  
+  .privacy-disclaimer {
+    margin-top: 0.5rem;
+    padding: 0.625rem;
+  }
+  
+  .disclaimer-text {
+    font-size: 0.65rem;
+    text-align: center;
+  }
+  
+  .legal-links {
+    padding: 0.375rem 0.75rem;
+  }
+  
+  .legal-link {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
+  }
+  
+  .copyright-text {
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+  
+  .brand-container {
+    margin: 3rem 0 2rem;
+    padding: 1rem;
+  }
+  
+  .brand-content {
+    padding: 1.25rem;
+    gap: 1.25rem;
+  }
+  
+  .logo-wrapper {
+    width: clamp(7rem, 25vw, 12rem);
+    height: clamp(7rem, 25vw, 12rem);
+  }
+  
+  .brand-text {
+    font-size: clamp(1.4rem, 6vw, 2.8rem);
+    letter-spacing: clamp(0.2rem, 0.8vw, 0.5rem);
+  }
+  
+  .see-it-live-column {
+    max-width: 300px;
+  }
+  
+  .demo-description-compact {
+    font-size: 0.8rem;
+  }
+  
+  .social-icons-linear {
+    justify-content: center;
+    gap: 1.25rem;
+    max-width: 240px;
+  }
+  
+  .social-icon-compact {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+  
+  .social-icon-svg {
+    width: 1rem;
+    height: 1rem;
+  }
+  
+  .disclaimer-text {
+    font-size: 0.6rem;
+    line-height: 1.3;
+  }
+  
+  .legal-links {
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+  
+  .legal-separator {
+    display: none;
+  }
+  
+  .legal-link {
+    font-size: 0.7rem;
+  }
+  
+  .contact-email-link {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.8rem;
+  }
+  
+  .contact-email-text {
+    font-size: 0.7rem;
+  }
+  
+  .contact-email-icon {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+  
+  .system-status-indicator {
+    padding: 0.3rem 0.6rem;
+  }
+  
+  .status-text {
+    font-size: 0.7rem;
+  }
+  
+  .copyright-text {
+    font-size: 0.75rem;
+  }
+}
+
+/* Ultra-small screens - Logo still prominent with minimal spacing */
+@media (max-width: 480px) {
+  .brand-text {
+    font-size: clamp(1.2rem, 5vw, 2.2rem);
+    letter-spacing: clamp(0.15rem, 0.6vw, 0.35rem);
+  }
+  
+  .logo-wrapper {
+    width: clamp(6rem, 22vw, 10rem);
+    height: clamp(6rem, 22vw, 10rem);
+  }
+  
+  .brand-content {
+    gap: 1rem;
+    padding: 1rem;
+  }
+  
+  .email-input-compact {
+    padding: 0.5rem 0.625rem 0.5rem 2rem;
+    font-size: 0.75rem;
+  }
+  
+  .demo-button-compact {
+    width: 2.25rem;
+    height: 2.25rem;
+  }
+  
+  .arrow-icon-compact {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+  
+  .social-icons-linear {
+    gap: 1rem;
+    max-width: 200px;
+    margin-top: 0.875rem;
+  }
+  
+  .social-icon-compact {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+  }
+  
+  .social-icon-svg {
+    width: 0.875rem;
+    height: 0.875rem;
+  }
+  
+  .privacy-disclaimer {
+    padding: 0.5rem;
+  }
+  
+  .disclaimer-text {
+    font-size: 0.55rem;
+    line-height: 1.25;
+  }
+  
+  .footer-bottom-content {
+    gap: 1rem;
+  }
+  
+  .contact-email-link {
+    padding: 0.4rem 0.75rem;
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+  }
+  
+  .contact-email-text {
+    font-size: 0.65rem;
+  }
+  
+  .contact-email-icon {
+    width: 0.75rem;
+    height: 0.75rem;
+  }
+  
+  .copyright-text {
+    font-size: 0.7rem;
+  }
+  
+  .legal-link {
+    font-size: 0.65rem;
+  }
+  
+  .legal-links {
+    gap: 0.375rem;
+    padding: 0.375rem 0.5rem;
+  }
+  
+  .system-status-indicator {
+    padding: 0.25rem 0.5rem;
+  }
+  
+  .status-text {
+    font-size: 0.65rem;
+  }
+  
+  .status-dot-container {
+    width: 0.4rem;
+    height: 0.4rem;
+  }
+  
+  .center-legal-section {
+    gap: 0.5rem;
+  }
+}
