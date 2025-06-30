@@ -8,8 +8,15 @@ import { cn } from "@/lib/utils";
 export function Header() {
   const [scrollY, setScrollY] = useState(0);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
       setScrollY(currentScrollY);
@@ -31,18 +38,22 @@ export function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     handleScroll();
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [mounted]);
 
   // Calculate smooth transition values based on scroll position
-  const scrollProgress = Math.min(scrollY / 100, 1); // Transition over 100px
-  const borderRadius = scrollProgress * 50; // Max 50px border radius
-  const headerWidth = 100 - (scrollProgress * 10); // From 100% to 90%
-  const backdropBlur = 8 + (scrollProgress * 12); // From 8px to 20px blur
-  const bgOpacity = 0.6 + (scrollProgress * 0.2); // From 0.6 to 0.8 opacity
+  // Only use actual scroll values when mounted, otherwise use default (non-scrolled) state
+  const scrollProgress = mounted ? Math.min(scrollY / 100, 1) : 0;
+  const borderRadius = scrollProgress * 50;
+  const headerWidth = 100 - (scrollProgress * 10);
+  const backdropBlur = 8 + (scrollProgress * 12);
+  const bgOpacity = 0.6 + (scrollProgress * 0.2);
   
   // Shadow intensity based on scroll progress
-  const shadowOpacity = scrollProgress * 0.3; // Max 0.3 opacity for subtle effect
-  const glowIntensity = scrollProgress * 0.2; // Max 0.2 for glow effect
+  const shadowOpacity = scrollProgress * 0.3;
+  const glowIntensity = scrollProgress * 0.2;
+
+  // Use mounted state to determine if we should show scrolled state
+  const showScrolledState = mounted && isScrolled;
 
   return (
     <header
@@ -50,11 +61,11 @@ export function Header() {
       className="fixed z-50 top-2 sm:top-4 left-1/2 -translate-x-1/2 transition-all duration-700 ease-out"
       style={{
         width: `${headerWidth}%`,
-        maxWidth: isScrolled ? '80rem' : 'none',
+        maxWidth: showScrolledState ? '80rem' : 'none',
         borderRadius: `${borderRadius}px`,
         backdropFilter: `blur(${backdropBlur}px)`,
         // Add multiple layered shadows for depth and glow effect
-        boxShadow: isScrolled ? `
+        boxShadow: showScrolledState ? `
           0 0 0 1px rgba(255, 255, 255, ${shadowOpacity * 0.8}),
           0 0 20px rgba(255, 255, 255, ${glowIntensity}),
           0 0 40px rgba(255, 255, 255, ${glowIntensity * 0.6}),
@@ -67,24 +78,24 @@ export function Header() {
       <div 
         className={cn(
           "relative border transition-all duration-700 ease-out overflow-hidden",
-          isScrolled
+          showScrolledState
             ? "border-white/20"
             : "border-transparent"
         )}
         style={{
           borderRadius: `${borderRadius}px`,
-          backgroundColor: isScrolled 
+          backgroundColor: showScrolledState 
             ? `rgba(0, 0, 0, ${bgOpacity})` 
             : `rgba(255, 255, 255, ${bgOpacity})`,
           // Inner border glow
-          boxShadow: isScrolled ? `
+          boxShadow: showScrolledState ? `
             inset 0 0 0 1px rgba(255, 255, 255, ${shadowOpacity * 0.3}),
             inset 0 1px 0 rgba(255, 255, 255, ${shadowOpacity * 0.4})
           ` : 'none',
         }}
       >
         {/* Subtle gradient overlay for extra depth */}
-        {isScrolled && (
+        {showScrolledState && (
           <div 
             className="absolute inset-0 pointer-events-none transition-opacity duration-700 ease-out"
             style={{
@@ -108,12 +119,12 @@ export function Header() {
                 height: `${32 - (scrollProgress * 4)}px`,
                 borderRadius: `${scrollProgress * 8}px`,
                 // Add subtle glow to logo when collapsed
-                boxShadow: isScrolled ? `0 0 8px rgba(255, 255, 255, ${glowIntensity * 0.5})` : 'none',
+                boxShadow: showScrolledState ? `0 0 8px rgba(255, 255, 255, ${glowIntensity * 0.5})` : 'none',
               }}
             >
               <Image
                 src={
-                  isScrolled
+                  showScrolledState
                     ? "/Screenshot_2025-06-26_at_1.15.07_AM-removebg-preview.png"
                     : "/ChatGPT_Image_Jun_27__2025__03_27_29_AM-removebg-preview.png"
                 }
@@ -126,13 +137,13 @@ export function Header() {
             <span 
               className={cn(
                 "font-semibold text-purple-400 uppercase transition-all duration-700 ease-out",
-                isScrolled ? "text-purple-300" : "text-purple-400"
+                showScrolledState ? "text-purple-300" : "text-purple-400"
               )}
               style={{
                 fontSize: `${14 - (scrollProgress * 2)}px`,
                 opacity: 1 - (scrollProgress * 0.1),
                 // Add text glow when collapsed
-                textShadow: isScrolled ? `0 0 8px rgba(168, 85, 247, ${glowIntensity})` : 'none',
+                textShadow: showScrolledState ? `0 0 8px rgba(168, 85, 247, ${glowIntensity})` : 'none',
               }}
             >
               NUVIANSE
@@ -150,11 +161,11 @@ export function Header() {
               href="#" 
               className={cn(
                 "font-medium hover:text-black transition-all duration-300 ease-out uppercase",
-                isScrolled ? "text-white" : "text-black"
+                showScrolledState ? "text-white" : "text-black"
               )}
               style={{
                 fontSize: `${12 - (scrollProgress * 1)}px`,
-                textShadow: isScrolled ? `0 0 4px rgba(255, 255, 255, ${glowIntensity * 0.3})` : 'none',
+                textShadow: showScrolledState ? `0 0 4px rgba(255, 255, 255, ${glowIntensity * 0.3})` : 'none',
               }}
             >
               Home
@@ -163,11 +174,11 @@ export function Header() {
               href="#features" 
               className={cn(
                 "font-medium hover:text-black transition-all duration-300 ease-out uppercase",
-                isScrolled ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black"
+                showScrolledState ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black"
               )}
               style={{
                 fontSize: `${12 - (scrollProgress * 1)}px`,
-                textShadow: isScrolled ? `0 0 4px rgba(255, 255, 255, ${glowIntensity * 0.2})` : 'none',
+                textShadow: showScrolledState ? `0 0 4px rgba(255, 255, 255, ${glowIntensity * 0.2})` : 'none',
               }}
             >
               AI Agents
@@ -176,11 +187,11 @@ export function Header() {
               href="#pricing" 
               className={cn(
                 "font-medium hover:text-black transition-all duration-300 ease-out uppercase",
-                isScrolled ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black"
+                showScrolledState ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black"
               )}
               style={{
                 fontSize: `${12 - (scrollProgress * 1)}px`,
-                textShadow: isScrolled ? `0 0 4px rgba(255, 255, 255, ${glowIntensity * 0.2})` : 'none',
+                textShadow: showScrolledState ? `0 0 4px rgba(255, 255, 255, ${glowIntensity * 0.2})` : 'none',
               }}
             >
               Pricing
@@ -189,11 +200,11 @@ export function Header() {
               href="#demo" 
               className={cn(
                 "font-medium hover:text-black transition-all duration-300 ease-out uppercase",
-                isScrolled ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black"
+                showScrolledState ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black"
               )}
               style={{
                 fontSize: `${12 - (scrollProgress * 1)}px`,
-                textShadow: isScrolled ? `0 0 4px rgba(255, 255, 255, ${glowIntensity * 0.2})` : 'none',
+                textShadow: showScrolledState ? `0 0 4px rgba(255, 255, 255, ${glowIntensity * 0.2})` : 'none',
               }}
             >
               Demo
@@ -202,11 +213,11 @@ export function Header() {
               href="#about" 
               className={cn(
                 "font-medium hover:text-black transition-all duration-300 ease-out uppercase",
-                isScrolled ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black"
+                showScrolledState ? "text-white/80 hover:text-white" : "text-black/70 hover:text-black"
               )}
               style={{
                 fontSize: `${12 - (scrollProgress * 1)}px`,
-                textShadow: isScrolled ? `0 0 4px rgba(255, 255, 255, ${glowIntensity * 0.2})` : 'none',
+                textShadow: showScrolledState ? `0 0 4px rgba(255, 255, 255, ${glowIntensity * 0.2})` : 'none',
               }}
             >
               About
@@ -224,7 +235,7 @@ export function Header() {
               href="#login"
               className={cn(
                 "rounded-full font-medium uppercase transition-all duration-300 ease-out border",
-                isScrolled
+                showScrolledState
                   ? "bg-white/90 text-black border-white/30 hover:bg-white"
                   : "text-black border-gray-300 hover:bg-gray-100"
               )}
@@ -232,7 +243,7 @@ export function Header() {
                 padding: `${3 - (scrollProgress * 1)}px ${12 - (scrollProgress * 2)}px`,
                 fontSize: `${12 - (scrollProgress * 1)}px`,
                 borderRadius: `${20 + (scrollProgress * 5)}px`,
-                boxShadow: isScrolled ? `
+                boxShadow: showScrolledState ? `
                   0 0 8px rgba(255, 255, 255, ${glowIntensity * 0.4}),
                   inset 0 1px 0 rgba(255, 255, 255, 0.3)
                 ` : 'none',
@@ -244,7 +255,7 @@ export function Header() {
               href="#signup"
               className={cn(
                 "rounded-full font-medium uppercase transition-all duration-300 ease-out",
-                isScrolled
+                showScrolledState
                   ? "bg-emerald-600 text-white hover:bg-emerald-700"
                   : "bg-emerald-500 text-white hover:bg-emerald-600"
               )}
@@ -252,7 +263,7 @@ export function Header() {
                 padding: `${3 - (scrollProgress * 1)}px ${12 - (scrollProgress * 2)}px`,
                 fontSize: `${12 - (scrollProgress * 1)}px`,
                 borderRadius: `${20 + (scrollProgress * 5)}px`,
-                boxShadow: isScrolled ? `
+                boxShadow: showScrolledState ? `
                   0 0 12px rgba(16, 185, 129, ${glowIntensity * 0.6}),
                   0 0 24px rgba(16, 185, 129, ${glowIntensity * 0.3}),
                   inset 0 1px 0 rgba(255, 255, 255, 0.2)
