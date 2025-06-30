@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Github, Twitter, Linkedin, Instagram, Mail, ArrowRight } from 'lucide-react'
@@ -11,6 +11,11 @@ export function Footer() {
   useParallaxEffect()
   const [email, setEmail] = useState('')
   const [isSubscribed, setIsSubscribed] = useState(false)
+  const [currentYear, setCurrentYear] = useState<number | null>(null)
+
+  useEffect(() => {
+    setCurrentYear(new Date().getFullYear())
+  }, [])
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault()
@@ -236,8 +241,8 @@ export function Footer() {
             <div className="center-legal-section">
               {/* Copyright - Top */}
               <div className="copyright-section">
-                <p className="copyright-text" suppressHydrationWarning>
-                  © {new Date().getFullYear()} TalentAI. All rights reserved.
+                <p className="copyright-text">
+                  © {currentYear || '2025'} TalentAI. All rights reserved.
                 </p>
               </div>
               
