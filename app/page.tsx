@@ -21,6 +21,8 @@ import { Footer } from "@/components/ui/footer"
 import { Header } from "@/components/ui/header"
 import { InfiniteGrid } from "@/components/ui/infinite-grid"
 import { ProductFeatures } from "@/components/ui/product-features"
+import { FeaturesShowcase } from "@/components/ui/features-showcase"
+import { AICapabilitiesGrid } from "@/components/ui/ai-capabilities-grid"
 
 export default function Home() {
   return (
@@ -63,6 +65,12 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Features Showcase Section */}
+      <FeaturesShowcase />
+
+      {/* AI Capabilities Grid Section */}
+      <AICapabilitiesGrid />
 
       {/* AI Capabilities Section */}
       <section className="relative py-24 overflow-hidden">
@@ -357,7 +365,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* New Product Features Section */}
+      {/* Product Features Section */}
       <ProductFeatures />
       
       {/* Footer */}
