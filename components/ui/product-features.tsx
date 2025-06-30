@@ -143,6 +143,7 @@ export function ProductFeatures() {
                 className="min-h-[25vh] flex items-center py-4"
               >
                 <div
+                  suppressHydrationWarning
                   className={cn(
                     "transition-all duration-500 transform w-full",
                     index === activeIndex
@@ -199,6 +200,7 @@ export function ProductFeatures() {
           {/* Right Side - Sticky Image Container */}
           <div className="w-full lg:w-1/2 relative">
             <div 
+              suppressHydrationWarning
               ref={imageContainerRef}
               className={cn(
                 "w-full h-[65vh] transition-all duration-300 ease-out",

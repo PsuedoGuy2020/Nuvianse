@@ -88,6 +88,7 @@ export function FeaturesShowcase() {
           {/* Left Side - Phone Mockup */}
           <div className="relative flex justify-center lg:justify-start">
             <div 
+              suppressHydrationWarning
               className={cn(
                 "relative transition-all duration-1000 ease-out",
                 isVisible 
@@ -184,12 +185,15 @@ export function FeaturesShowcase() {
           <div className="space-y-8">
             
             {/* Section Header */}
-            <div className={cn(
-              "transition-all duration-1000 ease-out",
-              isVisible 
-                ? "opacity-100 translate-y-0" 
-                : "opacity-0 translate-y-8"
-            )}>
+            <div 
+              suppressHydrationWarning
+              className={cn(
+                "transition-all duration-1000 ease-out",
+                isVisible 
+                  ? "opacity-100 translate-y-0" 
+                  : "opacity-0 translate-y-8"
+              )}
+            >
               <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
                 FEEL THE BEST EXPERIENCE
                 <br />
@@ -207,6 +211,7 @@ export function FeaturesShowcase() {
               {showcaseFeatures.map((feature, index) => (
                 <div
                   key={feature.id}
+                  suppressHydrationWarning
                   className={cn(
                     "flex items-start gap-4 transition-all duration-1000 ease-out",
                     isVisible 
@@ -240,12 +245,16 @@ export function FeaturesShowcase() {
             </div>
 
             {/* CTA Button */}
-            <div className={cn(
-              "pt-6 transition-all duration-1000 ease-out",
-              isVisible 
-                ? "opacity-100 translate-y-0" 
-                : "opacity-0 translate-y-8"
-            )} style={{ transitionDelay: '800ms' }}>
+            <div 
+              suppressHydrationWarning
+              className={cn(
+                "pt-6 transition-all duration-1000 ease-out",
+                isVisible 
+                  ? "opacity-100 translate-y-0" 
+                  : "opacity-0 translate-y-8"
+              )} 
+              style={{ transitionDelay: '800ms' }}
+            >
               <button className="group bg-gradient-to-r from-emerald-600 to-blue-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:shadow-emerald-500/25 transition-all duration-300 hover:scale-105">
                 <span className="flex items-center gap-2">
                   Start Your AI Journey

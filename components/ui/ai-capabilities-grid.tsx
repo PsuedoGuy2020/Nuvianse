@@ -144,6 +144,7 @@ export function AICapabilitiesGrid() {
             <div
               key={capability.id}
               ref={(el) => { cardRefs.current[index] = el }}
+              suppressHydrationWarning
               className={cn(
                 "group relative bg-gradient-to-br from-gray-900/50 to-gray-800/30 backdrop-blur-sm rounded-2xl p-6 border border-gray-700/50 hover:border-gray-600/50 transition-all duration-500",
                 visibleCards.includes(index)

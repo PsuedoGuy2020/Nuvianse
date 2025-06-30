@@ -46,6 +46,7 @@ export function Header() {
 
   return (
     <header
+      suppressHydrationWarning
       className="fixed z-50 top-4 left-1/2 -translate-x-1/2 transition-all duration-700 ease-out"
       style={{
         width: `${headerWidth}%`,

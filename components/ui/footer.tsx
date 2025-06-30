@@ -236,7 +236,7 @@ export function Footer() {
             <div className="center-legal-section">
               {/* Copyright - Top */}
               <div className="copyright-section">
-                <p className="copyright-text">
+                <p className="copyright-text" suppressHydrationWarning>
                   © {new Date().getFullYear()} TalentAI. All rights reserved.
                 </p>
               </div>
